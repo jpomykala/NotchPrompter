@@ -17,6 +17,11 @@ Perfect for quick videos, or keeping important text visible while you work.
 ## Screenshot
 <img width="1303" height="800" alt="SCR-20251206-nrty" src="https://github.com/user-attachments/assets/1c76dfd7-559f-4df1-9cd6-c183b7c538d6" />
 
+## How to install?
+
+Head to [Releases](https://github.com/jpomykala/NotchPrompter/releases) and download the zip file. Unzip it and move notch-prompter.app into your Applications folder.
+
+> Important: [App is not notorized becasue it requires a paid Apple License](https://apple.stackexchange.com/questions/388554/is-a-paid-apple-developer-account-required-for-notarizing-macos-apps). So on the first run you will have to go to **Settings -> Privacy & Security** scroll down and allow to open the app.
 
 ## Contributing
 All contributions are welcome! Whether you're fixing bugs, improving the UI, or adding new features, your help is appreciated.
