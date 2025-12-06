@@ -42,6 +42,20 @@ struct NotchPrompterApp: App {
 
             Divider()
 
+            Button("Feedback") {
+                if let url = URL(string: "https://github.com/jpomykala/NotchPrompter/issues") {
+                    NSWorkspace.shared.open(url)
+                }
+            }
+
+            Button("Donate") {
+                if let url = URL(string: "https://github.com/sponsors/jpomykala") {
+                    NSWorkspace.shared.open(url)
+                }
+            }
+            
+            Divider()
+
             Button(role: .destructive) {
                 NSApp.terminate(nil)
             } label: {
