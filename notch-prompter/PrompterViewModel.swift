@@ -5,7 +5,7 @@ import AVFoundation
 import Accelerate
 
 final class PrompterViewModel: ObservableObject {
-    // User settings
+    // MARK: User settings
     @Published var text: String = """
     This is a sample text for your prompter
     You can add your own text in Settings
@@ -29,14 +29,29 @@ final class PrompterViewModel: ObservableObject {
     
     private var timerCancellable: AnyCancellable?
     private var lastTick: CFTimeInterval?
+    private var cancellables: Set<AnyCancellable> = []
     
-    init() {
-        startTimer()
+    // MARK: UserDefaults keys
+    private enum Keys {
+        static let text = "PrompterText"
+        static let speed = "PrompterSpeed"
+        static let fontSize = "PrompterFontSize"
+        static let pauseOnHover = "PrompterPauseOnHover"
+        static let prompterWidth = "PrompterWidth"
+        static let prompterHeight = "PrompterHeight"
     }
     
+    // MARK: Init
+    init() {
+        loadSettings()
+        startTimer()
+        observeSettingsChanges()
+    }
+    
+    // MARK: Play/Pause
     func initialPlay() {
         lastTick = nil
-        offset -= speed // a little magic number that helps me avoid "text jumping" effect on "play"
+        offset -= speed // magic number to avoid text jumping
         isPlaying = true
     }
     
@@ -55,8 +70,8 @@ final class PrompterViewModel: ObservableObject {
         lastTick = nil
     }
     
+    // MARK: Timer
     private func startTimer() {
-        // high frequency timer for smoothness (display refresh)
         timerCancellable = CADisplayLinkPublisher()
             .receive(on: RunLoop.main)
             .sink { [weak self] timestamp in
@@ -65,9 +80,8 @@ final class PrompterViewModel: ObservableObject {
     }
     
     private func tick(current: CFTimeInterval) {
-        guard isPlaying else {
-            return
-        }
+        guard isPlaying else { return }
+        
         let dt: CFTimeInterval
         if let last = lastTick {
             dt = current - last
@@ -76,11 +90,45 @@ final class PrompterViewModel: ObservableObject {
         }
         lastTick = current
         
-        // Advance offset by speed (points/sec) * dt
-        let delta = CGFloat(speed) * CGFloat(dt)
-        offset += delta
+        offset += CGFloat(speed) * CGFloat(dt)
     }
     
+    // MARK: Settings persistence
+    private func observeSettingsChanges() {
+        $text.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $speed.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $fontSize.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $pauseOnHover.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $prompterWidth.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $prompterHeight.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+    }
+    
+    private func loadSettings() {
+        let defaults = UserDefaults.standard
+        
+        text = defaults.string(forKey: Keys.text) ?? text
+        speed = defaults.double(forKey: Keys.speed)
+        if speed == 0 { speed = 12.0 }
+        fontSize = defaults.double(forKey: Keys.fontSize)
+        if fontSize == 0 { fontSize = 14.0 }
+        pauseOnHover = defaults.object(forKey: Keys.pauseOnHover) as? Bool ?? true
+        prompterWidth = CGFloat(defaults.double(forKey: Keys.prompterWidth))
+        if prompterWidth == 0 { prompterWidth = 400 }
+        prompterHeight = CGFloat(defaults.double(forKey: Keys.prompterHeight))
+        if prompterHeight == 0 { prompterHeight = 150 }
+    }
+    
+    private func saveSettings() {
+        let defaults = UserDefaults.standard
+        defaults.set(text, forKey: Keys.text)
+        defaults.set(speed, forKey: Keys.speed)
+        defaults.set(fontSize, forKey: Keys.fontSize)
+        defaults.set(pauseOnHover, forKey: Keys.pauseOnHover)
+        defaults.set(Double(prompterWidth), forKey: Keys.prompterWidth)
+        defaults.set(Double(prompterHeight), forKey: Keys.prompterHeight)
+    }
+    
+    // MARK: Connector for display refresh
     private final class CADisplayLinkProxy {
         let subject = PassthroughSubject<CFTimeInterval, Never>()
         var link: CVDisplayLink?
@@ -133,7 +181,7 @@ final class PrompterViewModel: ObservableObject {
             }
             
             func request(_ demand: Subscribers.Demand) {
-                // We push at display refresh rate; demand not used.
+                // demand not used
             }
             
             func cancel() {
