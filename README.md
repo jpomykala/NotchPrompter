@@ -7,6 +7,8 @@
 A **very basic**, always-on-top floating text prompter for macOS.
 Perfect for quick videos, or keeping important text visible while you work.
 
+[Install NotchPrompter](https://github.com/jpomykala/NotchPrompter/releases/download/1.1/notch-prompter.zip)
+
 
 ## Features
 - Always on top
