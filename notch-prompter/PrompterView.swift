@@ -57,7 +57,7 @@ struct PrompterView: View {
             }
         } else {
             if isHovering, wasPlayingBeforeHover {
-                viewModel.playNoOffsetChange()
+                viewModel.play()
             }
             isHovering = false
             wasPlayingBeforeHover = false
@@ -77,7 +77,7 @@ struct PrompterView: View {
 
     private var textBlock: some View {
         let base = viewModel.text.isEmpty ? "Put some text in Settings..." : viewModel.text
-        let text = "\n" + base // add a new line to not hide the first line under the notch
+        let text = "\n" + base + "\n\n🏁\n\n" // add a new line to not hide the first line under the notch
         
         return Text(text)
             .font(.system(size: viewModel.fontSize, weight: .regular, design: .default))

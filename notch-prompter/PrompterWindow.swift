@@ -16,7 +16,7 @@ final class PrompterWindow {
                 bottomLeadingRadius: 16,
                 bottomTrailingRadius: 16,
                 topTrailingRadius: 0
-            ))
+            )).border(Color.black.opacity(0.0), width: 0)
 
         let hosting = NSHostingView(rootView: contentView)
         hosting.wantsLayer = true
@@ -34,7 +34,7 @@ final class PrompterWindow {
         window.isOpaque = false
         window.backgroundColor = .clear
         window.level = .statusBar
-        window.hasShadow = true
+        window.hasShadow = false // true adds a little cool effect, but it's not needed for "Notch" type app
         window.titleVisibility = .hidden
         window.titlebarAppearsTransparent = true
         window.collectionBehavior = [.canJoinAllSpaces, .fullScreenAuxiliary]
@@ -72,7 +72,8 @@ final class PrompterWindow {
 
     private func topCenterFrame(width: CGFloat, height: CGFloat, screen: NSScreen) -> CGRect {
         let x = screen.frame.midX - width / 2
-        let y = screen.frame.maxY - height + 2 // slight offset to hide border under notch
+        let heightOfBorderTopWithRadiusToHide: CGFloat = 4
+        let y = screen.frame.maxY - height + heightOfBorderTopWithRadiusToHide// slight offset to hide border under notch
         return CGRect(x: x, y: y, width: width, height: height)
     }
 }
