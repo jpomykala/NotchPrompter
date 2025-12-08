@@ -40,6 +40,7 @@ If you enjoy using NotchPrompter and find it useful, you can support the project
 - [ ] Customizable position
 - [ ] Option to choose font
 - [ ] Option to change line height
+- [ ] Support multi-monitor setups
 
 ## License
 This project is open-source and available under the MIT License.
