@@ -242,7 +242,9 @@ final class PrompterViewModel: ObservableObject {
                 CVDisplayLinkSetOutputCallback(l, { (_, _, _, _, _, userInfo) -> CVReturn in
                     let ref = Unmanaged<CADisplayLinkProxy>.fromOpaque(userInfo!).takeUnretainedValue()
                     let ts = CFAbsoluteTimeGetCurrent()
-                    ref.subject.send(ts)
+                    DispatchQueue.main.async {
+                        ref.subject.send(ts)
+                    }
                     return kCVReturnSuccess
                 }, UnsafeMutableRawPointer(Unmanaged.passUnretained(self).toOpaque()))
                 CVDisplayLinkStart(l)
