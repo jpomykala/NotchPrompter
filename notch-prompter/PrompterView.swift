@@ -10,9 +10,11 @@ struct PrompterView: View {
     @State private var wasPlayingBeforeHover: Bool = false
     @State private var isHovering: Bool = false
 
+    @Environment(\.colorScheme) var colorScheme
+
     var body: some View {
         ZStack {
-            Color.black
+            (colorScheme == .dark ? Color.black : Color.white)
             GeometryReader { geo in
                 VStack(spacing: 0) {
                     Spacer(minLength: 0)
@@ -24,14 +26,11 @@ struct PrompterView: View {
                 }
                 .clipped()
                 .onChange(of: viewModel.offset) { _, newValue in
-                
                     if contentHeight > 0, newValue > contentHeight {
-                        //we've scrolled past the end
-                        viewModel.offset = 0 // restarts
+                        viewModel.offset = 0
                     }
                 }
                 .onChange(of: viewModel.text) { _, _ in
-                    // reset offset when text changes to avoid jump into middle
                     viewModel.offset = 0
                 }
             }
@@ -77,11 +76,10 @@ struct PrompterView: View {
 
     private var textBlock: some View {
         let base = viewModel.text.isEmpty ? "Put some text in Settings..." : viewModel.text
-        let text = "\n" + base + "\n\n🏁\n\n" // add a new line to not hide the first line under the notch
-        
+        let text = "\n" + base + "\n\n🏁\n\n"
         return Text(text)
             .font(.system(size: viewModel.fontSize, weight: .regular, design: .default))
-            .foregroundColor(.white)
+            .foregroundColor(colorScheme == .dark ? .white : .black)
             .multilineTextAlignment(.center)
             .lineSpacing(8)
             .lineLimit(nil)
