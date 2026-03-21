@@ -11,7 +11,7 @@ struct SettingsView: View {
     }
     
     enum SettingsTab: String, CaseIterable {
-        case text = "Text"
+        case text = "Script"
         case settings = "Settings"
     }
 
@@ -87,22 +87,46 @@ struct SettingsView: View {
 // MARK: - Text Tab
 struct TextTabView: View {
     @ObservedObject var viewModel: PrompterViewModel
+    @FocusState private var isTextEditorFocused: Bool
     
     var body: some View {
-        ScrollView {
-            VStack(alignment: .leading, spacing: 12) {
-                SectionHeader("Your prompter text", paddingTop: 0)
+        VStack(spacing: 0) {
+            ZStack(alignment: .topLeading) {
+                // Background
+                RoundedRectangle(cornerRadius: 8)
+                    .fill(Color(nsColor: .textBackgroundColor))
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .strokeBorder(
+                                isTextEditorFocused ? Color.accentColor : Color(nsColor: .separatorColor),
+                                lineWidth: isTextEditorFocused ? 2 : 1
+                            )
+                    )
+                    .shadow(color: .black.opacity(0.03), radius: 1, x: 0, y: 1)
+                
+                // Placeholder (TODO: is there any better option?)
+                if viewModel.text.isEmpty {
+                    Text("Start typing your script here...")
+                        .font(.system(size: 15))
+                        .foregroundStyle(.tertiary)
+                        .padding(.horizontal, 13)
+                        .padding(.vertical, 12)
+                        .allowsHitTesting(false)
+                }
+                
                 TextEditor(text: $viewModel.text)
                     .font(.system(size: 15))
-                    .lineSpacing(2.5)
+                    .lineSpacing(4)
                     .padding(.horizontal, 8)
-                    .padding(.vertical, 4)
-                    .frame(minHeight: 520)
+                    .padding(.vertical, 12)
                     .scrollContentBackground(.hidden)
-                    .background(.gray.tertiary)
-                    .cornerRadius(8)
+                    .background(Color.clear)
+                    .focused($isTextEditorFocused)
             }
-            .padding(24)
+            .padding(.horizontal, 24)
+            .padding(.top, 12)
+            .padding(.bottom, 24)
+            .frame(maxHeight: .infinity)
         }
     }
 }
