@@ -55,8 +55,8 @@ struct SettingsView: View {
                         Text(tab.rawValue).tag(tab)
                     }
                 }
-                .pickerStyle(.segmented)
-                .frame(width: 200)
+                .pickerStyle(.palette)
+                
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 12)
@@ -74,7 +74,7 @@ struct SettingsView: View {
                 }
             }
         }
-        .navigationTitle("Preferences")
+        .navigationTitle("NotchPrompter")
         .frame(width: 650, height: 650)
         .alert("Microphone access denied", isPresented: $viewModel.showMicrophoneAlert) {
             Button("OK", role: .cancel) { }
