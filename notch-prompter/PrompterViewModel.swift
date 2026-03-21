@@ -51,7 +51,7 @@ final class PrompterViewModel: ObservableObject {
     @Published var topFadeHeight: Double = 40.0
     @Published var bottomFadeHeight: Double = 40.0
     @Published var showHoverControls: Bool = true
-    @Published var hideFromScreenRecording: Bool = false
+    @Published var hideFromScreenRecording: Bool = true
     @Published var prompterTheme: PrompterTheme = .dark
     
     var backScrollAmount: Double = 20.0 // pixels to scroll back
