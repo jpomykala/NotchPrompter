@@ -48,6 +48,17 @@ final class PrompterWindow {
                 self?.resizeWindow(width: width, height: height)
             }
             .store(in: &cancellables)
+        
+        viewModel.$isPrompterVisible
+            .receive(on: RunLoop.main)
+            .sink { [weak self] isVisible in
+                if isVisible {
+                    self?.window.orderFront(nil)
+                } else {
+                    self?.window.orderOut(nil)
+                }
+            }
+            .store(in: &cancellables)
     }
 
     func show() {

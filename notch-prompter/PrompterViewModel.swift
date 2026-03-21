@@ -3,6 +3,7 @@ import Combine
 import CoreVideo
 import AVFoundation
 import Accelerate
+import SwiftUI
 
 final class PrompterViewModel: ObservableObject {
     
@@ -41,6 +42,8 @@ final class PrompterViewModel: ObservableObject {
     @Published var prompterHeight: CGFloat = 150
     @Published var voiceActivation: Bool = false
     @Published var autoGain: Bool = true
+    @Published var isPrompterVisible: Bool = true
+    @Published var fontDesign: Font.Design = .default
     
     
     private var timerCancellable: AnyCancellable?
@@ -63,6 +66,8 @@ final class PrompterViewModel: ObservableObject {
         static let prompterHeight = "PrompterHeight"
         static let voiceActivation = "VoiceActivation"
         static let audioThreshold = "AudioThreshold"
+        static let isPrompterVisible = "IsPrompterVisible"
+        static let fontDesign = "FontDesign"
     }
     
     // MARK: Init
@@ -197,6 +202,8 @@ final class PrompterViewModel: ObservableObject {
         $prompterHeight.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $voiceActivation.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $audioThreshold.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $isPrompterVisible.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $fontDesign.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
     }
     
     private func loadSettings() {
@@ -215,6 +222,11 @@ final class PrompterViewModel: ObservableObject {
         voiceActivation = defaults.object(forKey: Keys.voiceActivation) as? Bool ?? false
         let threshold = defaults.double(forKey: Keys.audioThreshold)
         audioThreshold = threshold == 0 ? 0.01 : Float(threshold)
+        isPrompterVisible = defaults.object(forKey: Keys.isPrompterVisible) as? Bool ?? true
+        
+        if let fontDesignRaw = defaults.string(forKey: Keys.fontDesign) {
+            fontDesign = Font.Design(rawValue: fontDesignRaw) ?? .default
+        }
     }
     
     private func saveSettings() {
@@ -227,6 +239,8 @@ final class PrompterViewModel: ObservableObject {
         defaults.set(Double(prompterHeight), forKey: Keys.prompterHeight)
         defaults.set(voiceActivation, forKey: Keys.voiceActivation)
         defaults.set(Double(audioThreshold), forKey: Keys.audioThreshold)
+        defaults.set(isPrompterVisible, forKey: Keys.isPrompterVisible)
+        defaults.set(fontDesign.rawValue, forKey: Keys.fontDesign)
     }
     
     // MARK: Connector for display refresh
@@ -295,3 +309,36 @@ final class PrompterViewModel: ObservableObject {
         }
     }
 }
+// MARK: - Font.Design Extension for UserDefaults
+extension Font.Design: RawRepresentable {
+    public init?(rawValue: String) {
+        switch rawValue {
+        case "default": self = .default
+        case "serif": self = .serif
+        case "rounded": self = .rounded
+        case "monospaced": self = .monospaced
+        default: return nil
+        }
+    }
+    
+    public var rawValue: String {
+        switch self {
+        case .default: return "default"
+        case .serif: return "serif"
+        case .rounded: return "rounded"
+        case .monospaced: return "monospaced"
+        @unknown default: return "default"
+        }
+    }
+    
+    var displayName: String {
+        switch self {
+        case .default: return "Default"
+        case .serif: return "Serif"
+        case .rounded: return "Rounded"
+        case .monospaced: return "Monospaced"
+        @unknown default: return "Default"
+        }
+    }
+}
+

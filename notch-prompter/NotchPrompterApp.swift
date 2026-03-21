@@ -39,6 +39,16 @@ struct MenuContent: View {
 
     var body: some View {
         Button {
+            viewModel.isPrompterVisible.toggle()
+        } label: {
+            Label(viewModel.isPrompterVisible ? "Hide Prompter" : "Show Prompter",
+                  systemImage: viewModel.isPrompterVisible ? "eye.slash" : "eye")
+        }
+        .keyboardShortcut("h", modifiers: [.command])
+        
+        Divider()
+        
+        Button {
             if viewModel.isPlaying {
                 viewModel.pause()
             } else {
@@ -56,7 +66,7 @@ struct MenuContent: View {
             viewModel.reset()
         } label: {
             Label("Reset", systemImage: "arrow.counterclockwise")
-        };
+        }
 
         
         Divider()

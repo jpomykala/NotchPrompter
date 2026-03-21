@@ -80,7 +80,7 @@ struct PrompterView: View {
         let text = "\n" + base + "\n\n🏁\n\n" // add a new line to not hide the first line under the notch
         
         return Text(text)
-            .font(.system(size: viewModel.fontSize, weight: .regular, design: .default))
+            .font(.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign))
             .foregroundColor(.white)
             .multilineTextAlignment(.center)
             .lineSpacing(8)
