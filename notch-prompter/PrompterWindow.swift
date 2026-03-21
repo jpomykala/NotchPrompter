@@ -49,6 +49,14 @@ final class PrompterWindow {
             }
             .store(in: &cancellables)
         
+        viewModel.$selectedScreenIndex
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.resizeWindow(width: self.viewModel.prompterWidth, height: self.viewModel.prompterHeight)
+            }
+            .store(in: &cancellables)
+        
         viewModel.$isPrompterVisible
             .receive(on: RunLoop.main)
             .sink { [weak self] isVisible in
@@ -62,7 +70,7 @@ final class PrompterWindow {
     }
 
     func show() {
-        guard let screen = NSScreen.main else {
+        guard let screen = getSelectedScreen() else {
             window.center()
             window.makeKeyAndOrderFront(nil)
             return
@@ -75,10 +83,23 @@ final class PrompterWindow {
     }
 
     private func resizeWindow(width: CGFloat, height: CGFloat) {
-        guard let screen = window.screen ?? NSScreen.main else { return }
+        guard let screen = getSelectedScreen() else { return }
         let frame = topCenterFrame(width: width, height: height, screen: screen)
 
         window.setFrame(frame, display: true, animate: true)
+    }
+    
+    private func getSelectedScreen() -> NSScreen? {
+        let screens = NSScreen.screens
+        let index = viewModel.selectedScreenIndex
+        
+        // Validate the index is within bounds
+        if index >= 0 && index < screens.count {
+            return screens[index]
+        }
+        
+        // Fallback to main screen if index is invalid
+        return NSScreen.main
     }
 
     private func topCenterFrame(width: CGFloat, height: CGFloat, screen: NSScreen) -> CGRect {

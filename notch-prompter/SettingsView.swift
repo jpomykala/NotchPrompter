@@ -208,6 +208,20 @@ struct SettingsTabView: View {
 
                 // MARK: - Layout Section
                 SectionHeader("Prompter Layout")
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Display screen")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    
+                    Picker("Display screen", selection: $viewModel.selectedScreenIndex) {
+                        ForEach(Array(NSScreen.screens.enumerated()), id: \.offset) { index, screen in
+                            Text("\(screen.localizedName) (\(index + 1))").tag(index)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                }
+                .padding(.vertical, 2)
 
                 SettingSlider(
                     label: "Width",

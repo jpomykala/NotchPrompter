@@ -44,6 +44,7 @@ final class PrompterViewModel: ObservableObject {
     @Published var autoGain: Bool = true
     @Published var isPrompterVisible: Bool = true
     @Published var fontDesign: Font.Design = .default
+    @Published var selectedScreenIndex: Int = 0
     
     
     private var timerCancellable: AnyCancellable?
@@ -68,6 +69,7 @@ final class PrompterViewModel: ObservableObject {
         static let audioThreshold = "AudioThreshold"
         static let isPrompterVisible = "IsPrompterVisible"
         static let fontDesign = "FontDesign"
+        static let selectedScreenIndex = "SelectedScreenIndex"
     }
     
     // MARK: Init
@@ -204,6 +206,7 @@ final class PrompterViewModel: ObservableObject {
         $audioThreshold.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $isPrompterVisible.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $fontDesign.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $selectedScreenIndex.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
     }
     
     private func loadSettings() {
@@ -227,6 +230,8 @@ final class PrompterViewModel: ObservableObject {
         if let fontDesignRaw = defaults.string(forKey: Keys.fontDesign) {
             fontDesign = Font.Design(rawValue: fontDesignRaw) ?? .default
         }
+        
+        selectedScreenIndex = defaults.integer(forKey: Keys.selectedScreenIndex)
     }
     
     private func saveSettings() {
@@ -241,6 +246,7 @@ final class PrompterViewModel: ObservableObject {
         defaults.set(Double(audioThreshold), forKey: Keys.audioThreshold)
         defaults.set(isPrompterVisible, forKey: Keys.isPrompterVisible)
         defaults.set(fontDesign.rawValue, forKey: Keys.fontDesign)
+        defaults.set(selectedScreenIndex, forKey: Keys.selectedScreenIndex)
     }
     
     // MARK: Connector for display refresh
