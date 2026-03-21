@@ -12,15 +12,17 @@ Perfect for quick videos, or keeping important text visible while you work.
 
 ## Features
 - Always on top
+- **Not visible on screen recording apps**
 - Voice activation
 - Minimalist design
-- Lightweight
-- Pause on hover
-- Customizable speed and size
+- Quick options
+- Customizable speed, size, font style
+- Multi-monitor support
 
 ## Screenshot
 <!-- <img width="1512" height="720" alt="SCR-20251206-qhya" src="https://github.com/user-attachments/assets/a85e4573-85a3-4296-b454-a41a7b62cae9" /> -->
-<img width="1016" height="796" alt="SCR-20251207-pqrp" src="https://github.com/user-attachments/assets/99670434-e295-45c4-ba7b-a261d6faf943" />
+<!-- <img width="1016" height="796" alt="SCR-20251207-pqrp" src="https://github.com/user-attachments/assets/99670434-e295-45c4-ba7b-a261d6faf943" /> -->
+![SCR-20260322-bgal](https://github.com/user-attachments/assets/b83236e3-639f-4363-af68-99394331b92d)
 
 
 ## How to install?
@@ -35,12 +37,6 @@ All contributions are welcome! Whether you're fixing bugs, improving the UI, or 
 ## Donating
 
 If you enjoy using NotchPrompter and find it useful, you can support the project. Your donation will **[help me cover the cost of an Apple Developer License](https://github.com/sponsors/jpomykala)**, which is required to publish the app on the Mac App Store. Every contribution, big or small, brings me closer to making NotchPrompter available for everyone directly from the App Store.
-
-## Roadmap
-- [ ] Customizable position
-- [ ] Option to choose font
-- [ ] Option to change line height
-- [ ] Support multi-monitor setups
 
 ## License
 This project is open-source and available under the MIT License.
