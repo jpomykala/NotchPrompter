@@ -20,16 +20,6 @@ struct SettingsView: View {
             // Top toolbar
             HStack(spacing: 12) {
                 Button {
-                    viewModel.isPrompterVisible.toggle()
-                } label: {
-                    Label(viewModel.isPrompterVisible ? "Hide Prompter" : "Show Prompter",
-                          systemImage: viewModel.isPrompterVisible ? "eye.slash" : "eye")
-                }
-                
-                Divider()
-                    .frame(height: 20)
-                
-                Button {
                     if viewModel.isPlaying {
                         viewModel.pause()
                     } else {
@@ -41,29 +31,38 @@ struct SettingsView: View {
                 }
                 .disabled(viewModel.voiceActivation)
                 
+                Divider()
+                    .frame(height: 20)
+                
                 Button {
                     viewModel.reset()
                 } label: {
                     Label("Reset", systemImage: "arrow.counterclockwise")
                 }
                 
+                Button {
+                    viewModel.isPrompterVisible.toggle()
+                } label: {
+                    Label(viewModel.isPrompterVisible ? "Hide" : "Show",
+                          systemImage: viewModel.isPrompterVisible ? "eye.slash" : "eye")
+                }
+                
                 Spacer()
+                
+                // Tab picker in toolbar
+                Picker("", selection: $selectedTab) {
+                    ForEach(SettingsTab.allCases, id: \.self) { tab in
+                        Text(tab.rawValue).tag(tab)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .frame(width: 200)
             }
             .padding(.horizontal, 24)
             .padding(.vertical, 12)
             .background(Color(nsColor: .controlBackgroundColor))
             
             Divider()
-            
-            // Tab picker
-            Picker("", selection: $selectedTab) {
-                ForEach(SettingsTab.allCases, id: \.self) { tab in
-                    Text(tab.rawValue).tag(tab)
-                }
-            }
-            .pickerStyle(.segmented)
-            .padding(.horizontal, 24)
-            .padding(.top, 16)
             
             // Tab content
             Group {
