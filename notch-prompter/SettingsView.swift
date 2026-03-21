@@ -172,6 +172,7 @@ struct SettingsTabView: View {
                     Text("Font style")
                         .font(.subheadline)
                         .foregroundStyle(.secondary)
+
                     
                     Picker("Font style", selection: $viewModel.fontDesign) {
                         Text("Default").tag(Font.Design.default)
@@ -179,13 +180,128 @@ struct SettingsTabView: View {
                         Text("Rounded").tag(Font.Design.rounded)
                         Text("Monospaced").tag(Font.Design.monospaced)
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.menu)
+                    .labelsHidden()
+                }
+                .padding(.vertical, 2)
+                
+                
+                Divider()
+                
+                // MARK: - Behavior Section
+                SectionHeader("Behavior")
+
+                SettingSlider(
+                    label: "Scroll speed",
+                    value: $viewModel.speed,
+                    range: 1...40,
+                    step: 1,
+                    unit: "pt/s"
+                )
+                
+                
+                Toggle("Hide from screen recording apps", isOn: $viewModel.hideFromScreenRecording)
+
+                Toggle("Pause on mouse hover", isOn: $viewModel.pauseOnHover)
+                
+                Toggle("Show controls on hover", isOn: $viewModel.showHoverControls)
+                
+                Text("When hovering over the prompter with pause enabled, you can scroll up and down through the script.")
+                    .font(.caption)
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 4)
+                    .padding(.bottom, 8)
+                
+
+                
+                Divider()
+                
+                // MARK: - Voice Activation Section
+                SectionHeader("Voice activation")
+                
+                Toggle("Play on voice detection", isOn: $viewModel.voiceActivation)
+                
+                Toggle("Automatic gain control", isOn: $viewModel.autoGain)
+                
+                SettingSlider(
+                    label: "Detection Threshold",
+                    value: Binding(
+                        get: { Double(viewModel.audioThreshold) },
+                        set: { viewModel.audioThreshold = Float($0) }
+                    ),
+                    range: 0.0...0.1,
+                    step: 0.005,
+                    unit: "%"
+                )
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Audio level tester")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+
+                    HStack {
+                        let rms = viewModel.audioMonitor?.rmsLevel ?? 0
+                        let percentage = min(max(rms / 0.1, 0), 1.0) * 100
+                        let color: Color = rms > Float(viewModel.audioThreshold) ? .green : .red
+
+                        ProgressView(value: percentage / 100)
+                            .progressViewStyle(
+                                LinearProgressViewStyle(tint: color)
+                            )
+                            .frame(height: 10)
+
+                        Text("\(Int(percentage))%")
+                            .monospacedDigit()
+                            .frame(width: 50, alignment: .trailing)
+                    }
                 }
                 .padding(.vertical, 2)
                 
                 Divider()
                 
-                // MARK: - Fade Effects Section
+                // MARK: Layout
+                SectionHeader("Layout")
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Screen")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                    
+                    Picker("", selection: $viewModel.selectedScreenIndex) {
+                        ForEach(Array(NSScreen.screens.enumerated()), id: \.offset) { index, screen in
+                            Text("\(screen.localizedName) (\(index + 1))").tag(index)
+                        }
+                    }
+                    .pickerStyle(.menu)
+                    .labelsHidden()
+                }
+                .padding(.vertical, 2)
+
+                SettingSlider(
+                    label: "Width",
+                    value: Binding(
+                        get: { Double(viewModel.prompterWidth) },
+                        set: { viewModel.prompterWidth = CGFloat($0) }
+                    ),
+                    range: 150...600,
+                    step: 10,
+                    unit: "px"
+                )
+
+                SettingSlider(
+                    label: "Height",
+                    value: Binding(
+                        get: { Double(viewModel.prompterHeight) },
+                        set: { viewModel.prompterHeight = CGFloat($0) }
+                    ),
+                    range: 20...500,
+                    step: 10,
+                    unit: "px"
+                )
+                
+                Divider()
+
+                // MARK: Fade
                 SectionHeader("Fade Effects")
                 
                 Toggle("Enable top fade", isOn: $viewModel.enableTopFade)
@@ -213,134 +329,8 @@ struct SettingsTabView: View {
                     )
                     .padding(.leading, 20)
                 }
-                
-                Text("Tip: Fade effects create a smooth gradient overlay at the top and/or bottom of the prompter for a more polished, professional appearance.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 4)
-                
-                Divider()
 
-                // MARK: - Behavior Section
-                SectionHeader("Behavior")
-
-                SettingSlider(
-                    label: "Scroll speed",
-                    value: $viewModel.speed,
-                    range: 1...40,
-                    step: 1,
-                    unit: "pt/s"
-                )
-
-                Toggle("Pause prompter on mouse hover", isOn: $viewModel.pauseOnHover)
-                
-                Text("Tip: When hovering over the prompter with pause enabled, you can use your mouse wheel or trackpad to manually scroll up and down through the text.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 4)
-                    .padding(.bottom, 8)
-                
-                Toggle("Show hover controls", isOn: $viewModel.showHoverControls)
-                
-                Text("Tip: When enabled, play/pause, back, and settings buttons appear at the bottom of the prompter when you hover over it.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 4)
-                    .padding(.bottom, 8)
-                
-                Toggle("Voice activation", isOn: $viewModel.voiceActivation)
-                
-                Divider()
-                
-                // MARK: - Voice Activation Section
-                SectionHeader("Voice activation")
-                
-                Toggle("Automatic gain control", isOn: $viewModel.autoGain)
-                
-                SettingSlider(
-                    label: "Detection Threshold",
-                    value: Binding(
-                        get: { Double(viewModel.audioThreshold) },
-                        set: { viewModel.audioThreshold = Float($0) }
-                    ),
-                    range: 0.0...0.1,
-                    step: 0.005,
-                    unit: "%"
-                )
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("Audio level")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-
-                    HStack {
-                        let rms = viewModel.audioMonitor?.rmsLevel ?? 0
-                        let percentage = min(max(rms / 0.1, 0), 1.0) * 100
-                        let color: Color = rms > Float(viewModel.audioThreshold) ? .green : .red
-
-                        ProgressView(value: percentage / 100)
-                            .progressViewStyle(
-                                LinearProgressViewStyle(tint: color)
-                            )
-                            .frame(height: 10)
-
-                        Text("\(Int(percentage))%")
-                            .monospacedDigit()
-                            .frame(width: 50, alignment: .trailing)
-                    }
-                }
-                .padding(.vertical, 2)
-                
-                Divider()
-
-                // MARK: - Layout Section
-                SectionHeader("Prompter Layout")
-                
-                VStack(alignment: .leading, spacing: 6) {
-                    Text("Display screen")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                    
-                    Picker("Display screen", selection: $viewModel.selectedScreenIndex) {
-                        ForEach(Array(NSScreen.screens.enumerated()), id: \.offset) { index, screen in
-                            Text("\(screen.localizedName) (\(index + 1))").tag(index)
-                        }
-                    }
-                    .pickerStyle(.menu)
-                }
-                .padding(.vertical, 2)
-
-                SettingSlider(
-                    label: "Width",
-                    value: Binding(
-                        get: { Double(viewModel.prompterWidth) },
-                        set: { viewModel.prompterWidth = CGFloat($0) }
-                    ),
-                    range: 150...600,
-                    step: 10,
-                    unit: "px"
-                )
-
-                SettingSlider(
-                    label: "Height",
-                    value: Binding(
-                        get: { Double(viewModel.prompterHeight) },
-                        set: { viewModel.prompterHeight = CGFloat($0) }
-                    ),
-                    range: 20...500,
-                    step: 10,
-                    unit: "px"
-                )
-                
-                Toggle("Hide from screen recording", isOn: $viewModel.hideFromScreenRecording)
-                
-                Text("Tip: When enabled, the prompter window will be hidden from screen recordings and screenshots. Useful for presentations and recordings where you don't want the prompter to be visible.")
-                    .font(.caption)
-                    .foregroundStyle(.secondary)
-                    .padding(.top, 4)
-
-                Spacer(minLength: 12)
-                
+                //MARK: Footer
                 Divider()
 
                 HStack {
