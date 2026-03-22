@@ -37,6 +37,7 @@ struct SettingsView: View {
             // Sidebar
             VStack(alignment: .leading, spacing: 2) {
                 Text("Settings")
+                // TODO: It would be cool to put here NotchPrompter + version instead of having this in the footer, but I have to also get rid of the window handler with "NotchPrompter Settings" to make it look good.
                     .font(.system(size: 11, weight: .semibold))
                     .foregroundStyle(.tertiary)
                     .textCase(.uppercase)
@@ -137,8 +138,8 @@ struct SettingsView: View {
             }
             .frame(maxWidth: .infinity)
         }
-        .frame(width: 640)
-        .frame(minHeight: 520, maxHeight: 660)
+        .frame(width: 680)
+        .frame(minHeight: 560, maxHeight: 760)
         .background(.ultraThinMaterial)
         .alert("Microphone access denied", isPresented: $viewModel.showMicrophoneAlert) {
             Button("OK", role: .cancel) { }
@@ -363,9 +364,21 @@ struct AppearanceTabView: View {
                 Text("Fade Effects")
                     .font(.system(size: 13, weight: .medium))
                 
-                Toggle("Top fade", isOn: $viewModel.enableTopFade)
-                    .toggleStyle(.switch)
-                    .controlSize(.small)
+                HStack(alignment: .top, spacing: 10) {
+                    Toggle("", isOn: $viewModel.enableTopFade)
+                        .labelsHidden()
+                        .toggleStyle(.switch)
+                        .controlSize(.small)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Top fade")
+                            .font(.system(size: 13))
+                        Text("Fade out content at the top of the prompter")
+                            .font(.system(size: 11))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 
                 if viewModel.enableTopFade {
                     SettingSlider(
@@ -375,12 +388,23 @@ struct AppearanceTabView: View {
                         step: 5,
                         unit: "px"
                     )
-                    .padding(.leading, 20)
                 }
                 
-                Toggle("Bottom fade", isOn: $viewModel.enableBottomFade)
-                    .toggleStyle(.switch)
-                    .controlSize(.small)
+                HStack(alignment: .top, spacing: 10) {
+                    Toggle("", isOn: $viewModel.enableBottomFade)
+                        .labelsHidden()
+                        .toggleStyle(.switch)
+                        .controlSize(.small)
+                    
+                    VStack(alignment: .leading) {
+                        Text("Bottom fade")
+                            .font(.system(size: 13))
+                        Text("Fade out content at the bottom of the prompter")
+                            .font(.system(size: 11))
+                            .foregroundStyle(.secondary)
+                    }
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                }
                 
                 if viewModel.enableBottomFade {
                     SettingSlider(
@@ -390,7 +414,6 @@ struct AppearanceTabView: View {
                         step: 5,
                         unit: "px"
                     )
-                    .padding(.leading, 20)
                 }
             }
             .padding(16)
@@ -468,7 +491,12 @@ struct VoiceTabView: View {
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
             VStack(alignment: .leading, spacing: 14) {
-                Toggle(isOn: $viewModel.voiceActivation) {
+                HStack(alignment: .top, spacing: 10) {
+                    Toggle("", isOn: $viewModel.voiceActivation)
+                        .labelsHidden()
+                        .toggleStyle(.switch)
+                        .controlSize(.small)
+                    
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Voice activation")
                             .font(.system(size: 13, weight: .medium))
@@ -476,9 +504,8 @@ struct VoiceTabView: View {
                             .font(.system(size: 11))
                             .foregroundStyle(.secondary)
                     }
+                    .frame(maxWidth: .infinity, alignment: .leading)
                 }
-                .toggleStyle(.switch)
-                .controlSize(.small)
                 
                 if viewModel.voiceActivation {
                     Divider()
