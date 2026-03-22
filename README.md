@@ -11,7 +11,7 @@ Perfect for quick videos, or keeping important text visible while you work.
 
 [Sponsor the project on Gumroad](https://jpomykala.gumroad.com/l/notchprompter)
 
-[![AppStore licensing funds](https://img.shields.io/badge/App_Store_Fund-$15_/_$99-blue)]([https://github.com/sponsors/jpomykala](https://jpomykala.gumroad.com/l/notchprompter))
+[![AppStore licensing funds](https://img.shields.io/badge/AppStore_licensing_funds-$15_/_$99-blue)]([https://github.com/sponsors/jpomykala](https://jpomykala.gumroad.com/l/notchprompter))
 
 
 ## Features
