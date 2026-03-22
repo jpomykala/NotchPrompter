@@ -9,6 +9,10 @@ Perfect for quick videos, or keeping important text visible while you work.
 
 [Install NotchPrompter](https://github.com/jpomykala/NotchPrompter/releases)
 
+[Sponsor the project on Gumroad](https://jpomykala.gumroad.com/l/notchprompter)
+
+[![App Store licensing](https://img.shields.io/badge/App_Store_Fund-$15_/_$99-blue)]([https://github.com/sponsors/jpomykala](https://jpomykala.gumroad.com/l/notchprompter))
+
 
 ## Features
 - Always on top
@@ -20,25 +24,31 @@ Perfect for quick videos, or keeping important text visible while you work.
 - Multi-monitor support
 
 ## Screenshot
-<!-- <img width="1512" height="720" alt="SCR-20251206-qhya" src="https://github.com/user-attachments/assets/a85e4573-85a3-4296-b454-a41a7b62cae9" /> -->
-<!-- <img width="1016" height="796" alt="SCR-20251207-pqrp" src="https://github.com/user-attachments/assets/99670434-e295-45c4-ba7b-a261d6faf943" /> -->
-![SCR-20260322-bgal](https://github.com/user-attachments/assets/b83236e3-639f-4363-af68-99394331b92d)
+
+<img width="1465" height="807" alt="screen-frame" src="https://github.com/user-attachments/assets/35e8a023-5902-4fee-84b4-19134223ede8" />
 
 
 ## How to install?
 
-Head to [Releases](https://github.com/jpomykala/NotchPrompter/releases) and download the zip file. Unzip it and move notch-prompter.app into your Applications folder.
+Head to [Releases](https://github.com/jpomykala/NotchPrompter/releases) and download zip file for the latest version. Unzip it and move **notch-prompter.app** to your **Applications** folder.
 
-> Important: [App is not notorized becasue it requires a paid Apple License](https://apple.stackexchange.com/questions/388554/is-a-paid-apple-developer-account-required-for-notarizing-macos-apps). So on the first run you will have to go to **Settings -> Privacy & Security** scroll down and allow to open the app.
+### First launch
+
+On the first launch, macOS may display a warning that the app is 'not safe' or from an 'unidentified developer.' This occurs because the app is not yet notarized, which requires a paid Apple Developer Program membership. To open the app, go to **System Settings -> Privacy & Security**, scroll down to the 'Security' section, and click 'Open Anyway.'
+
+Second option is to use terminal command:
+```
+xattr -rd com.apple.quarantine /Applications/notch-prompter.app
+```
+
+[Help me fund the Apple License](https://jpomykala.gumroad.com/l/notchprompter) to publish the app in AppStore for easy updates. 😬
 
 ## Contributing
 All contributions are welcome! Whether you're fixing bugs, improving the UI, or adding new features, your help is appreciated.
 
 ## Donating
 
-If you enjoy using NotchPrompter and find it useful, you can support the project. Your donation will **[help me cover the cost of an Apple Developer License](https://github.com/sponsors/jpomykala)**, which is required to publish the app on the Mac App Store. Every contribution, big or small, brings me closer to making NotchPrompter available for everyone directly from the App Store.
-
-[![App Store licensing](https://img.shields.io/badge/App_Store_Fund-$15_/_$99-blue)](https://github.com/sponsors/jpomykala)
+If you enjoy using NotchPrompter and find it useful, you can support the project. Your donation will help me cover the cost of an Apple Developer License, which is required to publish the app on the Mac App Store. Every contribution, big or small, brings me closer to making NotchPrompter available for everyone directly from the App Store.
 
 ## License
 This project is open-source and available under the MIT License.
