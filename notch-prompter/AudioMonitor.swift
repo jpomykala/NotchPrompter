@@ -15,7 +15,7 @@ class AudioMonitor: ObservableObject {
     private var audioEngine: AVAudioEngine
     private var inputNode: AVAudioInputNode?
     private var timer: Timer?
-    private let smoothingFactor: Float = 0.96
+    private let smoothingFactor: Float = 0.5
     private var lastPublishTime = Date.timeIntervalSinceReferenceDate
     
     @Published var rmsLevel: Float = 0
