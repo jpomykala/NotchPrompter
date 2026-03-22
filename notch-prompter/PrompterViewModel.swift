@@ -10,25 +10,25 @@ final class PrompterViewModel: ObservableObject {
     // MARK: User settings
     @Published var text: String = """
     This is a scrolling text test for NotchPrompter for macOS.
-    The purpose of this demo is to check speed, readability, and smoothness.  
+    The purpose of this demo is to check speed, readability, and smoothness. [pause]
     Adjust the font size, scroll speed, and window opacity to your preference.  
     Keep your eyes on the notch and follow the moving line.
 
-    Good morning everyone. Today I want to share a few key points about our upcoming product launch.
+    Good morning everyone. [smile] Today I want to share a few key points about our upcoming product launch.
     First, we focused on reducing complexity and delivering a clean, intuitive user experience.
-    Second, we significantly improved performance, ensuring that the application runs smoothly even under heavy load.
+    Second, we significantly improved performance, ensuring that the application runs smoothly even under heavy load. [gesture to screen]
     Finally, we are excited to begin our rollout strategy and gather feedback from early adopters.
-    Thank you for your time, and let's begin.
+    Thank you for your time, and let's begin. [nod]
 
     You are capable of more than you think.  
     Every step forward, no matter how small, builds momentum.  
-    Stay focused, stay consistent, and trust the process.  
+    Stay focused, stay consistent, and trust the process. [pause]
     Progress is progress, even if no one else sees it.  
     Keep going — your future self will thank you.
     
     In the rapidly evolving world of technology, the ability to adapt and learn quickly has become more important than ever.
     Teams and individuals who embrace experimentation, curiosity, and continuous improvement tend to outperform those who rely on rigid structures and outdated processes.
-    Innovation rarely comes from doing the same thing repeatedly. Instead, it thrives in environments where people feel safe to explore new ideas, challenge assumptions, and iterate rapidly.
+    Innovation rarely comes from doing the same thing repeatedly. [emphasize] Instead, it thrives in environments where people feel safe to explore new ideas, challenge assumptions, and iterate rapidly.
     As we move into the next phase of development, our focus should remain on collaboration, communication, and execution.
     By aligning our goals and maintaining a clear vision, we can build products that not only solve real problems but also inspire and empower the people who use them.
     Let’s continue pushing boundaries and striving for excellence.

@@ -324,14 +324,46 @@ struct PrompterContentView: View {
     private var textBlock: some View {
         let base = viewModel.text.isEmpty ? "Put some text in Settings..." : viewModel.text
         let text = "\n" + base + "\n\n🏁\n\n"
-        return Text(text)
-            .font(.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign))
-            .foregroundColor(viewModel.prompterTheme.textColor)
+        
+        return Text(attributedText(from: text))
             .multilineTextAlignment(.center)
             .lineSpacing(viewModel.lineHeight)
             .lineLimit(nil)
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .center)
+    }
+    
+    private func attributedText(from text: String) -> AttributedString {
+        var attributedString = AttributedString(text)
+        
+        // Default font and color
+        let defaultFont = Font.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign)
+        let defaultColor = viewModel.prompterTheme.textColor
+        
+        // Apply default attributes to entire string
+        attributedString.font = defaultFont
+        attributedString.foregroundColor = defaultColor
+        
+        // Find and style text in [brackets]
+        let pattern = "\\[[^\\]]+\\]"
+        if let regex = try? NSRegularExpression(pattern: pattern, options: []) {
+            let nsString = text as NSString
+            let matches = regex.matches(in: text, options: [], range: NSRange(location: 0, length: nsString.length))
+            
+            for match in matches {
+                let range = match.range
+                if let stringRange = Range(range, in: text) {
+                    let attributedRange = Range(stringRange, in: attributedString)
+                    if let attributedRange = attributedRange {
+                        // Make annotation text italic and dimmed
+                        attributedString[attributedRange].font = Font.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign).italic()
+                        attributedString[attributedRange].foregroundColor = viewModel.prompterTheme.textColor.opacity(0.4)
+                    }
+                }
+            }
+        }
+        
+        return attributedString
     }
 }
 
