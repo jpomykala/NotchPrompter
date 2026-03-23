@@ -9,6 +9,143 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NotchPrompter — Free Teleprompter for macOS">
+  <meta property="og:description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews & sales demos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notchprompter.com">
+  <meta property="og:image" content="https://notchprompter.com/logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NotchPrompter — Free Teleprompter for macOS">
+  <meta name="twitter:description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording.">
+  <meta name="twitter:image" content="https://notchprompter.com/logo.png">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "NotchPrompter",
+        "alternateName": "NotchPrompter.app",
+        "description": "A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews and sales demos.",
+        "url": "https://notchprompter.com",
+        "downloadUrl": "https://github.com/jpomykala/NotchPrompter/releases/",
+        "screenshot": "https://notchprompter.com/screen-frame-notext.png",
+        "image": "https://notchprompter.com/logo.png",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "macOS 14 Sonoma or newer",
+        "processorRequirements": "Apple Silicon & Intel",
+        "softwareVersion": "1.0",
+        "isAccessibleForFree": true,
+        "license": "https://opensource.org/licenses/MIT",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Jakub Pomykała",
+          "url": "https://jpomykala.com",
+          "image": "https://jpomykala.com/assets/me-2025.jpeg",
+          "nationality": {
+            "@type": "Country",
+            "name": "Poland"
+          }
+        },
+        "codeRepository": "https://github.com/jpomykala/NotchPrompter",
+        "featureList": [
+          "Invisible to screen recording and screen sharing",
+          "Voice-activated scrolling",
+          "Fully customizable speed, text size, and font",
+          "Multiple screen support",
+          "Dark and light themes",
+          "Open-source and free under MIT License"
+        ],
+        "keywords": [
+          "teleprompter",
+          "macOS",
+          "notch",
+          "screen recording",
+          "presentations",
+          "open-source",
+          "free"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "NotchPrompter — Free Teleprompter for macOS",
+        "description": "A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording.",
+        "url": "https://notchprompter.com",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "NotchPrompter",
+          "url": "https://notchprompter.com"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is NotchPrompter free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, NotchPrompter is 100% free and open-source under the MIT License."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does NotchPrompter show up in screen recordings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. NotchPrompter is completely invisible to screen recordings, Zoom, Google Meet, and all other screen sharing tools."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What macOS version is required?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NotchPrompter requires macOS Sonoma or newer and works on both Apple Silicon and Intel Macs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work with external monitors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, NotchPrompter supports multi-monitor setups. You can place the prompter on any display."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a MacBook with a notch?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. While it's designed to sit beautifully in the notch area, NotchPrompter works on any Mac — including iMacs, Mac Minis with external displays, and older MacBooks without a notch. The prompter simply appears at the top of your screen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does voice-activated scrolling work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NotchPrompter uses your microphone to detect when you're speaking. The text scrolls while you talk and pauses when you stop — so it naturally matches your pace without any manual controls."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body class="bg-white text-zinc-900 antialiased overflow-x-hidden w-full max-w-full">
 
@@ -181,6 +318,76 @@
           Thanks!
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="max-w-4xl mx-auto px-4 sm:px-6 pb-20">
+    <div class="text-center mb-14">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight mb-3 text-zinc-900">Frequently asked questions</h2>
+      <p class="text-zinc-500 text-sm max-w-md mx-auto">Everything you need to know about NotchPrompter.</p>
+    </div>
+
+    <div class="divide-y divide-zinc-200 border border-zinc-200 rounded-2xl overflow-hidden">
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none text-sm font-semibold text-zinc-900 hover:bg-zinc-50 transition-colors">
+          Is NotchPrompter free?
+          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-zinc-500 leading-relaxed">
+          Yes, NotchPrompter is 100% free and open-source under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" class="underline hover:text-zinc-900 transition-colors">MIT License</a>. No trials, no subscriptions, no hidden fees. You can optionally sponsor the project if you find it useful.
+        </div>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none text-sm font-semibold text-zinc-900 hover:bg-zinc-50 transition-colors">
+          Does it show up in screen recordings or screen sharing?
+          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-zinc-500 leading-relaxed">
+          No. NotchPrompter is completely invisible to screen recordings, Zoom, Google Meet, and all other screen sharing tools. Your audience will never know you're using a prompter.
+        </div>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none text-sm font-semibold text-zinc-900 hover:bg-zinc-50 transition-colors">
+          What macOS version do I need?
+          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-zinc-500 leading-relaxed">
+          NotchPrompter requires macOS Sonoma (14) or newer and works on both Apple Silicon and Intel Macs.
+        </div>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none text-sm font-semibold text-zinc-900 hover:bg-zinc-50 transition-colors">
+          Does it work with external monitors?
+          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-zinc-500 leading-relaxed">
+          Yes! NotchPrompter supports multi-monitor setups. You can place the prompter on any display; it doesn't have to be the one with the notch.
+        </div>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none text-sm font-semibold text-zinc-900 hover:bg-zinc-50 transition-colors">
+          Do I need a MacBook with a notch?
+          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-zinc-500 leading-relaxed">
+          No. While it's designed to sit beautifully in the notch area, NotchPrompter works on any Mac, including iMacs, Mac Minis with external displays, and older MacBooks without a notch. The prompter simply appears at the top of your screen.
+        </div>
+      </details>
+
+      <details class="group bg-white">
+        <summary class="flex items-center justify-between gap-4 px-6 py-5 cursor-pointer select-none text-sm font-semibold text-zinc-900 hover:bg-zinc-50 transition-colors">
+          How does voice-activated scrolling work?
+          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-5 text-sm text-zinc-500 leading-relaxed">
+          NotchPrompter uses your microphone to detect when you're speaking. The text scrolls while you talk and pauses when you stop; so it naturally matches your pace without any manual controls.
+        </div>
+      </details>
     </div>
   </section>
 
