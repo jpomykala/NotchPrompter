@@ -83,10 +83,11 @@ struct MenuContent: View {
         Divider()
 
         Button("Feedback") {
-            if let url = URL(string: "https://github.com/jpomykala/NotchPrompter/issues") {
+            if let url = URL(string: "mailto:jakub@jpomykala.com?subject=NotchPrompter%20feedback") {
                 NSWorkspace.shared.open(url)
             }
         }
+    
 
 //        Button("Sponsor the project") {
 //            if let url = URL(string: "https://jpomykala.gumroad.com/l/notchprompter") {

@@ -54,6 +54,7 @@ final class PrompterViewModel: ObservableObject {
     @Published var hideFromScreenRecording: Bool = true
     @Published var prompterTheme: PrompterTheme = .dark
     @Published var horizontalAlignment: PrompterHorizontalAlignment = .center
+    @Published var textAlignment: PrompterTextAlignment = .center
     
     var backScrollAmount: Double = 20.0 // pixels to scroll back
     
@@ -90,6 +91,7 @@ final class PrompterViewModel: ObservableObject {
         static let hideFromScreenRecording = "HideFromScreenRecording"
         static let prompterTheme = "PrompterTheme"
         static let horizontalAlignment = "HorizontalAlignment"
+        static let textAlignment = "TextAlignment"
     }
     
     // MARK: Init
@@ -239,6 +241,7 @@ final class PrompterViewModel: ObservableObject {
         $hideFromScreenRecording.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $prompterTheme.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $horizontalAlignment.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $textAlignment.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
     }
     
     private func loadSettings() {
@@ -282,6 +285,10 @@ final class PrompterViewModel: ObservableObject {
         if let horizontalAlignRaw = defaults.string(forKey: Keys.horizontalAlignment) {
             horizontalAlignment = PrompterHorizontalAlignment(rawValue: horizontalAlignRaw) ?? .center
         }
+        
+        if let textAlignRaw = defaults.string(forKey: Keys.textAlignment) {
+            textAlignment = PrompterTextAlignment(rawValue: textAlignRaw) ?? .center
+        }
     }
     
     private func saveSettings() {
@@ -305,6 +312,7 @@ final class PrompterViewModel: ObservableObject {
         defaults.set(hideFromScreenRecording, forKey: Keys.hideFromScreenRecording)
         defaults.set(prompterTheme.rawValue, forKey: Keys.prompterTheme)
         defaults.set(horizontalAlignment.rawValue, forKey: Keys.horizontalAlignment)
+        defaults.set(textAlignment.rawValue, forKey: Keys.textAlignment)
     }
     
     // MARK: Connector for display refresh
@@ -459,6 +467,37 @@ enum PrompterHorizontalAlignment: String, CaseIterable {
         case .left: return "arrow.left.to.line"
         case .center: return "arrow.left.and.right"
         case .right: return "arrow.right.to.line"
+        }
+    }
+}
+
+// MARK: - PrompterTextAlignment Enum
+enum PrompterTextAlignment: String, CaseIterable {
+    case leading = "leading"
+    case center = "center"
+    case trailing = "trailing"
+    
+    var displayName: String {
+        switch self {
+        case .leading: return "Left"
+        case .center: return "Center"
+        case .trailing: return "Right"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .leading: return "text.alignleft"
+        case .center: return "text.aligncenter"
+        case .trailing: return "text.alignright"
+        }
+    }
+    
+    var swiftUIAlignment: TextAlignment {
+        switch self {
+        case .leading: return .leading
+        case .center: return .center
+        case .trailing: return .trailing
         }
     }
 }

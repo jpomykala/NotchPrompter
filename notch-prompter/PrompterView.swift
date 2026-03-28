@@ -326,7 +326,7 @@ struct PrompterContentView: View {
         let text = "\n" + base + "\n\n🏁\n\n"
         
         return Text(attributedText(from: text))
-            .multilineTextAlignment(.center)
+            .multilineTextAlignment(viewModel.textAlignment.swiftUIAlignment)
             .lineSpacing(viewModel.lineHeight)
             .lineLimit(nil)
             .fixedSize(horizontal: false, vertical: true)

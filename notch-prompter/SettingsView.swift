@@ -398,6 +398,51 @@ struct AppearanceTabView: View {
                     unit: "pt"
                 )
                 
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Text alignment")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                    
+                    HStack(spacing: 8) {
+                        ForEach(PrompterTextAlignment.allCases, id: \.self) { alignment in
+                            Button {
+                                viewModel.textAlignment = alignment
+                            } label: {
+                                VStack(spacing: 4) {
+                                    Image(systemName: alignment.icon)
+                                        .font(.system(size: 16))
+                                    Text(alignment.displayName)
+                                        .font(.system(size: 11))
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 10)
+                                .background(
+                                    viewModel.textAlignment == alignment 
+                                        ? Color.accentColor.opacity(0.15) 
+                                        : Color.clear
+                                )
+                                .foregroundStyle(
+                                    viewModel.textAlignment == alignment 
+                                        ? Color.accentColor 
+                                        : .primary
+                                )
+                                .contentShape(Rectangle())
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .strokeBorder(
+                                            viewModel.textAlignment == alignment 
+                                                ? Color.accentColor 
+                                                : Color.primary.opacity(0.2),
+                                            lineWidth: 1
+                                        )
+                                )
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
+                
                 Divider()
                 
                 Text("Theme")
