@@ -53,6 +53,7 @@ final class PrompterViewModel: ObservableObject {
     @Published var showHoverControls: Bool = true
     @Published var hideFromScreenRecording: Bool = true
     @Published var prompterTheme: PrompterTheme = .dark
+    @Published var horizontalAlignment: PrompterHorizontalAlignment = .center
     
     var backScrollAmount: Double = 20.0 // pixels to scroll back
     
@@ -88,7 +89,7 @@ final class PrompterViewModel: ObservableObject {
         static let showHoverControls = "ShowHoverControls"
         static let hideFromScreenRecording = "HideFromScreenRecording"
         static let prompterTheme = "PrompterTheme"
-
+        static let horizontalAlignment = "HorizontalAlignment"
     }
     
     // MARK: Init
@@ -237,6 +238,7 @@ final class PrompterViewModel: ObservableObject {
         $showHoverControls.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $hideFromScreenRecording.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $prompterTheme.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
+        $horizontalAlignment.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
     }
     
     private func loadSettings() {
@@ -276,6 +278,10 @@ final class PrompterViewModel: ObservableObject {
         if let themeRaw = defaults.string(forKey: Keys.prompterTheme) {
             prompterTheme = PrompterTheme(rawValue: themeRaw) ?? .dark
         }
+        
+        if let horizontalAlignRaw = defaults.string(forKey: Keys.horizontalAlignment) {
+            horizontalAlignment = PrompterHorizontalAlignment(rawValue: horizontalAlignRaw) ?? .center
+        }
     }
     
     private func saveSettings() {
@@ -298,6 +304,7 @@ final class PrompterViewModel: ObservableObject {
         defaults.set(showHoverControls, forKey: Keys.showHoverControls)
         defaults.set(hideFromScreenRecording, forKey: Keys.hideFromScreenRecording)
         defaults.set(prompterTheme.rawValue, forKey: Keys.prompterTheme)
+        defaults.set(horizontalAlignment.rawValue, forKey: Keys.horizontalAlignment)
     }
     
     // MARK: Connector for display refresh
@@ -429,6 +436,29 @@ enum PrompterTheme: String, CaseIterable {
         switch self {
         case .dark: return .black
         case .light: return .white
+        }
+    }
+}
+
+// MARK: - PrompterHorizontalAlignment Enum
+enum PrompterHorizontalAlignment: String, CaseIterable {
+    case left = "left"
+    case center = "center"
+    case right = "right"
+    
+    var displayName: String {
+        switch self {
+        case .left: return "Left"
+        case .center: return "Center"
+        case .right: return "Right"
+        }
+    }
+    
+    var icon: String {
+        switch self {
+        case .left: return "arrow.left.to.line"
+        case .center: return "arrow.left.and.right"
+        case .right: return "arrow.right.to.line"
         }
     }
 }

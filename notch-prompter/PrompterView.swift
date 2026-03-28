@@ -271,7 +271,7 @@ struct PrompterContentView: View {
                 .animation(.easeInOut(duration: 0.2), value: showControls)
             }
         }
-//        .opacity(viewModel.opacity)
+//        .opacity(viewModel.opacity) TODO: it would be better to control background and text opacity separatly, or just background opacity
         .ignoresSafeArea()
         .onHover { hovering in
             withAnimation {

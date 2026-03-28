@@ -646,6 +646,61 @@ struct LayoutTabView: View {
                 
                 Divider()
                 
+                Text("Position")
+                    .font(.system(size: 13, weight: .medium))
+                
+                VStack(alignment: .leading, spacing: 6) {
+                    Text("Horizontal alignment")
+                        .font(.system(size: 12))
+                        .foregroundStyle(.secondary)
+                    
+                    HStack(spacing: 8) {
+                        ForEach(PrompterHorizontalAlignment.allCases, id: \.self) { alignment in
+                            Button {
+                                viewModel.horizontalAlignment = alignment
+                            } label: {
+                                VStack(spacing: 4) {
+                                    Image(systemName: alignment.icon)
+                                        .font(.system(size: 16))
+                                    Text(alignment.displayName)
+                                        .font(.system(size: 11))
+                                }
+                                .frame(maxWidth: .infinity)
+                                .padding(.vertical, 10)
+                                .background(
+                                    viewModel.horizontalAlignment == alignment 
+                                        ? Color.accentColor.opacity(0.15) 
+                                        : Color.clear
+                                )
+                                .foregroundStyle(
+                                    viewModel.horizontalAlignment == alignment 
+                                        ? Color.accentColor 
+                                        : .primary
+                                )
+                                .contentShape(Rectangle())
+                                .clipShape(RoundedRectangle(cornerRadius: 6))
+                                .overlay(
+                                    RoundedRectangle(cornerRadius: 6)
+                                        .strokeBorder(
+                                            viewModel.horizontalAlignment == alignment 
+                                                ? Color.accentColor 
+                                                : Color.primary.opacity(0.2),
+                                            lineWidth: 1
+                                        )
+                                )
+                            }
+                            .buttonStyle(.plain)
+                        }
+                    }
+                }
+                
+                Text("Choose the horizontal position of the prompter on screen")
+                    .font(.system(size: 11))
+                    .foregroundStyle(.secondary)
+                    .padding(.top, 4)
+                
+                Divider()
+                
                 Text("Display")
                     .font(.system(size: 13, weight: .medium))
                 

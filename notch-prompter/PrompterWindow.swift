@@ -57,6 +57,14 @@ final class PrompterWindow {
             }
             .store(in: &cancellables)
         
+        viewModel.$horizontalAlignment
+            .receive(on: RunLoop.main)
+            .sink { [weak self] _ in
+                guard let self = self else { return }
+                self.resizeWindow(width: self.viewModel.prompterWidth, height: self.viewModel.prompterHeight)
+            }
+            .store(in: &cancellables)
+        
         viewModel.$isPrompterVisible
             .receive(on: RunLoop.main)
             .sink { [weak self] isVisible in
@@ -113,7 +121,20 @@ final class PrompterWindow {
     }
 
     private func topCenterFrame(width: CGFloat, height: CGFloat, screen: NSScreen) -> CGRect {
-        let x = screen.frame.midX - width / 2
+        // Calculate horizontal position based on alignment
+        // Convert alignment enum to position: left = 0.0, center = 0.5, right = 1.0
+        let alignmentPosition: CGFloat = {
+            switch viewModel.horizontalAlignment {
+            case .left: return 0.0
+            case .center: return 0.5
+            case .right: return 1.0
+            }
+        }()
+        
+        let padding: CGFloat = 20 // minimum padding from screen edges
+        let availableWidth = screen.frame.width - width - (padding * 2)
+        let x = screen.frame.minX + padding + (availableWidth * alignmentPosition)
+        
         let heightOfBorderTopWithRadiusToHide: CGFloat = 4
         let y = screen.frame.maxY - height + heightOfBorderTopWithRadiusToHide
         // MARK: slight offset to hide border under notch, this probably causes the issue with moving the notch view to another display when another display is on bottom/top

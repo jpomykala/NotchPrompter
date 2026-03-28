@@ -1,5 +1,6 @@
 import SwiftUI
 import AppKit
+import HotKey
 
 @main
 struct NotchPrompterApp: App {
@@ -36,7 +37,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 struct MenuContent: View {
     @ObservedObject var viewModel: PrompterViewModel
+    
 
+    
     var body: some View {
         Button {
             viewModel.isPrompterVisible.toggle()
@@ -85,11 +88,11 @@ struct MenuContent: View {
             }
         }
 
-        Button("Sponsor the project") {
-            if let url = URL(string: "https://jpomykala.gumroad.com/l/notchprompter") {
-                NSWorkspace.shared.open(url)
-            }
-        }
+//        Button("Sponsor the project") {
+//            if let url = URL(string: "https://jpomykala.gumroad.com/l/notchprompter") {
+//                NSWorkspace.shared.open(url)
+//            }
+//        }
         
         Divider()
 
