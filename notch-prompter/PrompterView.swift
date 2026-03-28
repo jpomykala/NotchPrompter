@@ -239,13 +239,13 @@ struct PrompterContentView: View {
                         Button(action: {
                             viewModel.scrollBack()
                         }) {
-                            Image(systemName: "arrow.uturn.backward.circle.fill")
+                            Image(systemName: "backward.circle.fill")
                                 .font(.system(size: 32))
                                 .foregroundColor(.white)
                                 .shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2)
                         }
                         .buttonStyle(.plain)
-                        .help("Go back \(Int(viewModel.backScrollAmount)) pixels")
+                        .help("Scroll back a few lines")
                         
                         // Settings button
                         Button(action: {

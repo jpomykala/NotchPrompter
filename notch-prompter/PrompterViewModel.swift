@@ -149,7 +149,7 @@ final class PrompterViewModel: ObservableObject {
             .sink { [weak self] rmsLevel in
                 guard let self = self else { return }
                 let detected = rmsLevel > self.audioThreshold
-                print("Audio monitor - activation: \(detected) rms: \(rmsLevel) threshold: \(self.audioThreshold)")
+//                print("Audio monitor - activation: \(detected) rms: \(rmsLevel) threshold: \(self.audioThreshold)")
                 if detected {
                     self.lastTick = nil
                     self.isPlaying = true
@@ -162,20 +162,6 @@ final class PrompterViewModel: ObservableObject {
 
         audioMonitor!.startMonitoring()
     }
-
-//
-//    func updateGainIfNeeded() {
-//        guard autoGain else { return }
-//        guard let monitor = audioMonitor else { return }
-//        
-//        let rms = monitor.rmsLevel
-//        let diff = targetLevel - rms
-//        
-//        // mała korekta gain (smooth)
-//        monitor.gain += Float(diff * 2.0)
-//        
-//        monitor.gain = max(0.1, min(monitor.gain, 10.0)) // clamp
-//    }
 
     
     // MARK: Play/Pause
