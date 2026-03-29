@@ -10,11 +10,6 @@ Perfect for quick videos, or keeping important text visible while you work.
 
 [Install NotchPrompter](https://github.com/jpomykala/NotchPrompter/releases)
 
-[Sponsor the project on Gumroad](https://jpomykala.gumroad.com/l/notchprompter)
-
-[![AppStore licensing funds](https://img.shields.io/badge/AppStore_licensing_funds-$49_/_$119-blue)]([https://github.com/sponsors/jpomykala](https://jpomykala.gumroad.com/l/notchprompter))
-
-
 ## Features
 - Always on top
 - **Not visible on screen recording apps**
@@ -41,7 +36,7 @@ All contributions are welcome! Whether you're fixing bugs, improving the UI, or 
 
 ## Sponsoring
 
-If you enjoy using NotchPrompter and find it useful, you can support the project. Your donation will help me cover the cost of an Apple Developer License, which is required to publish the app on the Mac App Store. Every contribution, big or small, brings me closer to making NotchPrompter available for everyone directly from the App Store.
+If you enjoy using NotchPrompter and find it useful, you can support the project. Your donation will help me cover the cost of an Apple Developer License, which is required to publish the app on AppStore.
 
 Thanks you all the donations!
 
