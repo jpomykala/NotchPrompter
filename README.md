@@ -18,6 +18,7 @@ Perfect for quick videos, or keeping important text visible while you work.
 - Quick options
 - Customizable speed, size, font style
 - Multi-monitor support
+- Multi-language support
 
 ## Screenshot
 
