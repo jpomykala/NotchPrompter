@@ -24,6 +24,7 @@ struct NotchPrompterApp: App {
                 let ratio = $0.size.height / $0.size.width
                 $0.size.height = 18
                 $0.size.width = 18 / ratio
+                $0.isTemplate = true
                 return $0
             }(NSImage(named: "MenuBarIcon")!)
 
@@ -57,7 +58,7 @@ struct MenuContent: View {
             Label(viewModel.isPrompterVisible ? "Hide Prompter" : "Show Prompter",
                   systemImage: viewModel.isPrompterVisible ? "eye.slash" : "eye")
         }
-        .keyboardShortcut("h", modifiers: [.command])
+        .keyboardShortcut("h", modifiers: [.command, .option])
         
         Divider()
         
@@ -73,7 +74,7 @@ struct MenuContent: View {
                   systemImage: viewModel.isPlaying ? "pause.fill" : "play.fill")
         }
         .disabled(viewModel.voiceActivation)
-        .keyboardShortcut("p", modifiers: [.command])
+        .keyboardShortcut("p", modifiers: [.command, .option])
 
         Button {
             viewModel.reset()

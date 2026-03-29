@@ -499,7 +499,7 @@ final class PrompterViewModel: ObservableObject {
     }
 }
 // MARK: - Font.Design Extension for UserDefaults
-extension Font.Design: RawRepresentable {
+extension Font.Design: @retroactive RawRepresentable {
     public init?(rawValue: String) {
         switch rawValue {
         case "default": self = .default

@@ -393,7 +393,7 @@ struct AppearanceTabView: View {
                                 .background(
                                     viewModel.fontDesign == design 
                                         ? Color.accentColor.opacity(0.15) 
-                                        : Color.clear
+                                        : Color(NSColor.controlBackgroundColor)
                                 )
                                 .foregroundStyle(
                                     viewModel.fontDesign == design 
@@ -454,7 +454,7 @@ struct AppearanceTabView: View {
                                 .background(
                                     viewModel.textAlignment == alignment 
                                         ? Color.accentColor.opacity(0.15) 
-                                        : Color.clear
+                                    : Color(NSColor.controlBackgroundColor)
                                 )
                                 .foregroundStyle(
                                     viewModel.textAlignment == alignment 
@@ -687,7 +687,7 @@ struct VoiceTabView: View {
                                 )
                                 .frame(height: 10)
                             
-                            Text("\(Int(percentage))%")
+                            Text(percentage / 100, format: .percent.precision(.fractionLength(0)))
                                 .monospacedDigit()
                                 .frame(width: 50, alignment: .trailing)
                         }
@@ -761,7 +761,7 @@ struct LayoutTabView: View {
                                 .background(
                                     viewModel.horizontalAlignment == alignment 
                                         ? Color.accentColor.opacity(0.15) 
-                                        : Color.clear
+                                        : Color(NSColor.controlBackgroundColor)
                                 )
                                 .foregroundStyle(
                                     viewModel.horizontalAlignment == alignment 
@@ -974,11 +974,11 @@ struct SettingSlider: View {
                     .foregroundStyle(.secondary)
                 Spacer()
                 if unit == "%" && !isPercentage {
-                    Text("\(Int(value * 1000))%")
+                    Text(value * 10, format: .percent.precision(.fractionLength(0)))
                         .font(.system(size: 11, weight: .regular, design: .monospaced))
                         .foregroundStyle(.tertiary)
                 } else if isPercentage {
-                    Text("\(Int(value * 100))%")
+                    Text(value, format: .percent.precision(.fractionLength(0)))
                         .font(.system(size: 11, weight: .regular, design: .monospaced))
                         .foregroundStyle(.tertiary)
                 } else {
