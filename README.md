@@ -10,7 +10,7 @@ Perfect for quick videos, or keeping important text visible while you work.
 
 [Install NotchPrompter for free](https://github.com/jpomykala/NotchPrompter/releases)
 
-[Support NotchPrompter via AppStore](https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12)
+[Get NotchPrompter from AppStore](https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12)
 
 ## Features
 - Always on top
@@ -27,19 +27,8 @@ Perfect for quick videos, or keeping important text visible while you work.
 <img width="1465" height="807" alt="screen-frame" src="https://github.com/user-attachments/assets/469d1c5e-8284-4762-959c-f4af294b0ff4" />
 
 
-
-## How to install?
-
-Head to [Releases](https://github.com/jpomykala/NotchPrompter/releases) and download zip file for the latest version. Unzip it and move **NotchPrompter.app** to your **Applications** folder.
-
 ## Contributing
 All contributions are welcome! Whether you're fixing bugs, improving the UI, or adding new features, your help is appreciated.
-
-## Sponsoring
-
-If you enjoy using NotchPrompter and find it useful, you can support the project. Your donation will help me cover the cost of an Apple Developer License, which is required to publish the app on AppStore.
-
-Thanks you all the donations!
 
 ## License
 This project is open-source and available under the MIT License.
