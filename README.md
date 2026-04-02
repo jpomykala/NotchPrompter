@@ -10,7 +10,7 @@ Perfect for quick videos, or keeping important text visible while you work.
 
 [Install NotchPrompter for free](https://github.com/jpomykala/NotchPrompter/releases)
 
-[Get NotchPrompter from AppStore](https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12)
+[![Download on the Mac App Store](website/download.svg)](https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12)
 
 ## Features
 - Always on top
