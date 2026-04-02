@@ -30,7 +30,8 @@ Perfect for quick videos, or keeping important text visible while you work.
 ## Contributing
 All contributions are welcome! Whether you're fixing bugs, improving the UI, or adding new features, your help is appreciated.
 
-Translations are made by DeepL + AI, so they might be incorrect in some places, you can suggest a better translations here 
+Translations are made by DeepL + AI, so they might be incorrect in some places, you can suggest better translations here:
+
 [Review translations](https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc)
 
 ## License
