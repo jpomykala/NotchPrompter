@@ -607,9 +607,43 @@ struct VoiceTabView: View {
                     Text("Speak to test your microphone levels")
                         .font(.system(size: 11))
                         .foregroundStyle(.secondary)
+                    
+                    Divider()
+                    
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Microphone Settings")
+                            .font(.system(size: 12))
+                            .foregroundStyle(.secondary)
+                        
+                        Button {
+                            openSoundSettings()
+                        } label: {
+                            HStack(spacing: 6) {
+                                Image(systemName: "mic.fill")
+                                    .font(.system(size: 11))
+                                Text("Open Sound Settings")
+                                    .font(.system(size: 12))
+                            }
+                            .frame(maxWidth: .infinity)
+                            .padding(.vertical, 8)
+                        }
+                        .buttonStyle(.bordered)
+                        .controlSize(.regular)
+                    }
+                    
+                    Text("Adjust input volume and select microphone in System Settings, and restart voice activation to apply changes")
+                        .font(.system(size: 11))
+                        .foregroundStyle(.secondary)
                 }
             }
             .padding(16)
+        }
+    }
+    
+    private func openSoundSettings() {
+        // Open macOS System Settings to the Sound pane
+        if let url = URL(string: "x-apple.systempreferences:com.apple.preference.sound") {
+            NSWorkspace.shared.open(url)
         }
     }
 }
