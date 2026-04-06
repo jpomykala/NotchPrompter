@@ -45,7 +45,7 @@ final class PrompterViewModel: ObservableObject {
     @Published var voiceActivation: Bool = false
     @Published var autoGain: Bool = false
     @Published var isPrompterVisible: Bool = true
-    @Published var fontDesign: Font.Design = .monospaced
+    @Published var fontDesign: PrompterFontStyle = .defaultStyle
     @Published var selectedScreenIndex: Int = 0
     @Published var enableTopFade: Bool = true
     @Published var enableBottomFade: Bool = true
@@ -116,7 +116,7 @@ final class PrompterViewModel: ObservableObject {
         loadSettings()
         startTimer()
         observeSettingsChanges()
-//        setupKeyboardShortcuts()
+        registerCustomFonts()
         $voiceActivation
             .removeDuplicates()
             .sink { [weak self] enabled in
@@ -170,6 +170,14 @@ final class PrompterViewModel: ObservableObject {
         }
     }
 
+    
+    // https://stackoverflow.com/questions/75640865/unable-to-add-custom-fonts-to-xcode-14-2
+    private func registerCustomFonts() {
+        let fonts = Bundle.main.urls(forResourcesWithExtension: "otf", subdirectory: nil)
+        fonts?.forEach { url in
+            CTFontManagerRegisterFontsForURL(url as CFURL, .process, nil)
+        }
+    }
     
     func monitorAudio(){
         if(audioMonitor == nil){
@@ -233,14 +241,7 @@ final class PrompterViewModel: ObservableObject {
     func decreaseSpeed() {
         speed = max(1, speed - speedIncrement)
     }
-    
-    // MARK: Keyboard Shortcuts Setup
-    private func setupKeyboardShortcuts() {
-        // Initial registration if enabled
-        if enableGlobalKeyboardShortcuts {
-            registerGlobalKeyboardShortcuts()
-        }
-    }
+
     
     private func registerGlobalKeyboardShortcuts() {
         
@@ -369,7 +370,7 @@ final class PrompterViewModel: ObservableObject {
         audioThreshold = threshold == 0 ? 0.01 : Float(threshold)
         
         if let fontDesignRaw = defaults.string(forKey: Keys.fontDesign) {
-            fontDesign = Font.Design(rawValue: fontDesignRaw) ?? .default
+            fontDesign = PrompterFontStyle(rawValue: fontDesignRaw) ?? .defaultStyle
         }
         
         selectedScreenIndex = defaults.integer(forKey: Keys.selectedScreenIndex)
@@ -551,7 +552,7 @@ extension Font.Design: @retroactive RawRepresentable {
     }
 }
 
-// MARK: - PrompterTheme Enum
+// MARK: - PrompterTheme
 enum PrompterTheme: String, CaseIterable {
     case dark = "dark"
     case light = "light"
@@ -585,7 +586,46 @@ enum PrompterTheme: String, CaseIterable {
     }
 }
 
-// MARK: - PrompterHorizontalAlignment Enum
+// MARK: - Font styles
+enum PrompterFontStyle: String, CaseIterable {
+    case defaultStyle = "default"
+    case serif = "serif"
+    case rounded = "rounded"
+    case monospaced = "monospaced"
+    case dyslexic = "dyslexic"
+    
+    var displayName: LocalizedStringKey {
+        switch self {
+        case .defaultStyle: return "Default"
+        case .serif: return "Serif"
+        case .rounded: return "Rounded"
+        case .monospaced: return "Monospaced"
+        case .dyslexic: return "Dyslexic"
+        }
+    }
+    
+    var style: Font.Design {
+        switch self {
+        case .serif: return .serif
+        case .rounded: return .rounded
+        case .monospaced: return .monospaced
+        default: return .default
+        }
+    }
+    
+    var previewCharacter: String {
+        return "Ab"
+    }
+
+    var previewFontView: Font {
+        if (self == .dyslexic) {
+            return Font.custom("OpenDyslexic-Regular", size: 11)
+        }
+        return Font.system(size: 16, design: self.style)
+    }
+}
+
+// MARK: - PrompterHorizontalAlignment
 enum PrompterHorizontalAlignment: String, CaseIterable {
     case left = "left"
     case center = "center"

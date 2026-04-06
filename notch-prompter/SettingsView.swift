@@ -28,7 +28,7 @@ enum SettingsTab: CaseIterable, Identifiable {
         case .appearance: return "paintpalette"
         case .layout: return "macwindow"
         case .behavior: return "gearshape"
-        case .voice: return "microphone"
+        case .voice: return "waveform"
         case .shortcuts: return "keyboard"
         }
     }
@@ -278,41 +278,8 @@ struct AppearanceTabView: View {
                         .foregroundStyle(.secondary)
                     
                     HStack(spacing: 8) {
-                        ForEach([Font.Design.default, .serif, .rounded, .monospaced], id: \.self) { design in
-                            Button {
-                                viewModel.fontDesign = design
-                            } label: {
-                                VStack(spacing: 4) {
-                                    Text(design.icon)
-                                        .font(design.previewFont)
-                                    Text(design.displayLocalizedName)
-                                        .font(.system(size: 11))
-                                }
-                                .frame(maxWidth: .infinity)
-                                .padding(.vertical, 10)
-                                .background(
-                                    viewModel.fontDesign == design 
-                                        ? Color.accentColor.opacity(0.15) 
-                                        : Color(NSColor.controlBackgroundColor)
-                                )
-                                .foregroundStyle(
-                                    viewModel.fontDesign == design 
-                                        ? Color.accentColor 
-                                        : .primary
-                                )
-                                .contentShape(Rectangle())
-                                .clipShape(RoundedRectangle(cornerRadius: 6))
-                                .overlay(
-                                    RoundedRectangle(cornerRadius: 6)
-                                        .strokeBorder(
-                                            viewModel.fontDesign == design 
-                                                ? Color.accentColor 
-                                                : Color.primary.opacity(0.2),
-                                            lineWidth: 1
-                                        )
-                                )
-                            }
-                            .buttonStyle(.plain)
+                        ForEach(PrompterFontStyle.allCases, id: \.self) { design in
+                            fontStyleButton(for: design)
                         }
                     }
                 }
@@ -450,6 +417,50 @@ struct AppearanceTabView: View {
             }
             .padding(16)
         }
+    }
+    
+    @ViewBuilder
+    private func fontStyleButton(for design: PrompterFontStyle) -> some View {
+        Button {
+            viewModel.fontDesign = design
+        } label: {
+            VStack(spacing: 4) {
+                Text(design.previewCharacter)
+                    .font(design.previewFontView)
+                Text(design.displayName)
+                    .font(.system(size: 11, design: design.style))
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 10)
+            .background(buttonBackground(for: design))
+            .foregroundStyle(buttonForeground(for: design))
+            .contentShape(Rectangle())
+            .clipShape(RoundedRectangle(cornerRadius: 6))
+            .overlay(buttonBorder(for: design))
+        }
+        .buttonStyle(.plain)
+    }
+    
+    private func buttonBackground(for design: PrompterFontStyle) -> Color {
+        viewModel.fontDesign == design
+            ? Color.accentColor.opacity(0.15)
+            : Color(NSColor.controlBackgroundColor)
+    }
+    
+    private func buttonForeground(for design: PrompterFontStyle) -> Color {
+        viewModel.fontDesign == design
+            ? Color.accentColor
+            : .primary
+    }
+    
+    private func buttonBorder(for design: PrompterFontStyle) -> some View {
+        RoundedRectangle(cornerRadius: 6)
+            .strokeBorder(
+                viewModel.fontDesign == design
+                    ? Color.accentColor
+                    : Color.primary.opacity(0.2),
+                lineWidth: 1
+            )
     }
 }
 

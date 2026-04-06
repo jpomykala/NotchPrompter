@@ -235,7 +235,7 @@ struct PrompterContentView: View {
                             Button(action: {
                                 openSettingsWindow() // TODO: open voice settings
                             }) {
-                                Image(systemName: "microphone.circle.fill")
+                                Image(systemName: "waveform.circle.fill")
                                     .font(.system(size: 22))
                                     .foregroundColor(.orange)
                                     .shadow(color: .black.opacity(0.5), radius: 4, x: 0, y: 2)
@@ -301,6 +301,7 @@ struct PrompterContentView: View {
             }
         }
     }
+
     
     private func openSettingsWindow() {
         // Activate the app
@@ -356,8 +357,13 @@ struct PrompterContentView: View {
     private func attributedText(from text: String) -> AttributedString {
         var attributedString = AttributedString(text)
         
-        // Default font and color
-        let defaultFont = Font.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign)
+        // Default font and color - choose based on font style
+        let defaultFont: Font
+        if viewModel.fontDesign == .dyslexic {
+            defaultFont = Font.custom("OpenDyslexic-Regular", size: viewModel.fontSize)
+        } else {
+            defaultFont = Font.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign.style)
+        }
         let defaultColor = viewModel.prompterTheme.textColor
         
         // Apply default attributes to entire string
@@ -376,7 +382,13 @@ struct PrompterContentView: View {
                     let attributedRange = Range(stringRange, in: attributedString)
                     if let attributedRange = attributedRange {
                         // Make annotation text italic and dimmed
-                        attributedString[attributedRange].font = Font.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign).italic()
+                        let italicFont: Font
+                        if viewModel.fontDesign == .dyslexic {
+                            italicFont = Font.custom("OpenDyslexic-Italic", size: viewModel.fontSize)
+                        } else {
+                            italicFont = Font.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign.style).italic()
+                        }
+                        attributedString[attributedRange].font = italicFont
                         attributedString[attributedRange].foregroundColor = viewModel.prompterTheme.textColor.opacity(0.4)
                     }
                 }

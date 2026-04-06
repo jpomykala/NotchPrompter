@@ -48,9 +48,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 struct MenuContent: View {
     @ObservedObject var viewModel: PrompterViewModel
-    
 
-    
+
+
     var body: some View {
         Button {
             viewModel.isPrompterVisible.toggle()
@@ -59,9 +59,9 @@ struct MenuContent: View {
                   systemImage: viewModel.isPrompterVisible ? "eye.slash" : "eye")
         }
         .keyboardShortcut("h", modifiers: [.command, .option])
-        
+
         Divider()
-        
+
         Button {
             if viewModel.isPlaying {
                 viewModel.pause()
@@ -82,13 +82,13 @@ struct MenuContent: View {
             Label("Reset", systemImage: "arrow.counterclockwise")
         }
 
-        
+
         Divider()
 
         SettingsLink {
             Label("Settings", systemImage: "gearshape")
         }
-        
+
         .keyboardShortcut(",", modifiers: [.command])
 
         Divider()
@@ -98,26 +98,19 @@ struct MenuContent: View {
                 NSWorkspace.shared.open(url)
             }
         }
-        
+
         Button("Project page") {
             if let url = URL(string: "https://notchprompter.com") {
                 NSWorkspace.shared.open(url)
             }
         }
-        
-//        Button("Help translate") {
-//            if let url = URL(string: "https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc") {
-//                NSWorkspace.shared.open(url)
-//            }
-//        }
-//        #if !APP_STORE_VERSION
-        Button("Sponsor the project") {
-            if let url = URL(string: "https://jpomykala.gumroad.com/l/notchprompter") {
+
+        Button("Help translate") {
+            if let url = URL(string: "https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc") {
                 NSWorkspace.shared.open(url)
             }
         }
-//        #endif
-        
+
         Divider()
 
         Button(role: .destructive) {
