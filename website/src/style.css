@@ -26,3 +26,17 @@ html {
   scroll-behavior: smooth;
   overflow-x: hidden;
 }
+
+/* Anchor offset for fixed nav */
+[id] {
+  scroll-margin-top: 4rem;
+}
+
+/* Details marker reset */
+details summary::-webkit-details-marker {
+  display: none;
+}
+
+details summary {
+  list-style: none;
+}
