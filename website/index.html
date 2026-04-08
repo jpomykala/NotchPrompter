@@ -162,23 +162,19 @@
 <body class="bg-stone-50 text-zinc-900 antialiased overflow-x-hidden w-full max-w-full">
 
 <!-- Navigation -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-xl border-b border-zinc-200/60">
+<nav class="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-xl">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
     <a href="/" class="flex items-center gap-2.5 shrink-0">
       <img width="28" height="28" class="rounded-[7px]" src="logo.png" alt="NotchPrompter" />
       <span class="text-sm font-semibold text-zinc-900">NotchPrompter</span>
     </a>
+
+
     <div class="flex items-center gap-2">
-      <a href="#features" class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors px-3 py-2 hidden sm:block">Features</a>
-      <a href="#faq" class="text-sm text-zinc-500 hover:text-zinc-900 transition-colors px-3 py-2 hidden sm:block">FAQ</a>
-      <a href="https://github.com/jpomykala/NotchPrompter" target="_blank" rel="noopener noreferrer"
-         class="text-zinc-500 hover:text-zinc-900 transition-colors p-2">
+      <a href="https://github.com/jpomykala/NotchPrompter" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-zinc-900 transition-colors p-2 flex items-center">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
       </a>
-      <a href="https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer"
-         class="inline-flex items-center gap-1.5 bg-zinc-900 text-white text-sm font-medium px-4 py-1.5 rounded-lg hover:bg-zinc-700 transition-colors">
-        Download
-      </a>
+      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden rounded-full bg-gradient-to-b from-[#2a2a2a] to-[#0a0a0a] border border-white/[0.08] transition-colors duration-500 ease-out hover:from-[#3a3a3a] hover:to-[#1a1a1a] px-3 py-2 text-[11px] font-semibold text-white no-underline transition-shadow hover:shadow-lg sm:px-5 sm:py-2.5 sm:text-sm"><span class="flex items-center gap-1.5 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 group-hover:blur-[6px] sm:gap-2"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"></path></svg><span class="whitespace-nowrap">Download</span></span><span class="absolute inset-0 flex items-center justify-center gap-1.5 translate-y-full transition-transform duration-300 group-hover:translate-y-0 sm:gap-2"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg><span class="whitespace-nowrap">Download</span></span></a>
     </div>
   </div>
 </nav>
@@ -187,22 +183,12 @@
   <!-- Hero -->
   <section class="pt-28 pb-10 sm:pt-36 sm:pb-14">
     <div class="flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl mx-auto">
-      <!-- Product Hunt badge -->
-      <div class="mb-7">
-        <a href="https://www.producthunt.com/products/notchprompter?embed=true&utm_source=badge-featured&utm_medium=badge&utm_campaign=badge-notchprompter" target="_blank" rel="noopener noreferrer">
-          <img class="h-[44px] w-auto" src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=1117622&theme=dark&t=1775597816800" />
-        </a>
-      </div>
-
       <!-- App icon -->
-      <div class="mb-2">
+      <div class="mb-6">
         <img width="80" height="80" class="rounded-[18px] shadow-lg"
           src="logo.png"
-          alt="NotchPrompter icon" />
+          alt="NotchPrompter" />
       </div>
-
-      <!-- App filename -->
-      <p class="font-mono text-[13px] text-zinc-500 tracking-tight mb-7 font-bold">NotchPrompter</p>
 
       <!-- Tagline -->
       <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-4 text-zinc-900">
@@ -214,19 +200,13 @@
       </p>
 
       <!-- CTA -->
-      <div class="flex flex-wrap items-center justify-center gap-3 mb-4">
-        <a href="https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer">
-          <img src="download.svg" alt="Download on the Mac App Store" class="h-[44px] w-auto" />
-        </a>
-        <a href="https://github.com/jpomykala/NotchPrompter/releases/"
-           class="inline-flex items-center gap-2 h-[44px] bg-zinc-900 text-white font-semibold text-sm px-6 rounded-xl hover:bg-zinc-800 transition-all">
-          <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"/></svg>
-          Download for free
-        </a>
-      </div>
 
-      <p class="text-xs text-zinc-400">
-        macOS Sonoma+ · Apple Silicon &amp; Intel · Free &amp; open-source
+      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden px-10 py-5 bg-gradient-to-b from-[#2a2a2a] to-[#0a0a0a] border border-white/[0.08] transition-colors duration-500 ease-out hover:from-[#3a3a3a] hover:to-[#1a1a1a] text-white rounded-full text-[17px] font-semibold hover:shadow-xl transition-shadow no-underline mb-2 fade-3"><span class="flex items-center gap-3 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 group-hover:blur-[6px]"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"></path></svg>Download for Mac</span><span class="absolute inset-0 flex items-center justify-center gap-3 translate-y-full transition-transform duration-300 group-hover:translate-y-0"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>Get it on App Store</span></a>
+
+      <p class="text-xs text-zinc-500">
+        $9.99 as one-time purchase or <a href="https://github.com/jpomykala/NotchPrompter/" target="_blank"
+                                        class="underline hover:text-zinc-900 transition-colors"
+      >get it for free from GitHub</a>
       </p>
     </div>
   </section>
@@ -426,23 +406,40 @@
   </section>
 
   <!-- Final CTA -->
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 pb-24">
-    <div class="text-center">
-      <h2 class="text-xl md:text-2xl font-bold tracking-tight mb-2 text-zinc-900">Ready to try it?</h2>
-      <p class="text-sm text-zinc-500 mb-6">
-        Download NotchPrompter, it's free, forever. <br/>
-        You can support project development by purchasing the App Store version<br/> and get free and automated updates.
+  <section class="max-w-3xl mx-auto px-4 py-24 text-center">
+    <header class="mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">
+        Ready to try it?
+      </h2>
+      <p class="text-zinc-500 leading-relaxed">
+        Support an open-source project.<br>
+        <span class="font-medium text-zinc-800">$9.99</span> one-time purchase. No subscription, no data collected.
       </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer">
-          <img src="download.svg" alt="Download on the Mac App Store" class="h-[44px] w-auto" />
-        </a>
-        <a href="https://github.com/jpomykala/NotchPrompter/releases/"
-           class="inline-flex items-center gap-2 bg-zinc-900 text-white font-medium text-sm px-5 py-2.5 rounded-xl hover:bg-zinc-800 transition-all">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 16v2a2 2 0 002 2h12a2 2 0 002-2v-2M7 10l5 5m0 0l5-5m-5 5V3"/></svg>
-          Download for free
-        </a>
-      </div>
+    </header>
+
+    <div class="flex justify-center">
+      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="group relative inline-flex items-center justify-center px-10 py-5 overflow-hidden font-semibold text-white transition-all duration-300 bg-zinc-950 rounded-full hover:shadow-2xl hover:shadow-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:ring-offset-2">
+
+        <span class="absolute inset-0 bg-gradient-to-b from-zinc-800 to-black transition-opacity group-hover:opacity-90"></span>
+
+        <span class="relative flex items-center gap-3 transition-transform duration-500 ease-out group-hover:-translate-y-12">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+        </svg>
+        Download for Mac
+      </span>
+
+        <span class="absolute flex items-center gap-2 translate-y-12 transition-transform duration-500 ease-out group-hover:translate-y-0">
+        Get it on App Store
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </span>
+      </a>
     </div>
   </section>
 </main>
@@ -450,7 +447,8 @@
 <footer class="border-t border-zinc-200 bg-white">
   <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
     <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-      <p class="text-xs text-zinc-400">&copy; 2026 NotchPrompter · MIT License · Made in Poland 🇵🇱</p>
+      <p class="text-xs text-zinc-400">&copy; 2026 NotchPrompter · Made in Poland by <a href="https://jpomykala.com" target="_blank" class="underline hover:text-zinc-900 transition-colors">
+        Jakub Pomykała</a></p>
       <div class="flex items-center gap-4">
         <a href="https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">Help translate</a>
         <a href="/privacy-policy.html" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">Privacy</a>
