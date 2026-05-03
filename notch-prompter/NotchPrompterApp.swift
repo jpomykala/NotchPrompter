@@ -38,7 +38,6 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
     func applicationDidFinishLaunching(_ notification: Notification) {
         prompterWindow = PrompterWindow(viewModel: viewModel)
-        prompterWindow.show()
         NSApp.setActivationPolicy(.accessory)
     }
 }
@@ -100,11 +99,7 @@ struct MenuContent: View {
                NSWorkspace.shared.open(url)
            }
        }
-        Button("Sponsor the project") {
-            if let url = URL(string: "https://jpomykala.gumroad.com/l/notchprompter") {
-                NSWorkspace.shared.open(url)
-            }
-        }
+    
         Divider()
 
         Button(role: .destructive) {

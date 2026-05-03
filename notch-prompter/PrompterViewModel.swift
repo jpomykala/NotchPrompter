@@ -183,9 +183,6 @@ final class PrompterViewModel: ObservableObject {
 //                print("Audio monitor - activation: \(detected) rms: \(rmsLevel) threshold: \(self.audioThreshold)")
                 if detected {
                     self.lastTick = nil
-                    self.isPlaying = true
-                } else {
-                    self.isPlaying = false
                 }
 
             }
@@ -234,79 +231,14 @@ final class PrompterViewModel: ObservableObject {
         speed = max(1, speed - speedIncrement)
     }
 
-    // MARK: Keyboard Shortcuts Setup
-    private func setupKeyboardShortcuts() {
-        // Initial registration if enabled
-        if enableGlobalKeyboardShortcuts {
-            registerGlobalKeyboardShortcuts()
-        }
-    }
-
-    private func registerGlobalKeyboardShortcuts() {
-
-        print("Register hotkeys")
-        // Control + Option + P: Play/Pause
-        playPauseHotKey = HotKey(key: .p, modifiers: [.control, .option])
-        playPauseHotKey?.keyDownHandler = { [weak self] in
-            guard let self = self else { return }
-            if !self.voiceActivation {
-                if self.isPlaying {
-                    self.pause()
-                } else {
-                    self.play()
-                }
-            }
-        }
-
-        // Control + Option + H: Show/Hide
-        showHideHotKey = HotKey(key: .h, modifiers: [.control, .option])
-        showHideHotKey?.keyDownHandler = { [weak self] in
-            self?.isPrompterVisible.toggle()
-        }
-
-        // Control + Option + Right Arrow: Increase Speed
-        increaseSpeedHotKey = HotKey(key: .rightArrow, modifiers: [.control, .option])
-        increaseSpeedHotKey?.keyDownHandler = { [weak self] in
-            self?.increaseSpeed()
-        }
-
-        // Control + Option + Left Arrow: Decrease Speed
-        decreaseSpeedHotKey = HotKey(key: .leftArrow, modifiers: [.control, .option])
-        decreaseSpeedHotKey?.keyDownHandler = { [weak self] in
-            self?.decreaseSpeed()
-        }
-
-        // Control + Option + Up Arrow: Scroll Up
-        scrollUpHotKey = HotKey(key: .upArrow, modifiers: [.control, .option])
-        scrollUpHotKey?.keyDownHandler = { [weak self] in
-            self?.scrollUp()
-        }
-
-        // Control + Option + Down Arrow: Scroll Down
-        scrollDownHotKey = HotKey(key: .downArrow, modifiers: [.control, .option])
-        scrollDownHotKey?.keyDownHandler = { [weak self] in
-            self?.scrollDown()
-        }
-    }
-
-    private func unregisterGlobalKeyboardShortcuts() {
-        print("Unregister hotkeys")
-        playPauseHotKey = nil
-        showHideHotKey = nil
-        increaseSpeedHotKey = nil
-        decreaseSpeedHotKey = nil
-        scrollUpHotKey = nil
-        scrollDownHotKey = nil
-    }
-
     private func tick(current: CFTimeInterval) {
         guard isPlaying else { return }
 
         let dt: CFTimeInterval
         if let last = lastTick {
-            dt = current - last
+            dt = current - last + ((1.0 / 180.0) + current)
         } else {
-            dt = 0
+            dt = -1
         }
         lastTick = current
 
@@ -592,9 +524,9 @@ enum PrompterHorizontalAlignment: String, CaseIterable {
 
     var icon: String {
         switch self {
-        case .left: return "arrow.left.to.line"
-        case .center: return "arrow.left.and.right"
-        case .right: return "arrow.right.to.line"
+        case .left: return "arrow.left.line"
+        case .center: return "arrow.left.right"
+        case .right: return "arrow.right.line"
         }
     }
 }
