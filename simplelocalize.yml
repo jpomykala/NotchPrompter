@@ -1,11 +1,11 @@
 uploadFormat: localizable-xcstrings
 uploadLanguageKey: en
+uploadPath: ./Localizable.xcstrings
 uploadOptions:
     - REPLACE_TRANSLATION_IF_FOUND
     - MARK_AS_ACCEPTED
     - DEPRECATE_NOT_PRESENT_KEYS
     - ACTIVATE_PRESENT_KEYS
-uploadPath: ./Localizable.xcstrings
 
 downloadPath: ./Localizable.xcstrings
 downloadFormat: localizable-xcstrings
