@@ -25,7 +25,8 @@ Perfect for quick videos or keeping important text visible while you work.
 
 ## Screenshot
 
-<img width="1465" height="807" alt="screen-frame" src="https://github.com/user-attachments/assets/469d1c5e-8284-4762-959c-f4af294b0ff4" />
+<img width="1465" height="780" alt="screen-frame-no-text" src="https://github.com/user-attachments/assets/8fcca82b-2628-4fcf-8b64-28e19474703b" />
+
 
 
 ## Contributing
