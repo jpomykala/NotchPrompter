@@ -1,137 +1,458 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!-- ...existing code (meta, title, description, fonts, OG, Twitter, JSON-LD)... -->
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NotchPrompter — Teleprompter for macOS</title>
-  <meta name="description" content="A minimalistic, always-on-top teleprompter for macOS. Perfect for content creators and presenters.">
-  <script type="module" crossorigin src="./assets/index-BPIJLiBB.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-DtKJVTN1.css">
+  <title>NotchPrompter — Free Teleprompter for macOS</title>
+  <meta name="description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews & sales demos.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="NotchPrompter — Free Teleprompter for macOS">
+  <meta property="og:description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews & sales demos.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://notchprompter.com">
+  <meta property="og:image" content="https://notchprompter.com/logo.png">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="NotchPrompter — Free Teleprompter for macOS">
+  <meta name="twitter:description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording.">
+  <meta name="twitter:image" content="https://notchprompter.com/logo.png">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "SoftwareApplication",
+        "name": "NotchPrompter",
+        "alternateName": "NotchPrompter.app",
+        "description": "A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews and sales demos.",
+        "url": "https://notchprompter.com",
+        "downloadUrl": "https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12",
+        "screenshot": "https://notchprompter.com/screen-frame-v5.png",
+        "image": "https://notchprompter.com/logo.png",
+        "applicationCategory": "UtilitiesApplication",
+        "operatingSystem": "macOS 14 Sonoma or newer",
+        "processorRequirements": "Apple Silicon & Intel",
+        "softwareVersion": "1.0",
+        "isAccessibleForFree": true,
+        "license": "https://opensource.org/licenses/MIT",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD",
+          "availability": "https://schema.org/InStock"
+        },
+        "author": {
+          "@type": "Person",
+          "name": "Jakub Pomykała",
+          "url": "https://jpomykala.com",
+          "image": "https://jpomykala.com/assets/me-2025.jpeg",
+          "nationality": {
+            "@type": "Country",
+            "name": "Poland"
+          }
+        },
+        "codeRepository": "https://github.com/jpomykala/NotchPrompter",
+        "featureList": [
+          "Invisible to screen recording and screen sharing",
+          "Voice-activated scrolling",
+          "Fully customizable speed, text size, and font",
+          "Multiple screen support",
+          "Dark and light themes",
+          "Open-source and free under MIT License",
+          "Dyslexia-friendly OpenDyslexic font",
+          "Custom and floating window position",
+          "Global keyboard shortcuts"
+        ],
+        "keywords": [
+          "teleprompter",
+          "macOS",
+          "notch",
+          "screen recording",
+          "presentations",
+          "open-source",
+          "free"
+        ]
+      },
+      {
+        "@type": "WebPage",
+        "name": "NotchPrompter — Free Teleprompter for macOS",
+        "description": "A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording.",
+        "url": "https://notchprompter.com",
+        "inLanguage": "en",
+        "isPartOf": {
+          "@type": "WebSite",
+          "name": "NotchPrompter",
+          "url": "https://notchprompter.com"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is NotchPrompter free?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, NotchPrompter is 100% free and open-source under the MIT License."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does NotchPrompter show up in screen recordings?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. NotchPrompter is completely invisible to screen recordings, Zoom, Google Meet, and all other screen sharing tools."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What macOS version is required?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NotchPrompter requires macOS Sonoma or newer and works on both Apple Silicon and Intel Macs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Does it work with external monitors?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes, NotchPrompter supports multi-monitor setups. You can place the prompter on any display."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need a MacBook with a notch?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. While it's designed to sit beautifully in the notch area, NotchPrompter works on any Mac — including iMacs, Mac Minis with external displays, and older MacBooks without a notch. The prompter simply appears at the top of your screen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I place the prompter anywhere on screen?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes! You can position the prompter in the notch area, in any corner of the screen, or use the floating mode to drag it anywhere you like."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How does voice-activated scrolling work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "NotchPrompter uses your microphone to detect when you're speaking. The text scrolls while you talk and pauses when you stop — so it naturally matches your pace without any manual controls."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+  <script type="module" crossorigin src="./assets/main-Ck23r8q4.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-Cf2mCpLr.css">
 </head>
-<body>
-<div class="min-h-screen bg-white">
-  <!-- Navigation -->
-  <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8">
-      <div class="flex justify-between items-center h-16">
-        <div class="flex items-center space-x-2">
-          <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
-          </svg>
-          <span class="text-gray-900 text-lg font-semibold">NotchPrompter</span>
-        </div>
-        <a href="https://github.com/jpomykala/NotchPrompter" target="_blank" rel="noopener noreferrer"
-           class="text-sm text-gray-600 hover:text-gray-900 transition">
-          GitHub
-        </a>
+<body class=" bg-[#FFF5E5] text-zinc-900 antialiased overflow-x-hidden pb-12 px-4 xl:px-36">
+<main>
+  <!-- Hero -->
+  <section class="pt-10 pb-10 sm:pt-28 sm:pb-14 xl:px-36 flex flex-col items-center">
+    <div class="flex flex-col items-start px-4 sm:px-6 mx-auto">
+      <!-- App icon -->
+      <div class="mb-3 xl:mb-6">
+        <img width="96" height="96" class="size-16 md:size-28"
+          src="./assets/logo-CoUEQOH0.png"
+          alt="NotchPrompter" />
       </div>
-    </div>
-  </nav>
 
-  <main class="pt-16">
-    <!-- Hero Section -->
-    <section class="max-w-4xl mx-auto px-6 lg:px-8 pt-24 pb-16 text-center">
-      <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-6 tracking-tight leading-tight">
-        NotchPrompter<br />for macOS
+      <h1 class="text-3xl md:text-8xl font-bold tracking-tighter mb-6 text-black leading-[1.4] md:leading-[1.3]">
+        NotchPrompter<br/>
+        for&nbsp;<mark class="bg-[#FF797E] ring-2 md:ring-4 ring-black px-2 py-2 leading-none rounded-md mx-1 inline-block">
+          perfect videos
+        </mark>
       </h1>
-      <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-        A minimalistic, always-on-top prompter. Perfect for creating videos or keeping important text visible while you work.
+
+      <p class="text-base md:text-xl text-zinc-500 max-w-2xl leading-relaxed mb-8">
+        Open-source macOS prompter app that sits in your notch area completely invisible to screen recording and screen sharing.
       </p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="https://github.com/jpomykala/NotchPrompter/releases/download/1.2/notch-prompter.zip"
-          class="inline-block bg-gray-900 text-white px-8 py-3 rounded-lg font-medium text-base hover:bg-gray-800 transition-colors">
-          Download for macOS
-        </a>
-        <span class="text-sm text-gray-500">Free · macOS 13.0+</span>
-      </div>
-    </section>
 
-    <!-- Screenshot -->
-    <section class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
-      <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-gray-50">
-        <img src="https://github.com/user-attachments/assets/99670434-e295-45c4-ba7b-a261d6faf943"
-             alt="NotchPrompter screenshot"
-             class="w-full h-auto" />
-      </div>
-    </section>
+      <div class="flex items-center gap-1 xl:gap-4 justify-center flex-col xl:flex-row">
+      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden px-14 py-5 bg-gradient-to-b from-[#2a2a2a] to-[#0a0a0a] border border-white/[0.08] transition-colors duration-500 ease-out hover:from-[#3a3a3a] hover:to-[#1a1a1a] text-white rounded-full text-[17px] font-semibold hover:shadow-xl transition-shadow no-underline mb-2 fade-3">
+        <span class="flex items-center gap-3 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 group-hover:blur-[6px]">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"></path></svg>
+          Download for Mac</span>
+        <span class="absolute inset-0 flex items-center justify-center gap-3 translate-y-full transition-transform duration-300 group-hover:translate-y-0">
+          <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>Get it on App Store</span>
+      </a>
 
-    <!-- Features -->
-    <section class="max-w-4xl mx-auto px-6 lg:px-8 py-20">
-      <div class="grid md:grid-cols-2 gap-12 md:gap-16">
-        <div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">Always on top</h3>
-          <p class="text-base text-gray-600 leading-relaxed">
-            Stays visible above all other windows, so your script is always in view while you work or record.
-          </p>
-        </div>
+      <p class="text-sm text-zinc-500">
+        Support the project or <a href="https://github.com/jpomykala/NotchPrompter/" target="_blank"
+                                        class="underline hover:text-zinc-900 transition-colors"
+      >get it from GitHub</a>
+      </p>
 
-        <div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">Voice activation</h3>
-          <p class="text-base text-gray-600 leading-relaxed">
-            Start and control playback with your voice, keeping your hands free for other tasks.
-          </p>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">Customizable</h3>
-          <p class="text-base text-gray-600 leading-relaxed">
-            Adjust scrolling speed and text size to match your reading pace perfectly.
-          </p>
-        </div>
-
-        <div>
-          <h3 class="text-lg font-semibold text-gray-900 mb-3">Lightweight</h3>
-          <p class="text-base text-gray-600 leading-relaxed">
-            Minimalist design that stays out of your way. Pause on hover for easy control.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Download CTA -->
-    <section class="max-w-4xl mx-auto px-6 lg:px-8 py-20 text-center">
-      <div class="border border-gray-200 rounded-2xl p-12 md:p-16 bg-gray-50">
-        <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
-          Get started
-        </h2>
-        <p class="text-base md:text-lg text-gray-600 mb-8 max-w-xl mx-auto">
-          Download NotchPrompter and start creating better videos today.
-        </p>
-        <a href="https://github.com/jpomykala/NotchPrompter/releases/download/1.2/notch-prompter.zip"
-          class="inline-block bg-gray-900 text-white px-10 py-4 rounded-lg font-medium text-base hover:bg-gray-800 transition-colors">
-          Download for macOS
-        </a>
-        <p class="text-sm text-gray-500 mt-6">
-          Not notarized yet — <a href="https://apple.stackexchange.com/questions/388554/is-a-paid-apple-developer-account-required-for-notarizing-macos-apps" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">requires Apple Developer License</a>
-        </p>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="border-t border-gray-100 mt-20">
-    <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12">
-      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
-        <div class="text-sm text-gray-500">
-          &copy; 2025 NotchPrompter. Open source under MIT License.
-        </div>
-        <div class="flex gap-6 text-sm">
-          <a href="https://github.com/jpomykala/NotchPrompter" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition">
-            GitHub
-          </a>
-          <a href="https://github.com/jpomykala/NotchPrompter/releases" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition">
-            Releases
-          </a>
-          <a href="https://github.com/sponsors/jpomykala" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition">
-            Sponsor
-          </a>
-        </div>
       </div>
     </div>
-  </footer>
-</div>
+  </section>
+
+  <!-- Screenshot -->
+  <section class="mx-auto px-4 sm:px-6 pb-16 flex w-full max-w-(--breakpoint-xl) flex-col items-center">
+    <div class="relative border-b border-b-4 border-orange-400/20">
+      <img src="./assets/screen-frame-v5-BBrXDso5.png"
+           alt="NotchPrompter — teleprompter in macOS notch"
+           class="w-full h-auto block" />
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="max-w-6xl mx-auto px-4 sm:px-6 pb-24 scroll-mt-20">
+    <div class="text-center mb-16">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">Features</h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-20">
+      <!-- Invisible to recording -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-20 h-20" viewBox="0 0 44.2383 32.2559" fill="currentColor"><path d="M30.2344 10.5078L30.2344 12.5433L35.1465 8.4375C35.6445 8.02734 36.1621 7.75391 36.6797 7.75391C37.6953 7.75391 38.3691 8.50586 38.3691 9.61914L38.3691 22.627C38.3691 23.7402 37.6953 24.4824 36.6797 24.4824C36.1621 24.4824 35.6445 24.209 35.1465 23.8086L30.2344 19.7028L30.2344 21.7285C30.2344 24.707 28.4863 26.4258 25.498 26.4258L16.5332 26.4258C16.5405 26.3618 16.543 26.2964 16.543 26.2305L16.543 24.8047L25.1855 24.8047C27.3242 24.8047 28.5059 23.7012 28.5059 21.4648L28.5059 10.7812C28.5059 8.53516 27.3242 7.43164 25.1855 7.43164L12.4219 7.43164C10.2832 7.43164 9.10156 8.53516 9.10156 10.7812L9.10156 16.8662C8.84447 16.7713 8.56444 16.7188 8.27148 16.7188C7.95324 16.7188 7.65032 16.7794 7.37305 16.891L7.37305 10.5078C7.37305 7.5293 9.23828 5.81055 12.1094 5.81055L25.498 5.81055C28.4863 5.81055 30.2344 7.5293 30.2344 10.5078ZM35.9863 9.88281L30.2344 14.5796L30.2344 17.6567L35.9863 22.3535C36.1426 22.4707 36.2695 22.5684 36.4062 22.5684C36.6016 22.5684 36.6992 22.4219 36.6992 22.168L36.6992 10.0684C36.6992 9.82422 36.6016 9.66797 36.4062 9.66797C36.2695 9.66797 36.1426 9.75586 35.9863 9.88281Z"/><path d="M14.0234 26.8652C14.3848 26.8652 14.6582 26.6016 14.6582 26.2305L14.6582 22.7344C14.6582 22.373 14.3848 22.0996 14.0234 22.0996C13.6621 22.0996 13.3887 22.3828 13.3887 22.7344L13.3887 26.2305C13.3887 26.5918 13.6621 26.8652 14.0234 26.8652Z"/><path d="M11.1328 29.1504C11.5039 29.1504 11.7871 28.877 11.7871 28.5156L11.7871 20.4492C11.7871 20.0977 11.5039 19.8145 11.1328 19.8145C10.791 19.8145 10.5078 20.0977 10.5078 20.4492L10.5078 28.5156C10.5078 28.877 10.791 29.1504 11.1328 29.1504Z"/><path d="M8.27148 30.3809C8.62305 30.3809 8.90625 30.0977 8.90625 29.7363L8.90625 19.248C8.90625 18.877 8.62305 18.6035 8.27148 18.6035C7.91016 18.6035 7.63672 18.877 7.63672 19.248L7.63672 29.7363C7.63672 30.1074 7.90039 30.3809 8.27148 30.3809Z"/><path d="M5.39062 28.2812C5.75195 28.2812 6.03516 27.998 6.03516 27.6367L6.03516 21.3281C6.03516 20.9766 5.75195 20.6836 5.39062 20.6836C5.03906 20.6836 4.75586 20.9766 4.75586 21.3281L4.75586 27.6367C4.75586 27.998 5.03906 28.2812 5.39062 28.2812Z"/><path d="M2.50977 26.1816C2.87109 26.1816 3.1543 25.9082 3.1543 25.5566L3.1543 23.418C3.1543 23.0566 2.87109 22.7734 2.50977 22.7734C2.1582 22.7734 1.88477 23.0566 1.88477 23.418L1.88477 25.5566C1.88477 25.9082 2.1582 26.1816 2.50977 26.1816Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Invisible to recording</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Won't show up in screen recordings, Zoom, Meet, or any screen sharing tool.</p>
+      </div>
+
+      <!-- Voice activation -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 22.8711 26.0645" fill="currentColor"><path d="M21.6504 17.1777C22.1387 17.1777 22.5098 16.7871 22.5098 16.3086L22.5098 9.75586C22.5098 9.27734 22.1387 8.87695 21.6504 8.87695C21.1523 8.87695 20.7812 9.27734 20.7812 9.75586L20.7812 16.3086C20.7812 16.7871 21.1523 17.1777 21.6504 17.1777Z"/><path d="M17.4902 23.1152C17.9785 23.1152 18.3594 22.7246 18.3594 22.2461L18.3594 3.81836C18.3594 3.33984 17.9785 2.93945 17.4902 2.93945C16.9922 2.93945 16.6309 3.33984 16.6309 3.81836L16.6309 22.2461C16.6309 22.7246 16.9922 23.1152 17.4902 23.1152Z"/><path d="M13.3301 19.5605C13.8281 19.5605 14.1992 19.1797 14.1992 18.7012L14.1992 7.36328C14.1992 6.88477 13.8281 6.49414 13.3301 6.49414C12.832 6.49414 12.4707 6.88477 12.4707 7.36328L12.4707 18.7012C12.4707 19.1797 12.832 19.5605 13.3301 19.5605Z"/><path d="M9.16992 26.0645C9.66797 26.0645 10.0391 25.6836 10.0391 25.2051L10.0391 0.859375C10.0391 0.380859 9.66797 0 9.16992 0C8.68164 0 8.31055 0.380859 8.31055 0.859375L8.31055 25.2051C8.31055 25.6836 8.68164 26.0645 9.16992 26.0645Z"/><path d="M5.00977 20.9863C5.50781 20.9863 5.88867 20.6055 5.88867 20.127L5.88867 5.9375C5.88867 5.45898 5.50781 5.06836 5.00977 5.06836C4.52148 5.06836 4.16016 5.45898 4.16016 5.9375L4.16016 20.127C4.16016 20.6055 4.52148 20.9863 5.00977 20.9863Z"/><path d="M0.859375 16.0254C1.35742 16.0254 1.72852 15.6445 1.72852 15.1562L1.72852 10.9082C1.72852 10.4199 1.35742 10.0293 0.859375 10.0293C0.361328 10.0293 0 10.4199 0 10.9082L0 15.1562C0 15.6445 0.361328 16.0254 0.859375 16.0254Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Voice activation</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Scrolls when you speak, pauses when you stop. Hands-free operation.</p>
+      </div>
+
+      <!-- Customizable -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 25.4785 21.2793" fill="currentColor"><path d="M14.3066 18.3691C14.3066 18.668 14.3522 18.9567 14.4369 19.2285L0.869141 19.2285C0.380859 19.2285 0 18.8477 0 18.3691C0 17.8809 0.380859 17.5 0.869141 17.5L14.4417 17.5C14.3539 17.7747 14.3066 18.0668 14.3066 18.3691ZM25.1172 18.3691C25.1172 18.8477 24.7363 19.2285 24.2871 19.2285L19.9869 19.2285C20.0716 18.9567 20.1172 18.668 20.1172 18.3691C20.1172 18.0668 20.07 17.7747 19.982 17.5L24.2871 17.5C24.7363 17.5 25.1172 17.8809 25.1172 18.3691Z"/><path d="M20.1172 18.3691C20.1172 19.9707 18.8086 21.2793 17.207 21.2793C15.6152 21.2793 14.3066 19.9707 14.3066 18.3691C14.3066 16.7773 15.6152 15.4688 17.207 15.4688C18.8086 15.4688 20.1172 16.7773 20.1172 18.3691ZM15.6934 18.3691C15.6934 19.2188 16.3574 19.8926 17.207 19.8926C18.0664 19.8926 18.7305 19.2188 18.7305 18.3691C18.7305 17.5098 18.0664 16.8457 17.207 16.8457C16.3574 16.8457 15.6934 17.5098 15.6934 18.3691Z"/><path d="M5.25391 10.6738C5.25391 10.973 5.29958 11.2617 5.38438 11.5332L0.869141 11.5332C0.380859 11.5332 0 11.1523 0 10.6641C0 10.1855 0.380859 9.80469 0.869141 9.80469L5.38731 9.80469C5.30059 10.0793 5.25391 10.3713 5.25391 10.6738ZM25.1172 10.6641C25.1172 11.1523 24.7363 11.5332 24.2871 11.5332L10.9339 11.5332C11.0188 11.2617 11.0645 10.973 11.0645 10.6738C11.0645 10.3713 11.0178 10.0793 10.931 9.80469L24.2871 9.80469C24.7363 9.80469 25.1172 10.1855 25.1172 10.6641Z"/><path d="M11.0645 10.6738C11.0645 12.2754 9.75586 13.5742 8.1543 13.5742C6.5625 13.5742 5.25391 12.2754 5.25391 10.6738C5.25391 9.07227 6.5625 7.76367 8.1543 7.76367C9.75586 7.76367 11.0645 9.07227 11.0645 10.6738ZM6.64062 10.6641C6.64062 11.5137 7.30469 12.1973 8.1543 12.1973C9.01367 12.1973 9.67773 11.5137 9.67773 10.6641C9.67773 9.80469 9.01367 9.14062 8.1543 9.14062C7.30469 9.14062 6.64062 9.80469 6.64062 10.6641Z"/><path d="M14.3066 2.94922C14.3066 3.25537 14.3545 3.55081 14.4436 3.82813L0.869141 3.82812C0.380859 3.82812 0 3.44727 0 2.96875C0 2.48047 0.380859 2.09961 0.869141 2.09961L14.4355 2.09961C14.3516 2.3686 14.3066 2.65404 14.3066 2.94922ZM25.1172 2.96875C25.1172 3.44727 24.7363 3.82812 24.2871 3.82812L19.9801 3.82813C20.0694 3.55081 20.1172 3.25537 20.1172 2.94922C20.1172 2.65404 20.0722 2.3686 19.9882 2.09961L24.2871 2.09961C24.7363 2.09961 25.1172 2.48047 25.1172 2.96875Z"/><path d="M17.207 5.85938C18.8086 5.85938 20.1172 4.55078 20.1172 2.94922C20.1172 1.35742 18.8086 0.0488281 17.207 0.0488281C15.6152 0.0488281 14.3066 1.35742 14.3066 2.94922C14.3066 4.55078 15.6152 5.85938 17.207 5.85938ZM17.207 4.47266C16.3574 4.47266 15.6934 3.79883 15.6934 2.94922C15.6934 2.08984 16.3574 1.42578 17.207 1.42578C18.0664 1.42578 18.7305 2.08984 18.7305 2.94922C18.7305 3.79883 18.0664 4.47266 17.207 4.47266Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Fully customizable</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Adjust speed, text size, and font to match your reading pace.</p>
+      </div>
+
+      <!-- Multiple screens -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 29.9512 22.959" fill="currentColor"><path d="M3.79883 22.959L25.7812 22.959C28.3105 22.959 29.5898 21.6797 29.5898 19.1992L29.5898 3.76953C29.5898 1.2793 28.3105 0 25.7812 0L3.79883 0C1.2793 0 0 1.26953 0 3.76953L0 19.1992C0 21.6992 1.2793 22.959 3.79883 22.959ZM3.83789 21.2305C2.4707 21.2305 1.72852 20.5078 1.72852 19.1016L1.72852 3.85742C1.72852 2.46094 2.4707 1.72852 3.83789 1.72852L25.752 1.72852C27.0898 1.72852 27.8516 2.46094 27.8516 3.85742L27.8516 19.1016C27.8516 20.5078 27.0898 21.2305 25.752 21.2305Z"/><path d="M7.44141 10.4102C7.90039 10.4102 8.21289 10.0781 8.21289 9.60938L8.21289 7.8418L7.95898 4.90234L10.6836 5.15625L12.666 5.15625C13.1445 5.15625 13.4766 4.84375 13.4766 4.39453C13.4766 3.93555 13.1445 3.62305 12.6855 3.62305L7.5293 3.62305C7.01172 3.62305 6.67969 3.87695 6.67969 4.47266L6.67969 9.58984C6.67969 10.0586 6.99219 10.4102 7.44141 10.4102ZM13.2617 10.9473C13.7109 10.9473 14.0234 10.6445 14.0234 10.1758C14.0234 9.96094 13.916 9.75586 13.7695 9.60938L10.6738 6.49414L8.92578 4.87305C8.11523 4.13086 7.14844 5.05859 7.92969 5.88867L9.56055 7.60742L12.6562 10.7129C12.8125 10.8594 12.998 10.9473 13.2617 10.9473ZM22.1387 12.5488C21.6895 12.5488 21.377 12.8809 21.377 13.3594L21.377 15.1172L21.6309 18.0566L18.8965 17.8027L16.9238 17.8027C16.4453 17.8027 16.1133 18.1152 16.1133 18.5742C16.1133 19.0234 16.4453 19.3359 16.9043 19.3359L22.0605 19.3359C22.5684 19.3359 22.9102 19.082 22.9102 18.4961L22.9102 13.3789C22.9102 12.9004 22.5977 12.5488 22.1387 12.5488ZM16.3281 12.0117C15.8789 12.0117 15.5664 12.3242 15.5664 12.793C15.5664 12.998 15.6738 13.2129 15.8105 13.3496L18.916 16.4648L20.6641 18.0859C21.4746 18.8379 22.4414 17.9102 21.6504 17.0801L20.0293 15.3516L16.9238 12.2559C16.7773 12.0996 16.582 12.0117 16.3281 12.0117Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Multiple screens</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Works with multi-monitor setups. Place your prompter on any display.</p>
+      </div>
+
+      <!-- Dark & light themes -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 25.8008 25.459" fill="currentColor"><path d="M12.7148 25.4395C19.7363 25.4395 25.4395 19.7461 25.4395 12.7246C25.4395 5.70312 19.7363 0 12.7148 0C5.69336 0 0 5.70312 0 12.7246C0 19.7461 5.69336 25.4395 12.7148 25.4395ZM12.7148 23.623C6.68945 23.623 1.81641 18.75 1.81641 12.7246C1.81641 6.69922 6.68945 1.82617 12.7148 1.82617C18.7402 1.82617 23.6133 6.69922 23.6133 12.7246C23.6133 18.75 18.7402 23.623 12.7148 23.623Z"/><path d="M12.8027 20.0781C15.7422 20.0781 18.1641 18.3008 19.248 15.957C19.4434 15.5664 19.1797 15.2734 18.7891 15.4004C18.3008 15.5762 17.4316 15.791 16.5723 15.791C12.4219 15.791 10.0781 13.4277 10.0781 9.28711C10.0781 8.44727 10.2539 7.61719 10.5273 6.93359C10.6934 6.48438 10.4102 6.23047 10 6.40625C7.69531 7.37305 5.67383 9.81445 5.67383 12.959C5.67383 16.8848 8.86719 20.0781 12.8027 20.0781Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Dark mode</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Switch between light and dark themes to match your environment and reduce eye strain.</p>
+      </div>
+
+      <!-- No subscription -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 25.8008 30.311" fill="currentColor"><path d="M10.3613 0.795162L10.3613 6.48852C10.3613 7.27954 10.9082 7.49438 11.5332 7.05493L15.4883 4.28149C16.0059 3.92016 16.0156 3.38305 15.4883 3.00219L11.543 0.228756C10.9082-0.220463 10.3613 0.00414614 10.3613 0.795162ZM12.7148 27.8655C19.7363 27.8655 25.4395 22.1721 25.4395 15.1506C25.4395 10.7854 23.252 6.98657 19.9121 4.69165C19.4434 4.34008 18.8281 4.46704 18.5645 4.89672C18.3008 5.34594 18.4375 5.85376 18.877 6.18579C21.7285 8.11938 23.6133 11.4104 23.6133 15.1506C23.6133 21.176 18.7402 26.0491 12.7148 26.0491C6.68945 26.0491 1.81641 21.176 1.81641 15.1506C1.81641 9.12524 6.68945 4.25219 12.7246 4.25219C13.2324 4.25219 13.6328 3.83227 13.6328 3.33422C13.6328 2.84594 13.2422 2.43579 12.7344 2.42602C5.68359 2.43579 0 8.12915 0 15.1506C0 22.1721 5.69336 27.8655 12.7148 27.8655Z"/><path d="M6.61133 10.9514C6.51367 11.5569 6.43555 12.3186 6.43555 12.8069C6.43555 17.1038 8.97461 19.9553 12.8223 19.9553C15.1465 19.9553 16.4062 18.637 16.7285 17.9534L16.0938 17.9924C16.8262 18.7639 17.1289 19.5354 17.5195 20.8049C17.5977 21.0686 17.793 21.1663 17.9883 21.1663C18.4082 21.1663 18.7402 20.8049 18.7402 20.3069C18.7402 19.4963 17.6367 18.1096 17.041 17.5627C14.5508 15.2483 10.8301 16.6057 9.75586 14.0862C9.67773 13.9006 9.88281 13.7248 10.0781 13.9104C12.0996 15.7268 14.5117 14.262 17.041 16.5276C17.2168 16.6936 17.4316 16.6057 17.4609 16.4202C17.4902 16.2346 17.5098 15.9709 17.5098 15.7073C17.5098 12.9241 15.5859 11.6057 12.8418 11.6057C11.9336 11.6057 10.9082 11.801 10.0684 11.801C9.07227 11.801 8.01758 11.6643 7.2168 10.7952C6.99219 10.5608 6.67969 10.5998 6.61133 10.9514Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">One-time purchase</h3>
+        <p class="text-base text-zinc-500 max-w-xs">No subscription, no hidden fees, no data collected, open-source project.</p>
+      </div>
+
+      <!-- Dyslexia-friendly font -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 42.2461 26.2793" fill="currentColor"><path d="M1.40625 26.2793C2.1875 26.2793 2.82227 25.6543 2.82227 24.873C2.82227 24.0918 2.1875 23.4668 1.40625 23.4668C0.634766 23.4668 0 24.0918 0 24.873C0 25.6543 0.634766 26.2793 1.40625 26.2793ZM7.91992 26.2793C8.70117 26.2793 9.33594 25.6543 9.33594 24.873C9.33594 24.0918 8.70117 23.4668 7.91992 23.4668C7.14844 23.4668 6.51367 24.0918 6.51367 24.873C6.51367 25.6543 7.14844 26.2793 7.91992 26.2793ZM14.4336 26.2793C15.2148 26.2793 15.8398 25.6543 15.8398 24.873C15.8398 24.0918 15.2148 23.4668 14.4336 23.4668C13.6523 23.4668 13.0273 24.0918 13.0273 24.873C13.0273 25.6543 13.6523 26.2793 14.4336 26.2793ZM20.9473 26.2793C21.7285 26.2793 22.3535 25.6543 22.3535 24.873C22.3535 24.0918 21.7285 23.4668 20.9473 23.4668C20.166 23.4668 19.541 24.0918 19.541 24.873C19.541 25.6543 20.166 26.2793 20.9473 26.2793ZM27.4609 26.2793C28.2422 26.2793 28.8672 25.6543 28.8672 24.873C28.8672 24.0918 28.2422 23.4668 27.4609 23.4668C26.6797 23.4668 26.0547 24.0918 26.0547 24.873C26.0547 25.6543 26.6797 26.2793 27.4609 26.2793ZM33.9746 26.2793C34.7461 26.2793 35.3809 25.6543 35.3809 24.873C35.3809 24.0918 34.7461 23.4668 33.9746 23.4668C33.1934 23.4668 32.5586 24.0918 32.5586 24.873C32.5586 25.6543 33.1934 26.2793 33.9746 26.2793ZM40.4688 26.2793C41.2402 26.2793 41.875 25.6543 41.875 24.873C41.875 24.0918 41.2402 23.4668 40.4688 23.4668C39.6875 23.4668 39.0527 24.0918 39.0527 24.873C39.0527 25.6543 39.6875 26.2793 40.4688 26.2793Z"/><path d="M0.878906 18.6426C1.28906 18.6426 1.66992 18.3984 1.875 17.8418L3.68164 12.959L11.4258 12.959L13.2324 17.8418C13.4375 18.4082 13.8086 18.6426 14.209 18.6426C14.6777 18.6426 15.1172 18.3008 15.1172 17.7832C15.1172 17.5977 15.0781 17.4414 15 17.207L8.85742 1.04492C8.62305 0.419922 8.21289 0.107422 7.54883 0.107422C6.9043 0.107422 6.49414 0.410156 6.25977 1.03516L0.126953 17.2168C0.0390625 17.4512 0.00976562 17.6074 0.00976562 17.793C0.00976562 18.3203 0.419922 18.6426 0.878906 18.6426ZM4.17969 11.416L7.48047 2.44141L7.60742 2.44141L10.9082 11.416ZM17.8613 18.6426C18.3594 18.6426 18.75 18.291 18.75 17.7246L18.75 15.5078L18.7695 15.5078C19.4727 17.4316 21.2109 18.6523 23.3594 18.6523C26.7285 18.6523 28.9746 15.918 28.9746 11.8066C28.9746 7.69531 26.7188 4.9707 23.3789 4.9707C21.25 4.9707 19.5215 6.19141 18.8184 8.0957L18.7891 8.0957L18.7891 1.2207C18.7891 0.634766 18.418 0.253906 17.8809 0.253906C17.3438 0.253906 16.9727 0.634766 16.9727 1.2207L16.9727 17.7246C16.9727 18.3008 17.334 18.6426 17.8613 18.6426ZM22.998 17.0703C20.5371 17.0703 18.8086 14.9805 18.8086 11.8164C18.8086 8.66211 20.5371 6.5625 22.998 6.5625C25.5078 6.5625 27.1094 8.60352 27.1094 11.8066C27.1094 15.0293 25.5078 17.0703 22.998 17.0703ZM36.5625 18.6523C38.9941 18.6523 41.0742 17.3047 41.7773 15.3418C41.8457 15.1465 41.8848 14.9512 41.8848 14.7754C41.8848 14.3262 41.5527 13.9941 41.0938 13.9941C40.6836 13.9941 40.4688 14.1699 40.2344 14.6289C39.6094 16.2012 38.3496 17.0703 36.5723 17.0703C33.9844 17.0703 32.3438 15.0781 32.3438 11.8164C32.3438 8.57422 34.0039 6.55273 36.5527 6.55273C38.2715 6.55273 39.5605 7.39258 40.2051 9.00391C40.4297 9.45312 40.6543 9.61914 41.0449 9.61914C41.5137 9.61914 41.8359 9.30664 41.8359 8.84766C41.8359 8.70117 41.8066 8.51562 41.7578 8.36914C41.123 6.38672 39.0137 4.9707 36.5137 4.9707C32.8516 4.9707 30.4883 7.67578 30.4883 11.8359C30.4883 15.9961 32.8809 18.6523 36.5625 18.6523Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Dyslexia-friendly font</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Built-in OpenDyslexic font for easier reading. Switch anytime in settings.</p>
+      </div>
+
+      <!-- Put it anywhere -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 30.0096 27.3603" fill="currentColor"><path d="M7.54388 5.73579L7.65925 6.05145C4.07843 8.53823 2.63446 12.0839 2.56342 16.0092C2.55365 16.3999 2.27045 16.7026 1.88959 16.7124C1.51849 16.7221 1.18646 16.3706 1.18646 15.9799C1.18646 11.443 3.09431 7.2357 7.28809 4.59337C7.31832 4.96655 7.4035 5.34974 7.54388 5.73579Z"/><path d="M22.7294 25.1791C27.5536 23.4213 29.7314 19.0268 27.7294 13.519L26.8212 11.0483C25.8349 8.32368 24.0283 7.2104 21.8701 7.97212C21.3036 7.2104 20.4052 6.93696 19.4286 7.29829C19.0673 7.42524 18.7451 7.62055 18.4423 7.8647C17.8271 7.05415 16.8603 6.75141 15.8447 7.12251C15.5615 7.22016 15.2783 7.38618 15.0146 7.58149L13.54 3.54829C13.0224 2.12251 11.7333 1.53657 10.4345 2.01509C9.10638 2.4936 8.49115 3.7729 9.01849 5.19868L12.7099 15.3647C12.7392 15.4233 12.7197 15.4819 12.6611 15.5014C12.6122 15.5209 12.5732 15.5014 12.5244 15.4526L10.7568 13.5092C10.0439 12.7377 9.19427 12.5131 8.38373 12.7963C7.28021 13.1967 6.56732 14.2709 7.02631 15.5112C7.14349 15.8432 7.37787 16.2534 7.64154 16.5854L11.9384 21.7905C15.0048 25.5014 18.6669 26.6635 22.7294 25.1791ZM22.2704 23.7631C18.9501 24.9741 15.8251 24.2612 13.0322 20.892L8.73529 15.6967C8.60834 15.5405 8.51068 15.394 8.43256 15.1694C8.26654 14.7299 8.47162 14.2221 8.9892 14.0366C9.39935 13.8901 9.76068 14.0463 10.1122 14.4272L13.0126 17.4741C13.4521 17.9331 13.8525 17.9916 14.2529 17.8452C14.7216 17.6791 14.9267 17.1909 14.7411 16.6831L10.3466 4.61274C10.1415 4.04634 10.3661 3.52876 10.913 3.32368C11.4501 3.12837 11.9384 3.39204 12.1435 3.95845L15.2685 12.5327C15.4052 12.9038 15.8056 13.0893 16.1669 12.9526C16.538 12.8159 16.7138 12.4252 16.5771 12.0541L15.4443 8.94868C15.6396 8.76313 15.913 8.58735 16.1572 8.49946C16.8017 8.26509 17.3388 8.53852 17.5829 9.23188L18.54 11.8491C18.6865 12.2592 19.0966 12.3959 19.4482 12.269C19.7802 12.1518 19.9951 11.7807 19.8486 11.3706L19.0283 9.12446C19.2236 8.93891 19.497 8.76313 19.7411 8.67524C20.3857 8.44087 20.9228 8.7143 21.1669 9.40766L21.8115 11.1752C21.9579 11.5854 22.3681 11.7221 22.7197 11.5952C23.0517 11.4682 23.2763 11.1069 23.1201 10.6967L22.6122 9.28071C23.7646 8.86079 24.8095 9.7397 25.5322 11.7221L26.3134 13.8706C28.0615 18.6752 26.3818 22.269 22.2704 23.7631Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Put it anywhere</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Place the prompter in the notch, a corner, or as a floating window anywhere on screen.</p>
+      </div>
+
+      <!-- Keyboard shortcuts -->
+      <div class="group flex flex-col items-center justify-center text-center">
+        <div class="mb-5 text-zinc-800">
+          <svg class="w-16 h-16" viewBox="0 0 31.8164 19.7168" fill="currentColor"><path d="M3.79883 19.6875L27.6562 19.6875C30.1758 19.6875 31.4551 18.4082 31.4551 15.918L31.4551 3.76953C31.4551 1.2793 30.1758 0 27.6562 0L3.79883 0C1.26953 0 0 1.26953 0 3.76953L0 15.918C0 18.418 1.26953 19.6875 3.79883 19.6875ZM3.83789 17.959C2.4707 17.959 1.72852 17.2266 1.72852 15.8301L1.72852 3.85742C1.72852 2.46094 2.4707 1.73828 3.83789 1.73828L27.6172 1.73828C28.9551 1.73828 29.7266 2.46094 29.7266 3.85742L29.7266 15.8301C29.7266 17.2266 28.9551 17.959 27.6172 17.959ZM5 6.86523L6.10352 6.86523C6.44531 6.86523 6.65039 6.66016 6.65039 6.31836L6.65039 5.21484C6.65039 4.87305 6.44531 4.6582 6.10352 4.6582L5 4.6582C4.6582 4.6582 4.45312 4.87305 4.45312 5.21484L4.45312 6.31836C4.45312 6.66016 4.6582 6.86523 5 6.86523ZM9.05273 6.86523L10.1562 6.86523C10.498 6.86523 10.7129 6.66016 10.7129 6.31836L10.7129 5.21484C10.7129 4.87305 10.498 4.6582 10.1562 4.6582L9.05273 4.6582C8.71094 4.6582 8.50586 4.87305 8.50586 5.21484L8.50586 6.31836C8.50586 6.66016 8.71094 6.86523 9.05273 6.86523ZM13.1055 6.86523L14.209 6.86523C14.5508 6.86523 14.7656 6.66016 14.7656 6.31836L14.7656 5.21484C14.7656 4.87305 14.5508 4.6582 14.209 4.6582L13.1055 4.6582C12.7637 4.6582 12.5586 4.87305 12.5586 5.21484L12.5586 6.31836C12.5586 6.66016 12.7637 6.86523 13.1055 6.86523ZM17.1582 6.86523L18.2617 6.86523C18.6035 6.86523 18.8184 6.66016 18.8184 6.31836L18.8184 5.21484C18.8184 4.87305 18.6035 4.6582 18.2617 4.6582L17.1582 4.6582C16.8164 4.6582 16.6113 4.87305 16.6113 5.21484L16.6113 6.31836C16.6113 6.31836 16.8164 6.86523 17.1582 6.86523ZM21.2109 6.86523L22.3145 6.86523C22.666 6.86523 22.8711 6.66016 22.8711 6.31836L22.8711 5.21484C22.8711 4.87305 22.666 4.6582 22.3145 4.6582L21.2109 4.6582C20.8691 4.6582 20.6641 4.87305 20.6641 5.21484L20.6641 6.31836C20.6641 6.66016 20.8691 6.86523 21.2109 6.86523ZM25.2637 6.86523L26.3672 6.86523C26.7188 6.86523 26.9238 6.66016 26.9238 6.31836L26.9238 5.21484C26.9238 4.87305 26.7188 4.6582 26.3672 4.6582L25.2637 4.6582C24.9219 4.6582 24.7168 4.87305 24.7168 5.21484L24.7168 6.31836C24.7168 6.66016 24.9219 6.86523 25.2637 6.86523ZM5 10.918L6.10352 10.918C6.44531 10.918 6.65039 10.7129 6.65039 10.3711L6.65039 9.26758C6.65039 8.92578 6.44531 8.7207 6.10352 8.7207L5 8.7207C4.6582 8.7207 4.45312 8.92578 4.45312 9.26758L4.45312 10.3711C4.45312 10.7129 4.6582 10.918 5 10.918ZM9.05273 10.918L10.1562 10.918C10.498 10.918 10.7129 10.7129 10.7129 10.3711L10.7129 9.26758C10.7129 8.92578 10.498 8.7207 10.1562 8.7207L9.05273 8.7207C8.71094 8.7207 8.50586 8.92578 8.50586 9.26758L8.50586 10.3711C8.50586 10.7129 8.71094 10.918 9.05273 10.918ZM13.1055 10.918L14.209 10.918C14.5508 10.918 14.7656 10.7129 14.7656 10.3711L14.7656 9.26758C14.7656 8.92578 14.5508 8.7207 14.209 8.7207L13.1055 8.7207C12.7637 8.7207 12.5586 8.92578 12.5586 9.26758L12.5586 10.3711C12.5586 10.7129 12.7637 10.918 13.1055 10.918ZM17.1582 10.918L18.2617 10.918C18.6035 10.918 18.8184 10.7129 18.8184 10.3711L18.8184 9.26758C18.8184 8.92578 18.6035 8.7207 18.2617 8.7207L17.1582 8.7207C16.8164 8.7207 16.6113 8.92578 16.6113 9.26758L16.6113 10.3711C16.6113 10.7129 16.8164 10.918 17.1582 10.918ZM21.2109 10.918L22.3145 10.918C22.666 10.918 22.8711 10.7129 22.8711 10.3711L22.8711 9.26758C22.8711 8.92578 22.666 8.7207 22.3145 8.7207L21.2109 8.7207C20.8691 8.7207 20.6641 8.92578 20.6641 9.26758L20.6641 10.3711C20.6641 10.7129 20.8691 10.918 21.2109 10.918ZM25.2637 10.918L26.3672 10.918C26.7188 10.918 26.9238 10.7129 26.9238 10.3711L26.9238 9.26758C26.9238 8.92578 26.7188 8.7207 26.3672 8.7207L25.2637 8.7207C24.9219 8.7207 24.7168 8.92578 24.7168 9.26758L24.7168 10.3711C24.7168 10.7129 24.9219 10.918 25.2637 10.918ZM5 14.9805L6.10352 14.9805C6.44531 14.9805 6.65039 14.7656 6.65039 14.4238L6.65039 13.3203C6.65039 12.9785 6.44531 12.7734 6.10352 12.7734L5 12.7734C4.6582 12.7734 4.45312 12.9785 4.45312 13.3203L4.45312 14.4238C4.45312 14.7656 4.6582 14.9805 5 14.9805ZM9.15039 14.9805L22.2168 14.9805C22.627 14.9805 22.8711 14.7363 22.8711 14.3262L22.8711 13.418C22.8711 13.0078 22.627 12.7734 22.2168 12.7734L9.15039 12.7734C8.74023 12.7734 8.50586 13.0078 8.50586 13.418L8.50586 14.3262C8.50586 14.7363 8.74023 14.9805 9.15039 14.9805ZM25.2637 14.9805L26.3672 14.9805C26.7188 14.9805 26.9238 14.7656 26.9238 14.4238L26.9238 13.3203C26.9238 12.9785 26.7188 12.7734 26.3672 12.7734L25.2637 12.7734C24.9219 12.7734 24.7168 12.9785 24.7168 13.3203L24.7168 14.4238C24.7168 14.7656 24.9219 14.9805 25.2637 14.9805Z"/></svg>
+        </div>
+        <h3 class="text-2xl font-bold mb-2">Keyboard shortcuts</h3>
+        <p class="text-base text-zinc-500 max-w-xs">Start, stop, and control scrolling with global keyboard shortcuts.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="max-w-3xl mx-auto px-4 sm:px-6 pb-20 scroll-mt-20">
+    <div class="text-center mb-10">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-stone-900">FAQ</h2>
+    </div>
+
+    <!-- Kontener z ciepłym obramowaniem i delikatnym cieniem -->
+    <div class="divide-y divide-orange-900/10 border border-orange-900/10 rounded-xl overflow-hidden shadow-sm shadow-orange-900/5">
+
+      <!-- Question 1 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          Does it show up in screen recordings?
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          No. NotchPrompter is completely invisible to screen recordings, Zoom, Google Meet, and all other screen sharing tools.
+        </div>
+      </details>
+
+      <!-- Question 2 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          What macOS version do I need?
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          macOS Sonoma (14) or newer. Works on both Apple Silicon and Intel Macs.
+        </div>
+      </details>
+
+      <!-- Question 3 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          Does it work with external monitors?
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          Yes! Works with multi-monitor setups. Place the prompter on any display.
+        </div>
+      </details>
+
+      <!-- Question 4 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          Do I need a MacBook with a notch?
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          No. It works on any Mac. The prompter appears at the top of your screen.
+        </div>
+      </details>
+
+      <!-- Question 5 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          Can I place the prompter anywhere on screen?
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          Yes! You can position the prompter in the notch area, in any corner of the screen, or use the floating mode to drag it anywhere you like.
+        </div>
+      </details>
+
+      <!-- Question 6 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          I found an incorrect translation
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          Thanks for letting us know! Please suggest any translation issues here: <a href="https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc" target="_blank" rel="noopener noreferrer" class="underline decoration-orange-900/30 hover:text-stone-900 transition-colors">SimpleLocalize</a>
+        </div>
+      </details>
+
+      <!-- Question 7 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          Can I get it for free?
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          Yes, NotchPrompter is 100% free and <a href="https://github.com/jpomykala/NotchPrompter/" target="_blank" class="underline decoration-orange-900/30 hover:text-stone-900 transition-colors">open-source</a>. No trials, no subscriptions, no hidden fees.
+        </div>
+      </details>
+
+      <!-- Question 8 -->
+      <details class="group bg-[#FFF9F0]/50">
+        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-semibold text-stone-900 hover:bg-orange-900/5 transition-colors">
+          How does voice-activated scrolling work?
+          <svg class="w-4 h-4 text-orange-900/40 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
+        </summary>
+        <div class="px-6 pb-4 text-sm text-stone-600 leading-relaxed">
+          It uses your microphone to detect speech. Text scrolls while you talk and pauses when you stop, matching your pace naturally.
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="max-w-3xl mx-auto px-4 py-24 text-center">
+    <header class="mb-8">
+      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">
+        Ready to try it?
+      </h2>
+      <p class="text-zinc-500 leading-relaxed">
+        One-time purchase. No subscription. No data collected.
+      </p>
+    </header>
+
+    <div class="flex justify-center">
+      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="group relative inline-flex items-center justify-center px-10 py-5 overflow-hidden font-semibold text-white transition-all duration-300 bg-zinc-950 rounded-full hover:shadow-2xl hover:shadow-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:ring-offset-2">
+
+        <span class="absolute inset-0 bg-gradient-to-b from-zinc-800 to-black transition-opacity group-hover:opacity-90"></span>
+
+        <span class="relative flex items-center gap-3 transition-transform duration-500 ease-out group-hover:-translate-y-12">
+        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
+          <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
+        </svg>
+        Download for Mac
+      </span>
+
+        <span class="absolute flex items-center gap-2 translate-y-12 transition-transform duration-500 ease-out group-hover:translate-y-0">
+        Get it on App Store
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+          <line x1="7" y1="17" x2="17" y2="7"></line>
+          <polyline points="7 7 17 7 17 17"></polyline>
+        </svg>
+      </span>
+      </a>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6">
+    <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p class="text-xs text-zinc-400">&copy; 2026 NotchPrompter · Made in Poland by <a href="https://jpomykala.com" target="_blank" class="underline hover:text-zinc-900 transition-colors">
+        Jakub Pomykała</a></p>
+      <div class="flex items-center gap-4">
+        <a href="https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">Help translate</a>
+        <a href="/privacy-policy.html" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">Privacy</a>
+        <a href="https://github.com/jpomykala/NotchPrompter" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">GitHub</a>
+      </div>
+    </div>
+  </div>
+</footer>
 
 </body>
 </html>
