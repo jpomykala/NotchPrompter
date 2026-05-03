@@ -1,6 +1,5 @@
 import SwiftUI
 import AppKit
-import HotKey
 
 @main
 struct NotchPrompterApp: App {
@@ -21,10 +20,8 @@ struct NotchPrompterApp: App {
             MenuContent(viewModel: appDelegate.viewModel)
         } label: {
             let image: NSImage = {
-                let ratio = $0.size.height / $0.size.width
-                $0.size.height = 18
-                $0.size.width = 18 / ratio
-                $0.isTemplate = true
+                $0.size.height = 12
+                $0.size.width = 12
                 return $0
             }(NSImage(named: "MenuBarIcon")!)
 
@@ -48,9 +45,9 @@ final class AppDelegate: NSObject, NSApplicationDelegate {
 
 struct MenuContent: View {
     @ObservedObject var viewModel: PrompterViewModel
-    
 
-    
+
+
     var body: some View {
         Button {
             viewModel.isPrompterVisible.toggle()
@@ -59,20 +56,13 @@ struct MenuContent: View {
                   systemImage: viewModel.isPrompterVisible ? "eye.slash" : "eye")
         }
         .keyboardShortcut("h", modifiers: [.command, .option])
-        
+
         Divider()
-        
-        Button {
-            if viewModel.isPlaying {
-                viewModel.pause()
-            } else {
-                viewModel.play()
-            }
+
+        Button("Play") {
+               viewModel.play()
         }
-        label: {
-            Label(viewModel.isPlaying ? "Pause" : "Play",
-                  systemImage: viewModel.isPlaying ? "pause.fill" : "play.fill")
-        }
+
         .disabled(viewModel.voiceActivation)
         .keyboardShortcut("p", modifiers: [.command, .option])
 
@@ -82,13 +72,13 @@ struct MenuContent: View {
             Label("Reset", systemImage: "arrow.counterclockwise")
         }
 
-        
+
         Divider()
 
         SettingsLink {
             Label("Settings", systemImage: "gearshape")
         }
-        
+
         .keyboardShortcut(",", modifiers: [.command])
 
         Divider()
@@ -98,26 +88,23 @@ struct MenuContent: View {
                 NSWorkspace.shared.open(url)
             }
         }
-        
+
         Button("Project page") {
             if let url = URL(string: "https://notchprompter.com") {
                 NSWorkspace.shared.open(url)
             }
         }
-        
-//        Button("Help translate") {
-//            if let url = URL(string: "https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc") {
-//                NSWorkspace.shared.open(url)
-//            }
-//        }
-//        #if !APP_STORE_VERSION
+
+       Button("Help translate") {
+           if let url = URL(string: "https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc") {
+               NSWorkspace.shared.open(url)
+           }
+       }
         Button("Sponsor the project") {
             if let url = URL(string: "https://jpomykala.gumroad.com/l/notchprompter") {
                 NSWorkspace.shared.open(url)
             }
         }
-//        #endif
-        
         Divider()
 
         Button(role: .destructive) {

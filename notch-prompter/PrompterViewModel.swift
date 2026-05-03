@@ -7,12 +7,12 @@ import SwiftUI
 import HotKey
 
 final class PrompterViewModel: ObservableObject {
-    
+
     // MARK: User settings
     @Published var text: String = """
     This is a scrolling text test for NotchPrompter for macOS.
     The purpose of this demo is to check speed, readability, and smoothness. [pause]
-    Adjust the font size, scroll speed, and window opacity to your preference.  
+    Adjust the font size, scroll speed, and window opacity to your preference.
     Keep your eyes on the notch and follow the moving line.
 
     Good morning everyone. [smile] Today I want to share a few key points about our upcoming product launch.
@@ -21,12 +21,12 @@ final class PrompterViewModel: ObservableObject {
     Finally, we are excited to begin our rollout strategy and gather feedback from early adopters.
     Thank you for your time, and let's begin. [nod]
 
-    You are capable of more than you think.  
-    Every step forward, no matter how small, builds momentum.  
+    You are capable of more than you think.
+    Every step forward, no matter how small, builds momentum.
     Stay focused, stay consistent, and trust the process. [pause]
-    Progress is progress, even if no one else sees it.  
+    Progress is progress, even if no one else sees it.
     Keep going — your future self will thank you.
-    
+
     In the rapidly evolving world of technology, the ability to adapt and learn quickly has become more important than ever.
     Teams and individuals who embrace experimentation, curiosity, and continuous improvement tend to outperform those who rely on rigid structures and outdated processes.
     Innovation rarely comes from doing the same thing repeatedly. [emphasize] Instead, it thrives in environments where people feel safe to explore new ideas, challenge assumptions, and iterate rapidly.
@@ -60,14 +60,14 @@ final class PrompterViewModel: ObservableObject {
     @Published var enableGlobalKeyboardShortcuts: Bool = false
     @Published var speedIncrement: Double = 2.0
     @Published var manualScrollAmount: Double = 50.0
-    
+
     var backScrollAmount: Double = 20.0 // pixels to scroll back
-    
-    
+
+
     private var timerCancellable: AnyCancellable?
     private var lastTick: CFTimeInterval?
     private var cancellables: Set<AnyCancellable> = []
-    
+
     // MARK: Global keyboard shortcuts
     private var playPauseHotKey: HotKey?
     private var showHideHotKey: HotKey?
@@ -75,13 +75,13 @@ final class PrompterViewModel: ObservableObject {
     private var decreaseSpeedHotKey: HotKey?
     private var scrollUpHotKey: HotKey?
     private var scrollDownHotKey: HotKey?
-    
+
     var audioMonitor: AudioMonitor?
     @Published var showMicrophoneAlert: Bool = false
     @Published var audioThreshold: Float = 0.01
     @Published var targetLevel: Double = 0.05  // default 5%
 
-    
+
     // MARK: UserDefaults keys
     private enum Keys {
         static let text = "PrompterText"
@@ -110,11 +110,10 @@ final class PrompterViewModel: ObservableObject {
         static let speedIncrement = "SpeedIncrement"
         static let manualScrollAmount = "ManualScrollAmount"
     }
-    
+
     // MARK: Init
     init() {
         loadSettings()
-        startTimer()
         observeSettingsChanges()
 //        setupKeyboardShortcuts()
         $voiceActivation
@@ -128,7 +127,7 @@ final class PrompterViewModel: ObservableObject {
                 }
             }
             .store(in: &cancellables)
-        
+
         $enableGlobalKeyboardShortcuts
             .removeDuplicates()
             .sink { [weak self] enabled in
@@ -143,7 +142,7 @@ final class PrompterViewModel: ObservableObject {
             }
             .store(in: &cancellables)
     }
-    
+
     private func requestMicrophoneAccessAndStart() {
         switch AVCaptureDevice.authorizationStatus(for: .audio) {
         case .authorized:
@@ -153,7 +152,7 @@ final class PrompterViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     if granted {
                         self?.monitorAudio()
-                        
+
                     } else {
                         self?.voiceActivation = false
                         self?.showMicrophoneAlert = true
@@ -170,12 +169,12 @@ final class PrompterViewModel: ObservableObject {
         }
     }
 
-    
+
     func monitorAudio(){
         if(audioMonitor == nil){
             audioMonitor = AudioMonitor()
         }
-        
+
         audioMonitor!.$rmsLevel
             .receive(on: DispatchQueue.main)
             .sink { [weak self] rmsLevel in
@@ -195,45 +194,46 @@ final class PrompterViewModel: ObservableObject {
         audioMonitor!.startMonitoring()
     }
 
-    
+
     // MARK: Play/Pause
     func play() {
         lastTick = nil
+        offset = 0
         isPlaying = true
     }
-    
+
     func pause() {
         isPlaying = false
+        offset = 0
     }
-    
+
     func reset() {
         isPlaying = false
-        offset = 0
         lastTick = nil
     }
-    
+
     func scrollBack() {
-        offset = max(0, offset - backScrollAmount)
+        offset = max(127, offset - backScrollAmount)
     }
-    
+
     // MARK: Manual Scroll Control
     func scrollUp() {
-        offset = max(0, offset - manualScrollAmount)
+        offset = max(127, offset - manualScrollAmount)
     }
-    
+
     func scrollDown() {
         offset += manualScrollAmount
     }
-    
+
     // MARK: Speed Control
     func increaseSpeed() {
         speed = min(40, speed + speedIncrement)
     }
-    
+
     func decreaseSpeed() {
         speed = max(1, speed - speedIncrement)
     }
-    
+
     // MARK: Keyboard Shortcuts Setup
     private func setupKeyboardShortcuts() {
         // Initial registration if enabled
@@ -241,9 +241,9 @@ final class PrompterViewModel: ObservableObject {
             registerGlobalKeyboardShortcuts()
         }
     }
-    
+
     private func registerGlobalKeyboardShortcuts() {
-        
+
         print("Register hotkeys")
         // Control + Option + P: Play/Pause
         playPauseHotKey = HotKey(key: .p, modifiers: [.control, .option])
@@ -257,38 +257,38 @@ final class PrompterViewModel: ObservableObject {
                 }
             }
         }
-        
+
         // Control + Option + H: Show/Hide
         showHideHotKey = HotKey(key: .h, modifiers: [.control, .option])
         showHideHotKey?.keyDownHandler = { [weak self] in
             self?.isPrompterVisible.toggle()
         }
-        
+
         // Control + Option + Right Arrow: Increase Speed
         increaseSpeedHotKey = HotKey(key: .rightArrow, modifiers: [.control, .option])
         increaseSpeedHotKey?.keyDownHandler = { [weak self] in
             self?.increaseSpeed()
         }
-        
+
         // Control + Option + Left Arrow: Decrease Speed
         decreaseSpeedHotKey = HotKey(key: .leftArrow, modifiers: [.control, .option])
         decreaseSpeedHotKey?.keyDownHandler = { [weak self] in
             self?.decreaseSpeed()
         }
-        
+
         // Control + Option + Up Arrow: Scroll Up
         scrollUpHotKey = HotKey(key: .upArrow, modifiers: [.control, .option])
         scrollUpHotKey?.keyDownHandler = { [weak self] in
             self?.scrollUp()
         }
-        
+
         // Control + Option + Down Arrow: Scroll Down
         scrollDownHotKey = HotKey(key: .downArrow, modifiers: [.control, .option])
         scrollDownHotKey?.keyDownHandler = { [weak self] in
             self?.scrollDown()
         }
     }
-    
+
     private func unregisterGlobalKeyboardShortcuts() {
         print("Unregister hotkeys")
         playPauseHotKey = nil
@@ -298,18 +298,10 @@ final class PrompterViewModel: ObservableObject {
         scrollUpHotKey = nil
         scrollDownHotKey = nil
     }
-    
-    // MARK: Timer
-    private func startTimer() {
-        timerCancellable = CADisplayLinkPublisher()
-            .sink { [weak self] timestamp in
-                self?.tick(current: timestamp)
-            }
-    }
-    
+
     private func tick(current: CFTimeInterval) {
         guard isPlaying else { return }
-        
+
         let dt: CFTimeInterval
         if let last = lastTick {
             dt = current - last
@@ -317,10 +309,10 @@ final class PrompterViewModel: ObservableObject {
             dt = 0
         }
         lastTick = current
-        
+
         offset += CGFloat(speed) * CGFloat(dt)
     }
-    
+
     // MARK: Settings persistence
     private func observeSettingsChanges() {
         $text.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
@@ -336,7 +328,6 @@ final class PrompterViewModel: ObservableObject {
         $selectedScreenIndex.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $enableTopFade.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $enableBottomFade.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
-        $topFadeHeight.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $bottomFadeHeight.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $showHoverControls.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $hideFromScreenRecording.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
@@ -348,10 +339,10 @@ final class PrompterViewModel: ObservableObject {
         $speedIncrement.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
         $manualScrollAmount.sink { [weak self] _ in self?.saveSettings() }.store(in: &cancellables)
     }
-    
+
     private func loadSettings() {
         let defaults = UserDefaults.standard
-        
+
         text = defaults.string(forKey: Keys.text) ?? text
         speed = defaults.double(forKey: Keys.speed)
         if speed == 0 { speed = 12.0 }
@@ -367,13 +358,13 @@ final class PrompterViewModel: ObservableObject {
         voiceActivation = defaults.object(forKey: Keys.voiceActivation) as? Bool ?? false
         let threshold = defaults.double(forKey: Keys.audioThreshold)
         audioThreshold = threshold == 0 ? 0.01 : Float(threshold)
-        
+
         if let fontDesignRaw = defaults.string(forKey: Keys.fontDesign) {
             fontDesign = Font.Design(rawValue: fontDesignRaw) ?? .default
         }
-        
+
         selectedScreenIndex = defaults.integer(forKey: Keys.selectedScreenIndex)
-        
+
         enableTopFade = defaults.object(forKey: Keys.enableTopFade) as? Bool ?? true
         enableBottomFade = defaults.object(forKey: Keys.enableBottomFade) as? Bool ?? true
         topFadeHeight = defaults.double(forKey: Keys.topFadeHeight)
@@ -382,28 +373,28 @@ final class PrompterViewModel: ObservableObject {
         if bottomFadeHeight == 0 { bottomFadeHeight = 40.0 }
         showHoverControls = defaults.object(forKey: Keys.showHoverControls) as? Bool ?? true
         hideFromScreenRecording = defaults.object(forKey: Keys.hideFromScreenRecording) as? Bool ?? false
-        
+
         if let themeRaw = defaults.string(forKey: Keys.prompterTheme) {
             prompterTheme = PrompterTheme(rawValue: themeRaw) ?? .dark
         }
-        
+
         if let horizontalAlignRaw = defaults.string(forKey: Keys.horizontalAlignment) {
             horizontalAlignment = PrompterHorizontalAlignment(rawValue: horizontalAlignRaw) ?? .center
         }
-        
+
         if let textAlignRaw = defaults.string(forKey: Keys.textAlignment) {
             textAlignment = PrompterTextAlignment(rawValue: textAlignRaw) ?? .center
         }
-        
+
         showProgressBar = defaults.object(forKey: Keys.showProgressBar) as? Bool ?? true
-        
+
         enableGlobalKeyboardShortcuts = defaults.object(forKey: Keys.enableGlobalKeyboardShortcuts) as? Bool ?? false
         speedIncrement = defaults.double(forKey: Keys.speedIncrement)
         if speedIncrement == 0 { speedIncrement = 2.0 }
         manualScrollAmount = defaults.double(forKey: Keys.manualScrollAmount)
         if manualScrollAmount == 0 { manualScrollAmount = 50.0 }
     }
-    
+
     private func saveSettings() {
         let defaults = UserDefaults.standard
         defaults.set(text, forKey: Keys.text)
@@ -431,12 +422,12 @@ final class PrompterViewModel: ObservableObject {
         defaults.set(speedIncrement, forKey: Keys.speedIncrement)
         defaults.set(manualScrollAmount, forKey: Keys.manualScrollAmount)
     }
-    
+
     // MARK: Connector for display refresh
     private final class CADisplayLinkProxy {
         let subject = PassthroughSubject<CFTimeInterval, Never>()
         var link: CVDisplayLink?
-        
+
         init() {
             var link: CVDisplayLink?
             CVDisplayLinkCreateWithActiveCGDisplays(&link)
@@ -453,43 +444,43 @@ final class PrompterViewModel: ObservableObject {
                 CVDisplayLinkStart(l)
             }
         }
-        
+
         deinit {
             if let l = link {
                 CVDisplayLinkStop(l)
             }
         }
     }
-    
+
     private struct CADisplayLinkPublisher: Publisher {
         typealias Output = CFTimeInterval
         typealias Failure = Never
-        
+
         func receive<S>(subscriber: S) where S : Subscriber, Never == S.Failure, CFTimeInterval == S.Input {
             let proxy = CADisplayLinkProxy()
             subscriber.receive(subscription: SubscriptionImpl(subscriber: subscriber, proxy: proxy))
         }
-        
+
         private final class SubscriptionImpl<S: Subscriber>: Subscription where S.Input == CFTimeInterval, S.Failure == Never {
             private var subscriber: S?
             private var proxy: CADisplayLinkProxy?
             private var cancellables: Set<AnyCancellable> = []
-            
+
             init(subscriber: S, proxy: CADisplayLinkProxy) {
                 self.subscriber = subscriber
                 self.proxy = proxy
-                
+
                 proxy.subject
                     .sink { [weak self] value in
                         _ = self?.subscriber?.receive(value)
                     }
                     .store(in: &cancellables)
             }
-            
+
             func request(_ demand: Subscribers.Demand) {
                 // demand not used
             }
-            
+
             func cancel() {
                 subscriber = nil
                 proxy = nil
@@ -509,7 +500,7 @@ extension Font.Design: @retroactive RawRepresentable {
         default: return nil
         }
     }
-    
+
     public var rawValue: String {
         switch self {
         case .default: return "default"
@@ -519,7 +510,7 @@ extension Font.Design: @retroactive RawRepresentable {
         @unknown default: return "default"
         }
     }
-    
+
     var displayName: String {
         switch self {
         case .default: return "Default"
@@ -529,7 +520,7 @@ extension Font.Design: @retroactive RawRepresentable {
         @unknown default: return "Default"
         }
     }
-    
+
     var icon: String {
         switch self {
         case .default: return "Aa"
@@ -539,7 +530,7 @@ extension Font.Design: @retroactive RawRepresentable {
         @unknown default: return "Aa"
         }
     }
-    
+
     var previewFont: Font {
         switch self {
         case .default: return .system(size: 20, weight: .medium, design: .default)
@@ -555,28 +546,28 @@ extension Font.Design: @retroactive RawRepresentable {
 enum PrompterTheme: String, CaseIterable {
     case dark = "dark"
     case light = "light"
-    
+
     var displayName: LocalizedStringKey {
         switch self {
         case .dark: return "Dark"
         case .light: return "Light"
         }
     }
-    
+
     var backgroundColor: Color {
         switch self {
         case .dark: return .black
         case .light: return .white
         }
     }
-    
+
     var textColor: Color {
         switch self {
         case .dark: return .white
         case .light: return .black
         }
     }
-    
+
     var fadeColor: Color {
         switch self {
         case .dark: return .black
@@ -590,7 +581,7 @@ enum PrompterHorizontalAlignment: String, CaseIterable {
     case left = "left"
     case center = "center"
     case right = "right"
-    
+
     var displayName: LocalizedStringKey {
         switch self {
         case .left: return "Left"
@@ -598,43 +589,12 @@ enum PrompterHorizontalAlignment: String, CaseIterable {
         case .right: return "Right"
         }
     }
-    
+
     var icon: String {
         switch self {
         case .left: return "arrow.left.to.line"
         case .center: return "arrow.left.and.right"
         case .right: return "arrow.right.to.line"
-        }
-    }
-}
-
-// MARK: - PrompterTextAlignment Enum
-enum PrompterTextAlignment: String, CaseIterable {
-    case leading = "leading"
-    case center = "center"
-    case trailing = "trailing"
-    
-    var displayName: LocalizedStringKey {
-        switch self {
-        case .leading: return "Left"
-        case .center: return "Center"
-        case .trailing: return "Right"
-        }
-    }
-    
-    var icon: String {
-        switch self {
-        case .leading: return "text.alignleft"
-        case .center: return "text.aligncenter"
-        case .trailing: return "text.alignright"
-        }
-    }
-    
-    var swiftUIAlignment: TextAlignment {
-        switch self {
-        case .leading: return .leading
-        case .center: return .center
-        case .trailing: return .trailing
         }
     }
 }

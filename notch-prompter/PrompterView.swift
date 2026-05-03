@@ -26,7 +26,7 @@ struct ScrollablePrompterView: NSViewRepresentable {
     @Binding var contentHeight: CGFloat
     @Binding var isHovering: Bool
     @Binding var wasPlayingBeforeHover: Bool
-    
+
     func makeNSView(context: Context) -> PrompterHostingView {
         let hostingView = PrompterHostingView(
             viewModel: viewModel,
@@ -36,7 +36,7 @@ struct ScrollablePrompterView: NSViewRepresentable {
         )
         return hostingView
     }
-    
+
     func updateNSView(_ nsView: PrompterHostingView, context: Context) {
         nsView.updateContent()
     }
@@ -50,8 +50,8 @@ class PrompterHostingView: NSView {
     @Binding var contentHeight: CGFloat
     @Binding var isHovering: Bool
     @Binding var wasPlayingBeforeHover: Bool
-    
-    init(viewModel: PrompterViewModel, 
+
+    init(viewModel: PrompterViewModel,
          contentHeight: Binding<CGFloat>,
          isHovering: Binding<Bool>,
          wasPlayingBeforeHover: Binding<Bool>) {
@@ -60,7 +60,7 @@ class PrompterHostingView: NSView {
         self._isHovering = isHovering
         self._wasPlayingBeforeHover = wasPlayingBeforeHover
         super.init(frame: .zero)
-        
+
         let contentView = PrompterContentView(
             viewModel: viewModel,
             contentHeight: contentHeight
@@ -68,7 +68,7 @@ class PrompterHostingView: NSView {
         hostingView = NSHostingView(rootView: contentView)
         hostingView.translatesAutoresizingMaskIntoConstraints = false
         addSubview(hostingView)
-        
+
         NSLayoutConstraint.activate([
             hostingView.leadingAnchor.constraint(equalTo: leadingAnchor),
             hostingView.trailingAnchor.constraint(equalTo: trailingAnchor),
@@ -76,11 +76,11 @@ class PrompterHostingView: NSView {
             hostingView.bottomAnchor.constraint(equalTo: bottomAnchor)
         ])
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func updateContent() {
         let contentView = PrompterContentView(
             viewModel: viewModel,
@@ -88,50 +88,49 @@ class PrompterHostingView: NSView {
         )
         hostingView.rootView = contentView
     }
-    
+
     override func updateTrackingAreas() {
         super.updateTrackingAreas()
-        
+
         if let trackingArea = trackingArea {
             removeTrackingArea(trackingArea)
         }
-        
+
         let options: NSTrackingArea.Options = [
             .mouseEnteredAndExited,
             .activeAlways
         ]
-        
+
         trackingArea = NSTrackingArea(
             rect: bounds,
             options: options,
             owner: self,
             userInfo: nil
         )
-        
+
         if let trackingArea = trackingArea {
             addTrackingArea(trackingArea)
         }
     }
-    
+
     override func mouseEntered(with event: NSEvent) {
         handleHoverChange(hovering: true)
     }
-    
+
     override func mouseExited(with event: NSEvent) {
         handleHoverChange(hovering: false)
     }
-    
+
     override func scrollWheel(with event: NSEvent) {
         // Only handle scroll when hovering
         guard isHovering else { return }
-        
-        // Handle vertical scroll
+
         let scrollAmount = event.scrollingDeltaY
-        let sensitivity: CGFloat = 2.0 // Adjust scroll sensitivity
-        
+        let sensitivity: CGFloat = 100.0
+
         viewModel.offset = max(0, viewModel.offset - scrollAmount * sensitivity)
     }
-    
+
     private func handleHoverChange(hovering: Bool) {
         guard viewModel.pauseOnHover else {
             isHovering = false
@@ -174,19 +173,11 @@ struct PrompterContentView: View {
                     Spacer(minLength: 0)
                 }
                 .clipped()
-                .onChange(of: viewModel.offset) { _, newValue in
-                    if contentHeight > 0, newValue >= contentHeight {
-                        // We've scrolled past the end - stop at the end
-                        viewModel.offset = contentHeight
-                        viewModel.pause()
-                    }
-                }
                 .onChange(of: viewModel.text) { _, _ in
-                    // reset offset when text changes to avoid jump into middle
                     viewModel.offset = 0
                 }
             }
-            
+
             // Fade overlays
             VStack(spacing: 0) {
                 if viewModel.enableTopFade {
@@ -198,9 +189,9 @@ struct PrompterContentView: View {
                     .frame(height: viewModel.topFadeHeight)
                     .allowsHitTesting(false)
                 }
-                
+
                 Spacer()
-                
+
                 if viewModel.enableBottomFade {
                     LinearGradient(
                         gradient: Gradient(colors: [.clear, viewModel.prompterTheme.fadeColor]),
@@ -211,7 +202,7 @@ struct PrompterContentView: View {
                     .allowsHitTesting(false)
                 }
             }
-            
+
             // Progress bar on the right side
             if viewModel.showProgressBar {
                 HStack {
@@ -223,12 +214,12 @@ struct PrompterContentView: View {
                     )
                 }
             }
-            
+
             // Hover controls overlay
-            if showControls && viewModel.showHoverControls {
+            if showControls {
                 VStack {
                     Spacer()
-                    
+
                     HStack(spacing: 8) {
                         // Play
                         if viewModel.voiceActivation {
@@ -268,7 +259,7 @@ struct PrompterContentView: View {
                         }
                         .buttonStyle(.plain)
                         .help("Scroll back a few lines")
-                        
+
                         // Settings
                         Button(action: {
                             openSettingsWindow()
@@ -301,11 +292,11 @@ struct PrompterContentView: View {
             }
         }
     }
-    
+
     private func openSettingsWindow() {
         // Activate the app
         NSApp.activate(ignoringOtherApps: true)
- 
+
         // Try to find existing settings window first
         for window in NSApp.windows {
             if window.title == "NotchPrompter" {
@@ -313,7 +304,7 @@ struct PrompterContentView: View {
                 return
             }
         }
-        
+
         // Simulate the Command+, keyboard shortcut which opens Settings
         let keyDown = NSEvent.keyEvent(
             with: .keyDown,
@@ -327,12 +318,12 @@ struct PrompterContentView: View {
             isARepeat: false,
             keyCode: 43 // Key code for comma
         )
-        
+
         if let event = keyDown {
             NSApp.postEvent(event, atStart: true)
         }
     }
-    
+
     private var movingText: some View {
         return VStack(spacing: viewModel.lineHeight) {
             textBlock
@@ -344,7 +335,7 @@ struct PrompterContentView: View {
     private var textBlock: some View {
         let base = viewModel.text.isEmpty ? "Put some text in Settings..." : viewModel.text
         let text = "\n" + base + "\n\n[the end]"
-        
+
         return Text(attributedText(from: text))
             .multilineTextAlignment(viewModel.textAlignment.swiftUIAlignment)
             .lineSpacing(viewModel.lineHeight)
@@ -352,24 +343,24 @@ struct PrompterContentView: View {
             .fixedSize(horizontal: false, vertical: true)
             .frame(maxWidth: .infinity, alignment: .center)
     }
-    
+
     private func attributedText(from text: String) -> AttributedString {
         var attributedString = AttributedString(text)
-        
+
         // Default font and color
         let defaultFont = Font.system(size: viewModel.fontSize, weight: .regular, design: viewModel.fontDesign)
         let defaultColor = viewModel.prompterTheme.textColor
-        
+
         // Apply default attributes to entire string
         attributedString.font = defaultFont
         attributedString.foregroundColor = defaultColor
-        
+
         // Find and style text in [brackets]
         let pattern = "\\[[^\\]]+\\]"
         if let regex = try? NSRegularExpression(pattern: pattern, options: []) {
             let nsString = text as NSString
             let matches = regex.matches(in: text, options: [], range: NSRange(location: 0, length: nsString.length))
-            
+
             for match in matches {
                 let range = match.range
                 if let stringRange = Range(range, in: text) {
@@ -382,7 +373,7 @@ struct PrompterContentView: View {
                 }
             }
         }
-        
+
         return attributedString
     }
 }
@@ -407,19 +398,19 @@ struct ProgressBarView: View {
     let currentOffset: CGFloat
     let totalHeight: CGFloat
     let theme: PrompterTheme
-    
+
     private var progress: Double {
         guard totalHeight > 0 else { return 0 }
         return min(max(Double(currentOffset / totalHeight), 0), 1.0)
     }
-    
+
     var body: some View {
         GeometryReader { geo in
             ZStack(alignment: .top) {
                 RoundedRectangle(cornerRadius: 2)
                     .fill(theme.textColor.opacity(0.15))
                     .frame(width: 4)
-                RoundedRectangle(cornerRadius: 2) // Progres
+                RoundedRectangle(cornerRadius: 2)
                     .fill(theme.textColor.opacity(0.6))
                     .frame(width: 4, height: geo.size.height * progress)
             }
@@ -432,4 +423,3 @@ struct ProgressBarView: View {
         .allowsHitTesting(false)
     }
 }
-
