@@ -20,27 +20,16 @@ Perfect for quick videos or keeping important text visible while you work.
 - Quick options
 - Customizable speed, size, font style
 - Multi-monitor support
-- Multi-language support
+- [Multi-language support](https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc)
 - Custom position
 
 ## Screenshot
 
 <img width="1465" height="780" alt="screen-frame-no-text" src="https://github.com/user-attachments/assets/8fcca82b-2628-4fcf-8b64-28e19474703b" />
 
+## Translations
+Translations are made via DeepL, so they might be incorrect in some places, but feel free to [suggest better translations!](https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc).
 
-
-## Contributing
-All contributions are welcome! Whether you're fixing bugs, improving the UI, or adding new features, your help is appreciated.
-
-Translations are made by DeepL + AI, so they might be incorrect in some places, you can suggest better translations here:
-
-[Review translations](https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc)
-
-## License
-This project is open-source and available under the MIT License.
-
-## Questions or Ideas?
-Open an issue or reach out!
 
 ## Star History
 
