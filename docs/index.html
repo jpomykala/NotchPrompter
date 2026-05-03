@@ -1,464 +1,137 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <!-- ...existing code (meta, title, description, fonts, OG, Twitter, JSON-LD)... -->
   <meta charset="UTF-8" />
   <link rel="icon" type="image/svg+xml" href="/vite.svg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NotchPrompter — Free Teleprompter for macOS</title>
-  <meta name="description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews & sales demos.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-
-  <!-- Open Graph -->
-  <meta property="og:title" content="NotchPrompter — Free Teleprompter for macOS">
-  <meta property="og:description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews & sales demos.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://notchprompter.com">
-  <meta property="og:image" content="https://notchprompter.com/logo.png">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="NotchPrompter — Free Teleprompter for macOS">
-  <meta name="twitter:description" content="A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording.">
-  <meta name="twitter:image" content="https://notchprompter.com/logo.png">
-
-  <!-- JSON-LD Structured Data -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "SoftwareApplication",
-        "name": "NotchPrompter",
-        "alternateName": "NotchPrompter.app",
-        "description": "A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording. Perfect for presentations, video recording, interviews and sales demos.",
-        "url": "https://notchprompter.com",
-        "downloadUrl": "https://apps.apple.com/pl/app/notchprompter/id6760967658?mt=12",
-        "screenshot": "https://notchprompter.com/screen-frame-v5.png",
-        "image": "https://notchprompter.com/logo.png",
-        "applicationCategory": "UtilitiesApplication",
-        "operatingSystem": "macOS 14 Sonoma or newer",
-        "processorRequirements": "Apple Silicon & Intel",
-        "softwareVersion": "1.0",
-        "isAccessibleForFree": true,
-        "license": "https://opensource.org/licenses/MIT",
-        "offers": {
-          "@type": "Offer",
-          "price": "0",
-          "priceCurrency": "USD",
-          "availability": "https://schema.org/InStock"
-        },
-        "author": {
-          "@type": "Person",
-          "name": "Jakub Pomykała",
-          "url": "https://jpomykala.com",
-          "image": "https://jpomykala.com/assets/me-2025.jpeg",
-          "nationality": {
-            "@type": "Country",
-            "name": "Poland"
-          }
-        },
-        "codeRepository": "https://github.com/jpomykala/NotchPrompter",
-        "featureList": [
-          "Invisible to screen recording and screen sharing",
-          "Voice-activated scrolling",
-          "Fully customizable speed, text size, and font",
-          "Multiple screen support",
-          "Dark and light themes",
-          "Open-source and free under MIT License",
-          "Dyslexia-friendly OpenDyslexic font",
-          "Custom and floating window position",
-          "Global keyboard shortcuts"
-        ],
-        "keywords": [
-          "teleprompter",
-          "macOS",
-          "notch",
-          "screen recording",
-          "presentations",
-          "open-source",
-          "free"
-        ]
-      },
-      {
-        "@type": "WebPage",
-        "name": "NotchPrompter — Free Teleprompter for macOS",
-        "description": "A free, open-source teleprompter that lives in your macOS notch. Invisible to screen recording.",
-        "url": "https://notchprompter.com",
-        "inLanguage": "en",
-        "isPartOf": {
-          "@type": "WebSite",
-          "name": "NotchPrompter",
-          "url": "https://notchprompter.com"
-        }
-      },
-      {
-        "@type": "FAQPage",
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Is NotchPrompter free?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, NotchPrompter is 100% free and open-source under the MIT License."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does NotchPrompter show up in screen recordings?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. NotchPrompter is completely invisible to screen recordings, Zoom, Google Meet, and all other screen sharing tools."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "What macOS version is required?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "NotchPrompter requires macOS Sonoma or newer and works on both Apple Silicon and Intel Macs."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Does it work with external monitors?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes, NotchPrompter supports multi-monitor setups. You can place the prompter on any display."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do I need a MacBook with a notch?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "No. While it's designed to sit beautifully in the notch area, NotchPrompter works on any Mac — including iMacs, Mac Minis with external displays, and older MacBooks without a notch. The prompter simply appears at the top of your screen."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Can I place the prompter anywhere on screen?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes! You can position the prompter in the notch area, in any corner of the screen, or use the floating mode to drag it anywhere you like."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How does voice-activated scrolling work?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "NotchPrompter uses your microphone to detect when you're speaking. The text scrolls while you talk and pauses when you stop — so it naturally matches your pace without any manual controls."
-            }
-          }
-        ]
-      }
-    ]
-  }
-  </script>
-  <script type="module" crossorigin src="./assets/main-NnNb20HE.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/main-CvKBFP4s.css">
+  <title>NotchPrompter — Teleprompter for macOS</title>
+  <meta name="description" content="A minimalistic, always-on-top teleprompter for macOS. Perfect for content creators and presenters.">
+  <script type="module" crossorigin src="./assets/index-BPIJLiBB.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-DtKJVTN1.css">
 </head>
-<body class="bg-stone-50 text-zinc-900 antialiased overflow-x-hidden w-full max-w-full">
-
-<!-- Navigation -->
-<nav class="fixed top-0 left-0 right-0 z-50 bg-stone-50/80 backdrop-blur-xl">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 h-14 flex items-center justify-between">
-    <a href="/" class="flex items-center gap-2.5 shrink-0">
-      <img width="28" height="28" class="rounded-[7px]" src="./assets/logo-B7p2CL6p.png" alt="NotchPrompter" />
-      <span class="text-sm font-semibold text-zinc-900">NotchPrompter</span>
-    </a>
-
-
-    <div class="flex items-center gap-2">
-      <a href="https://github.com/jpomykala/NotchPrompter" target="_blank" rel="noopener noreferrer" class="text-zinc-500 hover:text-zinc-900 transition-colors p-2 flex items-center">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
-      </a>
-      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden rounded-full bg-gradient-to-b from-[#2a2a2a] to-[#0a0a0a] border border-white/[0.08] transition-colors duration-500 ease-out hover:from-[#3a3a3a] hover:to-[#1a1a1a] px-3 py-2 text-[11px] font-semibold text-white no-underline transition-shadow hover:shadow-lg sm:px-5 sm:py-2.5 sm:text-sm"><span class="flex items-center gap-1.5 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 group-hover:blur-[6px] sm:gap-2"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"></path></svg><span class="whitespace-nowrap">Download</span></span><span class="absolute inset-0 flex items-center justify-center gap-1.5 translate-y-full transition-transform duration-300 group-hover:translate-y-0 sm:gap-2"><svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg><span class="whitespace-nowrap">Download</span></span></a>
-    </div>
-  </div>
-</nav>
-
-<main>
-  <!-- Hero -->
-  <section class="pt-28 pb-10 sm:pt-36 sm:pb-14">
-    <div class="flex flex-col items-center text-center px-4 sm:px-6 max-w-3xl mx-auto">
-      <!-- App icon -->
-      <div class="mb-6">
-        <img width="80" height="80" class="rounded-[18px] shadow-lg"
-          src="./assets/logo-B7p2CL6p.png"
-          alt="NotchPrompter" />
+<body>
+<div class="min-h-screen bg-white">
+  <!-- Navigation -->
+  <nav class="fixed top-0 left-0 right-0 bg-white/80 backdrop-blur-md border-b border-gray-100 z-50">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <div class="flex items-center space-x-2">
+          <svg class="w-6 h-6 text-gray-900" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                  d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path>
+          </svg>
+          <span class="text-gray-900 text-lg font-semibold">NotchPrompter</span>
+        </div>
+        <a href="https://github.com/jpomykala/NotchPrompter" target="_blank" rel="noopener noreferrer"
+           class="text-sm text-gray-600 hover:text-gray-900 transition">
+          GitHub
+        </a>
       </div>
+    </div>
+  </nav>
 
-      <!-- Tagline -->
-      <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight leading-[1.1] mb-4 text-zinc-900">
-        Your teleprompter,<br/>hidden in the notch
+  <main class="pt-16">
+    <!-- Hero Section -->
+    <section class="max-w-4xl mx-auto px-6 lg:px-8 pt-24 pb-16 text-center">
+      <h1 class="text-5xl md:text-6xl lg:text-7xl font-semibold text-gray-900 mb-6 tracking-tight leading-tight">
+        NotchPrompter<br />for macOS
       </h1>
-
-      <p class="text-base md:text-lg text-zinc-500 max-w-lg leading-relaxed mb-8">
-        Free macOS promtper app that sits in your notch area completely invisible to screen recording and screen sharing.
+      <p class="text-lg md:text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
+        A minimalistic, always-on-top prompter. Perfect for creating videos or keeping important text visible while you work.
       </p>
-
-      <!-- CTA -->
-
-      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12" target="_blank" rel="noopener noreferrer" class="group relative overflow-hidden px-10 py-5 bg-gradient-to-b from-[#2a2a2a] to-[#0a0a0a] border border-white/[0.08] transition-colors duration-500 ease-out hover:from-[#3a3a3a] hover:to-[#1a1a1a] text-white rounded-full text-[17px] font-semibold hover:shadow-xl transition-shadow no-underline mb-2 fade-3"><span class="flex items-center gap-3 transition-all duration-300 group-hover:-translate-y-full group-hover:opacity-0 group-hover:blur-[6px]"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"></path></svg>Download for Mac</span><span class="absolute inset-0 flex items-center justify-center gap-3 translate-y-full transition-transform duration-300 group-hover:translate-y-0"><svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>Get it on App Store</span></a>
-
-      <p class="text-xs text-zinc-500">
-        $9.99 as one-time purchase or <a href="https://github.com/jpomykala/NotchPrompter/" target="_blank"
-                                        class="underline hover:text-zinc-900 transition-colors"
-      >get it for free from GitHub</a>
-      </p>
-    </div>
-  </section>
-
-  <!-- Screenshot -->
-  <section class="max-w-4xl mx-auto px-4 sm:px-6 pb-16">
-    <div class="relative border-b border-b-4 border-zinc-200">
-      <img src="./assets/screen-frame-v5-BBrXDso5.png"
-           alt="NotchPrompter — teleprompter in macOS notch"
-           class="w-full h-auto block" />
-    </div>
-  </section>
-
-  <!-- Features -->
-  <section id="features" class="max-w-4xl mx-auto px-4 sm:px-6 pb-24 scroll-mt-20">
-    <div class="text-center mb-12">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">Features</h2>
-    </div>
-
-    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-      <!-- Invisible -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-blue-50 flex items-center justify-center text-blue-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.98 8.223A10.477 10.477 0 001.934 12C3.226 16.338 7.244 19.5 12 19.5c.993 0 1.953-.138 2.863-.395M6.228 6.228A10.45 10.45 0 0112 4.5c4.756 0 8.773 3.162 10.065 7.498a10.523 10.523 0 01-4.293 5.774M6.228 6.228L3 3m3.228 3.228l3.65 3.65m7.894 7.894L21 21m-3.228-3.228l-3.65-3.65m0 0a3 3 0 10-4.243-4.243m4.242 4.242L9.88 9.88"/></svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Invisible to recording</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Won't show up in screen recordings, Zoom, Meet, or any screen sharing tool.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+        <a href="https://github.com/jpomykala/NotchPrompter/releases/download/1.2/notch-prompter.zip"
+          class="inline-block bg-gray-900 text-white px-8 py-3 rounded-lg font-medium text-base hover:bg-gray-800 transition-colors">
+          Download for macOS
+        </a>
+        <span class="text-sm text-gray-500">Free · macOS 13.0+</span>
       </div>
+    </section>
 
-      <!-- Voice -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-green-50 flex items-center justify-center text-green-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 18.75a6 6 0 006-6v-1.5m-6 7.5a6 6 0 01-6-6v-1.5m6 7.5v3.75m-3.75 0h7.5M12 15.75a3 3 0 01-3-3V4.5a3 3 0 116 0v8.25a3 3 0 01-3 3z"/></svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Voice activation</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Scrolls when you speak, pauses when you stop. Hands-free operation.</p>
+    <!-- Screenshot -->
+    <section class="max-w-5xl mx-auto px-6 lg:px-8 py-16">
+      <div class="rounded-2xl overflow-hidden shadow-2xl border border-gray-200 bg-gray-50">
+        <img src="https://github.com/user-attachments/assets/99670434-e295-45c4-ba7b-a261d6faf943"
+             alt="NotchPrompter screenshot"
+             class="w-full h-auto" />
       </div>
+    </section>
 
-      <!-- Customizable -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-violet-50 flex items-center justify-center text-violet-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75"/></svg>
+    <!-- Features -->
+    <section class="max-w-4xl mx-auto px-6 lg:px-8 py-20">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16">
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Always on top</h3>
+          <p class="text-base text-gray-600 leading-relaxed">
+            Stays visible above all other windows, so your script is always in view while you work or record.
+          </p>
         </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Fully customizable</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Adjust speed, text size, and font to match your reading pace.</p>
-      </div>
 
-      <!-- Multi-screen -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-amber-50 flex items-center justify-center text-amber-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25A2.25 2.25 0 015.25 3h13.5A2.25 2.25 0 0121 5.25z"/></svg>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Voice activation</h3>
+          <p class="text-base text-gray-600 leading-relaxed">
+            Start and control playback with your voice, keeping your hands free for other tasks.
+          </p>
         </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Multiple screens</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Works with multi-monitor setups. Place your prompter on any display.</p>
-      </div>
 
-      <!-- Themes -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-pink-50 flex items-center justify-center text-pink-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z"/></svg>
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Customizable</h3>
+          <p class="text-base text-gray-600 leading-relaxed">
+            Adjust scrolling speed and text size to match your reading pace perfectly.
+          </p>
         </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Dark &amp; light themes</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Matches your macOS system appearance automatically.</p>
-      </div>
 
-      <!-- Open Source -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-cyan-50 flex items-center justify-center text-cyan-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.25 6.75L22.5 12l-5.25 5.25m-10.5 0L1.5 12l5.25-5.25m7.5-3l-4.5 16.5"/></svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Open-source &amp; free</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">100% free, forever. MIT licensed. Fork it or contribute.</p>
-      </div>
-
-      <!-- Dyslexic Font -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-orange-50 flex items-center justify-center text-orange-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Dyslexia-friendly font</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Built-in OpenDyslexic font for easier reading. Switch anytime in settings.</p>
-      </div>
-
-      <!-- Floating Position -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-teal-50 flex items-center justify-center text-teal-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3.75v4.5m0-4.5h4.5m-4.5 0L9 9M3.75 20.25v-4.5m0 4.5h4.5m-4.5 0L9 15M20.25 3.75h-4.5m4.5 0v4.5m0-4.5L15 9m5.25 11.25h-4.5m4.5 0v-4.5m0 4.5L15 15"/></svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Custom &amp; floating position</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Place the prompter in the notch, a corner, or as a floating window anywhere on screen.</p>
-      </div>
-
-      <!-- Keyboard Shortcuts -->
-      <div class="bg-white rounded-xl border border-zinc-200 p-6">
-        <div class="w-8 h-8 rounded-lg bg-indigo-50 flex items-center justify-center text-indigo-500 mb-3">
-          <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"/></svg>
-        </div>
-        <h3 class="text-sm font-semibold text-zinc-900 mb-1">Keyboard shortcuts</h3>
-        <p class="text-xs text-zinc-500 leading-relaxed">Start, stop, and control scrolling with global keyboard shortcuts.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- About / Meet the maker -->
-  <section class="max-w-3xl mx-auto px-4 sm:px-6 pb-20">
-    <div class="bg-white rounded-xl border border-zinc-200 p-8 sm:p-10">
-      <div class="flex flex-col sm:flex-row items-center sm:items-start gap-6">
-        <img src="https://jpomykala.com/assets/me-2025.jpeg" alt="Jakub Pomykała" class="w-16 h-16 rounded-full object-cover border border-zinc-200 flex-shrink-0" />
-        <div class="text-center sm:text-left">
-          <p class="text-xs font-medium uppercase tracking-[0.15em] text-zinc-400 mb-1">Made by</p>
-          <h2 class="text-lg font-bold tracking-tight text-zinc-900 mb-2">Jakub Pomykała</h2>
-          <p class="text-sm text-zinc-500 leading-relaxed">
-            I built NotchPrompter because I kept forgetting what to say during recordings. Existing prompter apps required an iPhone or iPad setup that felt too tedious. So I made a native Mac solution that sits right in the notch (or anywhere on your screen) simple, invisible, and free.
+        <div>
+          <h3 class="text-lg font-semibold text-gray-900 mb-3">Lightweight</h3>
+          <p class="text-base text-gray-600 leading-relaxed">
+            Minimalist design that stays out of your way. Pause on hover for easy control.
           </p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FAQ -->
-  <section id="faq" class="max-w-3xl mx-auto px-4 sm:px-6 pb-20 scroll-mt-20">
-    <div class="text-center mb-10">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900">FAQ</h2>
-    </div>
+    <!-- Download CTA -->
+    <section class="max-w-4xl mx-auto px-6 lg:px-8 py-20 text-center">
+      <div class="border border-gray-200 rounded-2xl p-12 md:p-16 bg-gray-50">
+        <h2 class="text-3xl md:text-4xl font-semibold text-gray-900 mb-4">
+          Get started
+        </h2>
+        <p class="text-base md:text-lg text-gray-600 mb-8 max-w-xl mx-auto">
+          Download NotchPrompter and start creating better videos today.
+        </p>
+        <a href="https://github.com/jpomykala/NotchPrompter/releases/download/1.2/notch-prompter.zip"
+          class="inline-block bg-gray-900 text-white px-10 py-4 rounded-lg font-medium text-base hover:bg-gray-800 transition-colors">
+          Download for macOS
+        </a>
+        <p class="text-sm text-gray-500 mt-6">
+          Not notarized yet — <a href="https://apple.stackexchange.com/questions/388554/is-a-paid-apple-developer-account-required-for-notarizing-macos-apps" target="_blank" rel="noopener noreferrer" class="underline hover:text-gray-700">requires Apple Developer License</a>
+        </p>
+      </div>
+    </section>
+  </main>
 
-    <div class="divide-y divide-zinc-200 border border-zinc-200 rounded-xl overflow-hidden">
-      <details class="group bg-white">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-medium text-zinc-900 hover:bg-zinc-50/50 transition-colors">
-          Is NotchPrompter free?
-          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </summary>
-        <div class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed">
-          Yes, NotchPrompter is 100% free and open-source under the <a href="https://opensource.org/licenses/MIT" target="_blank" rel="noopener noreferrer" class="underline hover:text-zinc-900 transition-colors">MIT License</a>. No trials, no subscriptions, no hidden fees.
+  <!-- Footer -->
+  <footer class="border-t border-gray-100 mt-20">
+    <div class="max-w-6xl mx-auto px-6 lg:px-8 py-12">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <div class="text-sm text-gray-500">
+          &copy; 2025 NotchPrompter. Open source under MIT License.
         </div>
-      </details>
-
-      <details class="group bg-white">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-medium text-zinc-900 hover:bg-zinc-50/50 transition-colors">
-          Does it show up in screen recordings?
-          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </summary>
-        <div class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed">
-          No. NotchPrompter is completely invisible to screen recordings, Zoom, Google Meet, and all other screen sharing tools.
+        <div class="flex gap-6 text-sm">
+          <a href="https://github.com/jpomykala/NotchPrompter" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition">
+            GitHub
+          </a>
+          <a href="https://github.com/jpomykala/NotchPrompter/releases" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition">
+            Releases
+          </a>
+          <a href="https://github.com/sponsors/jpomykala" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-gray-900 transition">
+            Sponsor
+          </a>
         </div>
-      </details>
-
-      <details class="group bg-white">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-medium text-zinc-900 hover:bg-zinc-50/50 transition-colors">
-          What macOS version do I need?
-          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </summary>
-        <div class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed">
-          macOS Sonoma (14) or newer. Works on both Apple Silicon and Intel Macs.
-        </div>
-      </details>
-
-      <details class="group bg-white">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-medium text-zinc-900 hover:bg-zinc-50/50 transition-colors">
-          Does it work with external monitors?
-          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </summary>
-        <div class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed">
-          Yes! Works with multi-monitor setups. Place the prompter on any display.
-        </div>
-      </details>
-
-      <details class="group bg-white">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-medium text-zinc-900 hover:bg-zinc-50/50 transition-colors">
-          Do I need a MacBook with a notch?
-          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </summary>
-        <div class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed">
-          No. It works on any Mac. The prompter appears at the top of your screen.
-        </div>
-      </details>
-
-      <details class="group bg-white">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-medium text-zinc-900 hover:bg-zinc-50/50 transition-colors">
-          Can I place the prompter anywhere on screen?
-          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </summary>
-        <div class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed">
-          Yes! You can position the prompter in the notch area, in any corner of the screen, or use the floating mode to drag it anywhere you like.
-        </div>
-      </details>
-
-      <details class="group bg-white">
-        <summary class="flex items-center justify-between gap-4 px-6 py-4 cursor-pointer select-none text-sm font-medium text-zinc-900 hover:bg-zinc-50/50 transition-colors">
-          How does voice-activated scrolling work?
-          <svg class="w-4 h-4 text-zinc-400 shrink-0 transition-transform duration-200 group-open:rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15"/></svg>
-        </summary>
-        <div class="px-6 pb-4 text-sm text-zinc-500 leading-relaxed">
-          It uses your microphone to detect speech. Text scrolls while you talk and pauses when you stop matching your pace naturally.
-        </div>
-      </details>
-    </div>
-  </section>
-
-  <!-- Final CTA -->
-  <section class="max-w-3xl mx-auto px-4 py-24 text-center">
-    <header class="mb-8">
-      <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-zinc-900 mb-3">
-        Ready to try it?
-      </h2>
-      <p class="text-zinc-500 leading-relaxed">
-        Support an open-source project.<br>
-        <span class="font-medium text-zinc-800">$9.99</span> one-time purchase. No subscription, no data collected.
-      </p>
-    </header>
-
-    <div class="flex justify-center">
-      <a href="https://apps.apple.com/us/app/notchprompter/id6760967658?mt=12"
-         target="_blank"
-         rel="noopener noreferrer"
-         class="group relative inline-flex items-center justify-center px-10 py-5 overflow-hidden font-semibold text-white transition-all duration-300 bg-zinc-950 rounded-full hover:shadow-2xl hover:shadow-zinc-300 focus:outline-none focus:ring-2 focus:ring-zinc-950 focus:ring-offset-2">
-
-        <span class="absolute inset-0 bg-gradient-to-b from-zinc-800 to-black transition-opacity group-hover:opacity-90"></span>
-
-        <span class="relative flex items-center gap-3 transition-transform duration-500 ease-out group-hover:-translate-y-12">
-        <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24">
-          <path d="M18.71 19.5C17.88 20.74 17 21.95 15.66 21.97C14.32 21.99 13.89 21.18 12.37 21.18C10.84 21.18 10.37 21.95 9.1 21.99C7.79 22.03 6.8 20.68 5.96 19.47C4.25 16.97 2.94 12.45 4.7 9.39C5.57 7.87 7.13 6.91 8.82 6.88C10.1 6.86 11.32 7.75 12.11 7.75C12.89 7.75 14.37 6.68 15.92 6.84C16.57 6.87 18.39 7.1 19.56 8.82C19.47 8.88 17.39 10.1 17.41 12.63C17.44 15.65 20.06 16.66 20.09 16.67C20.06 16.74 19.67 18.11 18.71 19.5ZM13 3.5C13.73 2.67 14.94 2.04 15.94 2C16.07 3.17 15.6 4.35 14.9 5.19C14.21 6.04 13.07 6.7 11.95 6.61C11.8 5.46 12.36 4.26 13 3.5Z"/>
-        </svg>
-        Download for Mac
-      </span>
-
-        <span class="absolute flex items-center gap-2 translate-y-12 transition-transform duration-500 ease-out group-hover:translate-y-0">
-        Get it on App Store
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-          <line x1="7" y1="17" x2="17" y2="7"></line>
-          <polyline points="7 7 17 7 17 17"></polyline>
-        </svg>
-      </span>
-      </a>
-    </div>
-  </section>
-</main>
-
-<footer class="border-t border-zinc-200 bg-white">
-  <div class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
-    <div class="flex flex-col sm:flex-row justify-between items-center gap-3">
-      <p class="text-xs text-zinc-400">&copy; 2026 NotchPrompter · Made in Poland by <a href="https://jpomykala.com" target="_blank" class="underline hover:text-zinc-900 transition-colors">
-        Jakub Pomykała</a></p>
-      <div class="flex items-center gap-4">
-        <a href="https://simplelocalize.io/suggestions/?id=f1f11f9305dc44a2872b6a154dea6edc" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">Help translate</a>
-        <a href="/privacy-policy.html" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">Privacy</a>
-        <a href="https://github.com/jpomykala/NotchPrompter" class="text-xs text-zinc-400 hover:text-zinc-900 transition-colors">GitHub</a>
       </div>
     </div>
-  </div>
-</footer>
+  </footer>
+</div>
 
 </body>
 </html>
